@@ -28,7 +28,6 @@
       },
       "NewRecord_Backend/1.0.0": {
         "type": "project",
-        "framework": ".NETFramework,Version=v4.7.2",
         "compile": {
           "bin/placeholder/NewRecord_Backend.dll": {}
         },
@@ -54,7 +53,6 @@
       },
       "NewRecord_Backend/1.0.0": {
         "type": "project",
-        "framework": ".NETFramework,Version=v4.7.2",
         "compile": {
           "bin/placeholder/NewRecord_Backend.dll": {}
         },
@@ -80,7 +78,6 @@
       },
       "NewRecord_Backend/1.0.0": {
         "type": "project",
-        "framework": ".NETFramework,Version=v4.7.2",
         "compile": {
           "bin/placeholder/NewRecord_Backend.dll": {}
         },
@@ -106,7 +103,6 @@
       },
       "NewRecord_Backend/1.0.0": {
         "type": "project",
-        "framework": ".NETFramework,Version=v4.7.2",
         "compile": {
           "bin/placeholder/NewRecord_Backend.dll": {}
         },

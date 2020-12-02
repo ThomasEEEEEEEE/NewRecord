@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NewRecord.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,10 @@ namespace NewRecord_
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            //if (userisloggedin) then
+            //MainPage = new TabbedPage();
+            //else
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()

@@ -19,3 +19,4 @@ C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\obj\
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\obj\Debug\netstandard2.0\NewRecord!.dll
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\obj\Debug\netstandard2.0\ref\NewRecord!.dll
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\obj\Debug\netstandard2.0\NewRecord!.pdb
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\obj\Debug\netstandard2.0\Views\LoginPage.xaml.g.cs
