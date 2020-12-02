@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7nZO7ajDn8Fix+y4X2ewAQTpe0RY0vx8j+l9nwU9UQpMMdoBMxOjGW3BTyLPIOOpj+MQDTpPXknZaAgR0n2pCA==",
+  "dgSpecHash": "8c4PaUtvLyXFTUb5iZOzgnRad9Wn9MwZGIG1t3zR57rUr59IKya7+3bSaarzIbTFkKw6i+ba0yv/hOwsPO0fRw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord!\\NewRecord!\\NewRecord!.csproj",
   "expectedPackageFiles": [
@@ -8,7 +8,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
     "C:\\Users\\Thomas\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\Thomas\\.nuget\\packages\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
-    "C:\\Users\\Thomas\\.nuget\\packages\\xamarin.forms\\4.8.0.1451\\xamarin.forms.4.8.0.1451.nupkg.sha512"
+    "C:\\Users\\Thomas\\.nuget\\packages\\xamarin.forms\\4.8.0.1687\\xamarin.forms.4.8.0.1687.nupkg.sha512"
   ],
   "logs": []
 }

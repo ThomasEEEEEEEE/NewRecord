@@ -1,0 +1,12 @@
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Database\bin\Debug\NewRecord_Database.dll.config
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Database\bin\Debug\NewRecord_Database.dll
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Database\bin\Debug\NewRecord_Database.pdb
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Database\bin\Debug\System.Data.SqlClient.dll
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Database\bin\Debug\NewRecord_Backend.dll
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Database\bin\Debug\NewRecord_Backend.pdb
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Database\bin\Debug\NewRecord_Backend.dll.config
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Database\obj\Debug\NewRecord_Database.csprojAssemblyReference.cache
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Database\obj\Debug\NewRecord_Database.csproj.CoreCompileInputs.cache
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Database\obj\Debug\NewRecord_Database.csproj.CopyComplete
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Database\obj\Debug\NewRecord_Database.dll
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Database\obj\Debug\NewRecord_Database.pdb

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using NewRecord_Database;
 
 namespace NewRecord_
 {
@@ -13,6 +14,13 @@ namespace NewRecord_
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            AzureDBAccess dbaccess = new AzureDBAccess();
+            dbaccess.AddUser(DBTestEntry.Text);
+            DisplayAlert("Success", "Hopefully anyways", "YE");
         }
     }
 }
