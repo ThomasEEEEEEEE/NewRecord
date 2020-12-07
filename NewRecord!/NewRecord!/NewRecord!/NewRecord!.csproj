@@ -16,11 +16,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\NewRecord_Backend\NewRecord_Backend.csproj" />
     <ProjectReference Include="..\..\NewRecord_Database\NewRecord_Database.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="Views\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MainTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\RecordPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SocialPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

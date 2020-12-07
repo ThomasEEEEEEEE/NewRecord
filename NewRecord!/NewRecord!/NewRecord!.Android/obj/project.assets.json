@@ -788,6 +788,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "NewRecord_Backend": "1.0.0",
           "NewRecord_Database": "1.0.0",
           "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.Forms": "4.8.0.1687"
@@ -797,6 +798,15 @@
         },
         "runtime": {
           "bin/placeholder/NewRecord!.dll": {}
+        }
+      },
+      "NewRecord_Backend/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/NewRecord_Backend.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NewRecord_Backend.dll": {}
         }
       },
       "NewRecord_Database/1.0.0": {
@@ -1934,6 +1944,11 @@
       "type": "project",
       "path": "../NewRecord!/NewRecord!.csproj",
       "msbuildProject": "../NewRecord!/NewRecord!.csproj"
+    },
+    "NewRecord_Backend/1.0.0": {
+      "type": "project",
+      "path": "../../NewRecord_Backend/NewRecord_Backend.csproj",
+      "msbuildProject": "../../NewRecord_Backend/NewRecord_Backend.csproj"
     },
     "NewRecord_Database/1.0.0": {
       "type": "project",

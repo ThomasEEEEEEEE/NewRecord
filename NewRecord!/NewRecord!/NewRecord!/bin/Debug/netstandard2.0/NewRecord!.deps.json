@@ -10,6 +10,7 @@
       "NewRecord!/1.0.0": {
         "dependencies": {
           "NETStandard.Library": "2.0.3",
+          "NewRecord_Backend": "1.0.0",
           "NewRecord_Database": "1.0.0",
           "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.Forms": "4.8.0.1687"
@@ -59,17 +60,14 @@
           }
         }
       },
+      "NewRecord_Backend/1.0.0": {
+        "runtime": {
+          "NewRecord_Backend.dll": {}
+        }
+      },
       "NewRecord_Database/1.0.0": {
         "runtime": {
           "NewRecord_Database.dll": {}
-        }
-      },
-      "NewRecord_Backend/1.0.0.0": {
-        "runtime": {
-          "NewRecord_Backend.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
         }
       }
     }
@@ -115,13 +113,13 @@
       "path": "xamarin.forms/4.8.0.1687",
       "hashPath": "xamarin.forms.4.8.0.1687.nupkg.sha512"
     },
-    "NewRecord_Database/1.0.0": {
+    "NewRecord_Backend/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "NewRecord_Backend/1.0.0.0": {
-      "type": "reference",
+    "NewRecord_Database/1.0.0": {
+      "type": "project",
       "serviceable": false,
       "sha512": ""
     }

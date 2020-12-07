@@ -19,7 +19,7 @@ namespace NewRecord.Views
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            //Move to tabbed page
+            Navigation.PushModalAsync(new MainTabbedPage());
         }
     }
 }

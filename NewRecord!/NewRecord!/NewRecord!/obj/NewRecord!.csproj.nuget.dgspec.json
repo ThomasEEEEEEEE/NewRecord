@@ -33,6 +33,9 @@
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
+              "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Backend\\NewRecord_Backend.csproj": {
+                "projectPath": "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Backend\\NewRecord_Backend.csproj"
+              },
               "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Database\\NewRecord_Database.csproj": {
                 "projectPath": "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Database\\NewRecord_Database.csproj"
               }

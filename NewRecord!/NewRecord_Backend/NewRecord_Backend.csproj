@@ -49,14 +49,14 @@
     <Compile Include="Interfaces\iDBAccess.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Record.cs" />
+    <Compile Include="Models\RecordItem.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,8 +3,8 @@ public class MonoPackageManager_Resources {
 	public static String[] Assemblies = new String[]{
 		/* We need to ensure that "NewRecord!.Android.dll" comes first in this list. */
 		"NewRecord!.Android.dll",
-		"NewRecord_Database.dll",
 		"NewRecord_Backend.dll",
+		"NewRecord_Database.dll",
 		"FormsViewGroup.dll",
 		"NewRecord!.dll",
 		"Xamarin.Android.Arch.Core.Common.dll",

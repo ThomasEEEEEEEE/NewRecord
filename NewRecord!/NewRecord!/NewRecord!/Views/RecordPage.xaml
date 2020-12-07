@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewRecord.Views.RecordPage"
+             Background="#212121">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Records" FontSize="60"/>
+                <Button x:Name="AddButton" Text="+" FontSize="70" Clicked="AddButton_Clicked"/>
+            </StackLayout>
+
+            <ListView x:Name="RListView" ItemsSource="{Binding ListView}" SeparatorVisibility="None" SelectionMode="None" HasUnevenRows="False" Margin="0,-7,0,0" RowHeight="100">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Padding="4" BorderColor="#2f0000" BackgroundColor="Red">
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame>
+                                        <Image VerticalOptions="Fill" Source="https://www.flaticon.com/premium-icon/icons/svg/919/919471.svg"/>
+                                    </Frame>
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding Name}" FontSize="Large" TextColor="GhostWhite"/>
+                                        <Label Text="{Binding BestScore}" FontSize="16" TextColor="GhostWhite"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
