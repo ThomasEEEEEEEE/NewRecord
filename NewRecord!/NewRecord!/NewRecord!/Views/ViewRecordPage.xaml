@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewRecord.Views.ViewRecordPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Image x:Name="RecordImage" Aspect="Fill"/>
+                <Label x:Name="RecordName" Text="Record" FontSize="36" TextColor="GhostWhite"/>
+            </StackLayout>
+            <Label x:Name="PrivacyInfo" Text="Privacy" FontSize="24"/>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
