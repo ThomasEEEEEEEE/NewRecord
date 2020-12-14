@@ -10,7 +10,7 @@
                 <Button x:Name="AddButton" Text="+" FontSize="70" Clicked="AddButton_Clicked"/>
             </StackLayout>
 
-            <ListView x:Name="RListView" ItemsSource="{Binding ListView}" SeparatorVisibility="None" SelectionMode="None" HasUnevenRows="False" Margin="0,-7,0,0" RowHeight="100">
+            <ListView x:Name="RListView" ItemsSource="{Binding ListView}" SeparatorVisibility="None" SelectionMode="None" HasUnevenRows="False" Margin="0,-7,0,0" RowHeight="100" ItemTapped="RListView_ItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

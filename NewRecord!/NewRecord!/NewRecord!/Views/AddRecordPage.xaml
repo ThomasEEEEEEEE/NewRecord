@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewRecord.Views.AddRecordPage">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout>
+            <BoxView BackgroundColor="Gray" WidthRequest="100" HeightRequest="100" HorizontalOptions="Center" Margin="0,5,0,0"/>
+            <!--<CarouselView ItemsSource="{Binding Images}">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <BoxView BackgroundColor="Gray"/>
+                        </ViewCell>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>-->
+            <Entry Placeholder="Name" FontSize="50" BackgroundColor="Black" PlaceholderColor="GhostWhite" HorizontalTextAlignment="Center"/>
+            
+            <Picker Title="Are you aiming for a larger or smaller score or time?">
+                <Picker.Items>
+                    <x:String>Larger</x:String>
+                    <x:String>Smaller</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Picker Title="Privacy">
+                <Picker.Items>
+                    <x:String>Public</x:String>
+                    <x:String>Private</x:String>
+                    <x:String>Friends Only</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Entry Placeholder="Current Best Score" BackgroundColor="Black" PlaceholderColor="GhostWhite" Keyboard="Numeric" HorizontalTextAlignment="Center" FontSize="42"/>
+            <Button Text="ADD" FontSize="64" HorizontalOptions="Center"/>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

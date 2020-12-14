@@ -7,14 +7,19 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace NewRecord!.Views
+namespace NewRecord.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class ViewRecordPage : ContentPage
-{
-    public ViewRecordPage()
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ViewRecordPage : ContentPage
     {
-        InitializeComponent();
+        public ViewRecordPage(string recname)
+        {
+            InitializeComponent();
+
+            //Get Full record info from DB
+
+            RecordName.Text = recname;
+            //PrivacyInfo = ;
+        }
     }
-}
 }

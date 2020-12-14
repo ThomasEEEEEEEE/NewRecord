@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "dSAUb5OarqlILUUo1ZIER+VcrqKTy7Ot1kQFcUMnhGVsbMBFj2nsEfz8c1y3+GnKmGtdGIh/05tVIDJ9nR7BiA==",
+  "dgSpecHash": "hend5Hq6a73mTaSTJwrv3Nk6gL/sL1VsqDtD87HjLLhTXlX/jktmcUWwDz/KW4gO2kZErjmr0puktIR/uCbhRw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Database\\NewRecord_Database.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Thomas\\.nuget\\packages\\system.data.sqlclient\\4.8.2\\system.data.sqlclient.4.8.2.nupkg.sha512"
+    "C:\\Users\\Thomas\\.nuget\\packages\\carouselview.formsplugin\\5.2.0\\carouselview.formsplugin.5.2.0.nupkg.sha512",
+    "C:\\Users\\Thomas\\.nuget\\packages\\system.data.sqlclient\\4.8.2\\system.data.sqlclient.4.8.2.nupkg.sha512",
+    "C:\\Users\\Thomas\\.nuget\\packages\\xam.plugin.tabview\\1.1.1\\xam.plugin.tabview.1.1.1.nupkg.sha512",
+    "C:\\Users\\Thomas\\.nuget\\packages\\xamarin.forms\\3.1.0.583944\\xamarin.forms.3.1.0.583944.nupkg.sha512"
   ],
   "logs": []
 }

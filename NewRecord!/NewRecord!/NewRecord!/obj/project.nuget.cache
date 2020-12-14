@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "DEPZ8YrLDAfSkLlVg+7Pnot0/p8Oz0QApIaXppMmSYK/Sx75x7TDCgFO1qhUEQNuGF7cUFZ4shVzcMR+U4z65A==",
+  "dgSpecHash": "iAs9VZXk9zo/rbL5+c5WAUAJWRPQnl15DVEg2oXvkKQQGkHfgUUGc48Gvg541dvD1KXDMrzoxn5oMj8lKISM+A==",
   "success": true,
   "projectFilePath": "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord!\\NewRecord!\\NewRecord!.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Thomas\\.nuget\\packages\\carouselview.formsplugin\\5.2.0\\carouselview.formsplugin.5.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
     "C:\\Users\\Thomas\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\Thomas\\.nuget\\packages\\xam.plugin.tabview\\1.1.1\\xam.plugin.tabview.1.1.1.nupkg.sha512",
     "C:\\Users\\Thomas\\.nuget\\packages\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
     "C:\\Users\\Thomas\\.nuget\\packages\\xamarin.forms\\4.8.0.1687\\xamarin.forms.4.8.0.1687.nupkg.sha512"
   ],

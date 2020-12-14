@@ -34,7 +34,12 @@ namespace NewRecord.Views
 
         private void AddButton_Clicked(object sender, EventArgs e)
         {
-            //Go to AddRecordPage
+            Navigation.PushAsync(new AddRecordPage());
+        }
+
+        private void RListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            Navigation.PushModalAsync(new ViewRecordPage(vm.ListView[e.ItemIndex].Name));
         }
     }
 }
