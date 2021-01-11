@@ -17,7 +17,7 @@
                             <Frame Padding="4" BorderColor="#2f0000" BackgroundColor="Red">
                                 <StackLayout Orientation="Horizontal">
                                     <Frame>
-                                        <Image VerticalOptions="Fill" Source="https://www.flaticon.com/premium-icon/icons/svg/919/919471.svg"/>
+                                        <Image VerticalOptions="Fill" Source="{Binding ImageUrl}"/>
                                     </Frame>
                                     <StackLayout Orientation="Vertical">
                                         <Label Text="{Binding Name}" FontSize="Large" TextColor="GhostWhite"/>

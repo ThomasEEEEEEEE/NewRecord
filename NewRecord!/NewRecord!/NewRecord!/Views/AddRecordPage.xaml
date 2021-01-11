@@ -5,26 +5,26 @@
     <ContentPage.Content>
         <ScrollView>
         <StackLayout>
-            <BoxView BackgroundColor="Gray" WidthRequest="100" HeightRequest="100" HorizontalOptions="Center" Margin="0,5,0,0"/>
-            <!--<CarouselView ItemsSource="{Binding Images}">
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <BoxView BackgroundColor="Gray"/>
-                        </ViewCell>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>-->
-            <Entry Placeholder="Name" FontSize="50" BackgroundColor="Black" PlaceholderColor="GhostWhite" HorizontalTextAlignment="Center"/>
+            <!--<BoxView BackgroundColor="Gray" WidthRequest="100" HeightRequest="100" HorizontalOptions="Center" Margin="0,5,0,0"/>-->
+                <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding Images}">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Image Source="{Binding .}" Aspect="AspectFill"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+            <Entry x:Name="NameEntry" Placeholder="Name" FontSize="50" BackgroundColor="Black" PlaceholderColor="GhostWhite" HorizontalTextAlignment="Center"/>
             
-            <Picker Title="Are you aiming for a larger or smaller score or time?">
+            <Picker x:Name="SuccessPicker" Title="Are you aiming for a larger or smaller score or time?">
                 <Picker.Items>
                     <x:String>Larger</x:String>
                     <x:String>Smaller</x:String>
                 </Picker.Items>
             </Picker>
 
-            <Picker Title="Privacy">
+            <Picker x:Name="PrivacyPicker" Title="Privacy">
                 <Picker.Items>
                     <x:String>Public</x:String>
                     <x:String>Private</x:String>
@@ -32,8 +32,8 @@
                 </Picker.Items>
             </Picker>
 
-            <Entry Placeholder="Current Best Score" BackgroundColor="Black" PlaceholderColor="GhostWhite" Keyboard="Numeric" HorizontalTextAlignment="Center" FontSize="42"/>
-            <Button Text="ADD" FontSize="64" HorizontalOptions="Center"/>
+            <Entry x:Name="BestScoreEntry" Placeholder="Current Best Score" BackgroundColor="Black" PlaceholderColor="GhostWhite" Keyboard="Numeric" HorizontalTextAlignment="Center" FontSize="42"/>
+            <Button x:Name="AddButton" Text="ADD" FontSize="64" HorizontalOptions="Center" Clicked="AddButton_Clicked"/>
         </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Interfaces\iDBAccess.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\RecImage.cs" />
     <Compile Include="Models\Record.cs" />
     <Compile Include="Models\RecordItem.cs" />
     <Compile Include="Models\User.cs" />

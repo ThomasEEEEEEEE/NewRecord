@@ -8,6 +8,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using NewRecord_Backend.ViewModels;
 using NewRecord_Backend.Models;
+using System.Xml;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace NewRecord.Views
 {
@@ -15,19 +18,26 @@ namespace NewRecord.Views
     public partial class RecordPage : ContentPage
     {
         ListViewModel<Record> vm = new ListViewModel<Record>();
+        string FileName = "LocalRecords.xml";
         public RecordPage()
         {
             InitializeComponent();
 
-            Record r = new Record("Soccer");
-            r.RecordHistory.Add(new RecordItem(50.5, new DateTime(2018, 3, 13)));
-            r.RecordHistory.Add(new RecordItem(109.3, new DateTime(2019, 7, 15)));
-            vm.ListView.Add(r);
+            string FilePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 
-            r = new Record("Running");
-            r.RecordHistory.Add(new RecordItem(8.5, new DateTime(2019, 3, 13)));
-            r.RecordHistory.Add(new RecordItem(9.5, new DateTime(2020, 7, 15)));
-            vm.ListView.Add(r);
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Record>));
+            List<Record> Records = new List<Record>();
+            try
+            {
+                FileStream fs = new FileStream(FilePath + FileName, FileMode.Open);
+                Records = (List<Record>)serializer.Deserialize(fs);
+            }
+            catch (Exception)
+            {
+                File.Create(FilePath + FileName);
+            }
+
+            Records.ForEach(x => vm.ListView.Add(x));
 
             BindingContext = vm;
         }

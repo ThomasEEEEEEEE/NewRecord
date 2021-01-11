@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace NewRecord_Backend.Models
 {
-    public enum RecordImage
-    {
-        BALL
-    }
+    
     public enum PrivacySettings
     {
         PUBLIC,
@@ -23,13 +20,14 @@ namespace NewRecord_Backend.Models
     }
     public class Record
     {
-        public Record(string name)
+        public Record(string name, double score)
         {
             Name = name;
             RecordHistory = new List<RecordItem>();
+            RecordHistory.Add(new RecordItem(score, DateTime.Now));
         }
         public string Name { get; set; }
-        public RecordImage SelectedImage { get; set; }
+        public string SelectedImage { get; set; }
         public PrivacySettings Privacy { get; set; }
         public SuccessInfo Success { get; set; }
         public List<RecordItem> RecordHistory { get; set; }
