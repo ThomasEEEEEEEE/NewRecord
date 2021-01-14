@@ -30,16 +30,15 @@ namespace NewRecord.Views
 
         private void AddButton_Clicked(object sender, EventArgs e)
         {
-            //Deserialize record data
-            //XmlSerializer serializer = new XmlSerializer(typeof(List<Record>));
-            //FileStream fs = new FileStream(Environment.GetFolderPath(Environment.SpecialFolder.Personal) + FileName, FileMode.Open);
+            //TODO: Check for duplicate names ignoring case
             string FilePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             List<Record> records;
             string contents = File.ReadAllText(FilePath + FileName);
             records = JsonConvert.DeserializeObject<List<Record>>(contents);
-            //records = (List<Record>)serializer.Deserialize(fs);
 
-            //create new record item with entry info
+            if (records == null)
+                records = new List<Record>();
+
             Record rec = new Record(NameEntry.Text, Convert.ToDouble(BestScoreEntry.Text));
             rec.SelectedImage = ImageCarousel.CurrentItem.ToString();
             rec.Success = SuccessPicker.SelectedItem.ToString() == "Larger" ? SuccessInfo.LARGER : SuccessInfo.SMALLER;
@@ -51,12 +50,9 @@ namespace NewRecord.Views
                 rec.Privacy = PrivacySettings.FRIENDSONLY;
 
             records.Add(rec);
-            //Serialize the new list
-            //XmlSerializer serializer = new XmlSerializer(typeof(Record));
-            //TextWriter writer = new StreamWriter("");
-            //serializer.Serialize(writer, records);
             string newcontents = JsonConvert.SerializeObject(records);
             File.WriteAllText(FilePath + FileName, newcontents);
+            Navigation.PopModalAsync();
         }
     }
 }

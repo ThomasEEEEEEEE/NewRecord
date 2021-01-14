@@ -24,9 +24,8 @@ namespace NewRecord.Views
         {
             InitializeComponent();
 
+            /*vm.ListView.Clear();
             string FilePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-
-            //XmlSerializer serializer = new XmlSerializer(typeof(List<Record>));
             List<Record> Records = new List<Record>();
             try
             {
@@ -42,9 +41,31 @@ namespace NewRecord.Views
             }
 
             if (Records != null)
-                Records.ForEach(x => vm.ListView.Add(x));
+                Records.ForEach(x => vm.ListView.Add(x));*/
 
             BindingContext = vm;
+        }
+
+        protected override void OnAppearing()
+        {
+            vm.ListView.Clear();
+            string FilePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            List<Record> Records = new List<Record>();
+            try
+            {
+                string contents = File.ReadAllText(FilePath + FileName);
+                Records = JsonConvert.DeserializeObject<List<Record>>(contents);
+            }
+            catch (Exception e)
+            {
+                if (!File.Exists(FilePath + FileName))
+                    File.Create(FilePath + FileName);
+                else
+                    DisplayAlert("Exception", e.Message, "K");
+            }
+
+            if (Records != null)
+                Records.ForEach(x => vm.ListView.Add(x));
         }
 
         private void AddButton_Clicked(object sender, EventArgs e)
@@ -54,7 +75,7 @@ namespace NewRecord.Views
 
         private void RListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            Navigation.PushModalAsync(new ViewRecordPage(vm.ListView[e.ItemIndex].Name));
+            Navigation.PushModalAsync(new ViewRecordPage(vm.ListView[e.ItemIndex]));
         }
     }
 }

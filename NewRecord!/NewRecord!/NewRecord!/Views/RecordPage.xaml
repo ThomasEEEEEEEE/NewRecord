@@ -14,10 +14,16 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Frame Padding="4" BorderColor="#2f0000" BackgroundColor="Red">
+                            <!--<SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Delete" BackgroundColor="Red" IconImageSource="swimming.png"/>
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>-->
+                            <Frame Padding="4" BorderColor="#2f0000" BackgroundColor="DarkRed">
                                 <StackLayout Orientation="Horizontal">
-                                    <Frame>
-                                        <Image VerticalOptions="Fill" Source="{Binding ImageUrl}"/>
+                                    <Frame BackgroundColor="AliceBlue">
+                                        <Image Source="{Binding SelectedImage}" Aspect="AspectFill"/>
                                     </Frame>
                                     <StackLayout Orientation="Vertical">
                                         <Label Text="{Binding Name}" FontSize="Large" TextColor="GhostWhite"/>

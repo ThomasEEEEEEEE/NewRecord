@@ -6,12 +6,13 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Image x:Name="RecordImage" Aspect="Fill"/>
+                <Image x:Name="RecordImage" Aspect="AspectFill"/>
                 <Label x:Name="RecordName" Text="Record" FontSize="36" TextColor="GhostWhite"/>
             </StackLayout>
             <Label x:Name="PrivacyInfo" Text="Privacy" FontSize="24"/>
-            
-            <tabview:TabViewControl HeaderBackgroundColor="Blue" HorizontalOptions="FillAndExpand" IsSwipeEnabled="True">
+            <Label x:Name="SuccessSettings" Text="Success" FontSize="24"/>
+
+            <tabview:TabViewControl x:Name="RecTabView" HeaderBackgroundColor="Blue" HorizontalOptions="FillAndExpand" IsSwipeEnabled="True">
                 <tabview:TabViewControl.ItemSource>
                     <tabview:TabItem HeaderText="History">
                         <Label Text="Insert record history listview"/>
