@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "1NlBpQVEhdPMElHLL+xozH4QwP5REWhzifUpc/kew6oDB502t/NqwxANwZqJX4XSzu/vJvFc/p2bD8egFMlkRQ==",
+  "dgSpecHash": "yvcuv6izr+rCOIsL/+uQlu7QU0PHzQSvZqEMHR7d32u2+W9gI0rfWZVXlNEr2rdBzkSmXLidjU0zxDr6zV31RA==",
   "success": false,
   "projectFilePath": "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord!\\NewRecord!.Android\\NewRecord!.Android.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Thomas\\.nuget\\packages\\carouselview.formsplugin\\5.2.0\\carouselview.formsplugin.5.2.0.nupkg.sha512",
+    "C:\\Users\\Thomas\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\Thomas\\.nuget\\packages\\xam.plugin.tabview\\1.1.1\\xam.plugin.tabview.1.1.1.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.android.arch.core.common\\1.1.1.3\\xamarin.android.arch.core.common.1.1.1.3.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.android.arch.core.runtime\\1.1.1.3\\xamarin.android.arch.core.runtime.1.1.1.3.nupkg.sha512",

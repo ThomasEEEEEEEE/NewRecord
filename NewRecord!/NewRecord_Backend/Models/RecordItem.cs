@@ -8,6 +8,7 @@ namespace NewRecord_Backend.Models
 {
     public class RecordItem
     {
+        public RecordItem() { }
         public RecordItem(double score, DateTime dt)
         {
             Score = score;

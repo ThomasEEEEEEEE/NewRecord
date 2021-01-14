@@ -11,6 +11,7 @@ using NewRecord_Backend.Models;
 using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace NewRecord.Views
 {
@@ -18,26 +19,30 @@ namespace NewRecord.Views
     public partial class RecordPage : ContentPage
     {
         ListViewModel<Record> vm = new ListViewModel<Record>();
-        string FileName = "LocalRecords.xml";
+        string FileName = "LocalRecords.json";
         public RecordPage()
         {
             InitializeComponent();
 
             string FilePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Record>));
+            //XmlSerializer serializer = new XmlSerializer(typeof(List<Record>));
             List<Record> Records = new List<Record>();
             try
             {
-                FileStream fs = new FileStream(FilePath + FileName, FileMode.Open);
-                Records = (List<Record>)serializer.Deserialize(fs);
+                string contents = File.ReadAllText(FilePath + FileName);
+                Records = JsonConvert.DeserializeObject<List<Record>>(contents);   
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                File.Create(FilePath + FileName);
+                if (!File.Exists(FilePath + FileName))
+                    File.Create(FilePath + FileName);
+                else
+                    DisplayAlert("Exception", e.Message, "K");
             }
 
-            Records.ForEach(x => vm.ListView.Add(x));
+            if (Records != null)
+                Records.ForEach(x => vm.ListView.Add(x));
 
             BindingContext = vm;
         }

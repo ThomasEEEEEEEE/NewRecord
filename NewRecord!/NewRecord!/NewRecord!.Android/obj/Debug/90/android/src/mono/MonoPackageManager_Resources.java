@@ -11,6 +11,7 @@ public class MonoPackageManager_Resources {
 		"Com.ViewPagerIndicator.dll",
 		"FormsViewGroup.dll",
 		"NewRecord!.dll",
+		"Newtonsoft.Json.dll",
 		"Xam.Plugin.TabView.dll",
 		"Xamarin.Android.Arch.Core.Common.dll",
 		"Xamarin.Android.Arch.Core.Runtime.dll",

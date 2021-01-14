@@ -20,6 +20,7 @@ namespace NewRecord_Backend.Models
     }
     public class Record
     {
+        public Record() { }
         public Record(string name, double score)
         {
             Name = name;

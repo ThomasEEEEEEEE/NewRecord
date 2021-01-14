@@ -6,16 +6,16 @@
         <ScrollView>
         <StackLayout>
             <!--<BoxView BackgroundColor="Gray" WidthRequest="100" HeightRequest="100" HorizontalOptions="Center" Margin="0,5,0,0"/>-->
-                <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding Images}">
+                <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding ListView}" HeightRequest="100" IndicatorView="indView">
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <Image Source="{Binding .}" Aspect="AspectFill"/>
-                            </ViewCell>
+                            <Image Source="{Binding .}" Aspect="AspectFit" HeightRequest="48" WidthRequest="48"/>
                         </DataTemplate>
                     </CarouselView.ItemTemplate>
                 </CarouselView>
-            <Entry x:Name="NameEntry" Placeholder="Name" FontSize="50" BackgroundColor="Black" PlaceholderColor="GhostWhite" HorizontalTextAlignment="Center"/>
+                <!--<Image Source="bench_press.png" Aspect="AspectFit"/>-->
+                <IndicatorView x:Name="indView" IndicatorColor="LightGray" SelectedIndicatorColor="DarkGray" HorizontalOptions="Center"/>
+                <Entry x:Name="NameEntry" Placeholder="Name" FontSize="50" BackgroundColor="Black" PlaceholderColor="GhostWhite" HorizontalTextAlignment="Center"/>
             
             <Picker x:Name="SuccessPicker" Title="Are you aiming for a larger or smaller score or time?">
                 <Picker.Items>

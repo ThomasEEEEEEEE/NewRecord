@@ -1,7 +1,6 @@
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\NewRecord_Backend.dll.config
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\NewRecord_Backend.dll
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\NewRecord_Backend.pdb
-C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\NewRecord_Backend.csprojAssemblyReference.cache
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\NewRecord_Backend.csproj.CoreCompileInputs.cache
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\NewRecord_Backend.dll
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\NewRecord_Backend.pdb
@@ -15,3 +14,6 @@ C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\bin\Debu
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\Xamarin.Forms.Xaml.pdb
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\Xamarin.Forms.Xaml.xml
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\NewRecord_Backend.csproj.CopyComplete
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\NewRecord_Backend.csprojAssemblyReference.cache
