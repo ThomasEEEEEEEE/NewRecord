@@ -4,9 +4,8 @@
              x:Class="NewRecord.Views.AddRecordPage">
     <ContentPage.Content>
         <ScrollView>
-        <StackLayout>
-            <!--<BoxView BackgroundColor="Gray" WidthRequest="100" HeightRequest="100" HorizontalOptions="Center" Margin="0,5,0,0"/>-->
-                <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding ListView}" HeightRequest="100" IndicatorView="indView">
+            <StackLayout>
+                <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding Images.ListView}" HeightRequest="100" IndicatorView="indView">
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
                             <Image Source="{Binding .}" Aspect="AspectFit" HeightRequest="48" WidthRequest="48"/>
@@ -16,25 +15,43 @@
                 <!--<Image Source="bench_press.png" Aspect="AspectFit"/>-->
                 <IndicatorView x:Name="indView" IndicatorColor="LightGray" SelectedIndicatorColor="DarkGray" HorizontalOptions="Center"/>
                 <Entry x:Name="NameEntry" Placeholder="Name" FontSize="50" BackgroundColor="Black" PlaceholderColor="GhostWhite" HorizontalTextAlignment="Center"/>
-            
-            <Picker x:Name="SuccessPicker" Title="Are you aiming for a larger or smaller score or time?">
-                <Picker.Items>
-                    <x:String>Larger</x:String>
-                    <x:String>Smaller</x:String>
-                </Picker.Items>
-            </Picker>
 
-            <Picker x:Name="PrivacyPicker" Title="Privacy">
-                <Picker.Items>
-                    <x:String>Public</x:String>
-                    <x:String>Private</x:String>
-                    <x:String>Friends Only</x:String>
-                </Picker.Items>
-            </Picker>
+                <Picker x:Name="SuccessPicker" Title="Are you aiming for a larger or smaller score or time?">
+                    <Picker.Items>
+                        <x:String>Larger</x:String>
+                        <x:String>Smaller</x:String>
+                    </Picker.Items>
+                </Picker>
 
-            <Entry x:Name="BestScoreEntry" Placeholder="Current Best Score" BackgroundColor="Black" PlaceholderColor="GhostWhite" Keyboard="Numeric" HorizontalTextAlignment="Center" FontSize="42"/>
-            <Button x:Name="AddButton" Text="ADD" FontSize="64" HorizontalOptions="Center" Clicked="AddButton_Clicked"/>
-        </StackLayout>
+                <Picker x:Name="PrivacyPicker" Title="Privacy">
+                    <Picker.Items>
+                        <x:String>Public</x:String>
+                        <x:String>Private</x:String>
+                        <x:String>Friends Only</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <Entry x:Name="BestScoreEntry" Placeholder="Current Best Score" BackgroundColor="Black" PlaceholderColor="GhostWhite" Keyboard="Numeric" HorizontalTextAlignment="Center" FontSize="42"/>
+                <Label Text="Goals" FontSize="36" HorizontalOptions="Center"/>
+                <Button x:Name="AddGoalButton" Text="Add A Goal" Clicked="AddGoalButton_Clicked"/>
+                <StackLayout x:Name="AddGoalLayout" Orientation="Vertical"/>
+                <StackLayout Orientation="Horizontal">
+                    <ListView ItemsSource="{Binding Goals.ListView}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding Score}"/>
+                                        <Label Text="{Binding StartDate}"/>
+                                        <Label Text="{Binding EndDate}"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                <Button x:Name="AddButton" Text="ADD" FontSize="64" HorizontalOptions="Center" Clicked="AddButton_Clicked"/>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

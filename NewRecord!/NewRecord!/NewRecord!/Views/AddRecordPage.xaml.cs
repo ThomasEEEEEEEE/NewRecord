@@ -18,19 +18,28 @@ namespace NewRecord.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddRecordPage : ContentPage
     {
-        ListViewModel<string> Images = new ListViewModel<string>();
+        struct VModel
+        {
+            public ListViewModel<string> Images;
+            public ListViewModel<Goal> Goals;
+        }
+
+        //ListViewModel<string> Images = new ListViewModel<string>();
+        VModel model = new VModel();
         string FileName = "LocalRecords.json";
         public AddRecordPage()
         {
             InitializeComponent();
-            Images.ListView.Add("bench_press.png");
-            Images.ListView.Add("swimming.png");
-            BindingContext = Images;
+            model.Images = new ListViewModel<string>();
+            model.Goals = new ListViewModel<Goal>();
+
+            model.Images.ListView.Add("bench_press.png");
+            model.Images.ListView.Add("swimming.png");
+            BindingContext = model;
         }
 
         private void AddButton_Clicked(object sender, EventArgs e)
         {
-            //TODO: Check for duplicate names ignoring case
             string FilePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             List<Record> records;
             string contents = File.ReadAllText(FilePath + FileName);
@@ -38,8 +47,13 @@ namespace NewRecord.Views
 
             if (records == null)
                 records = new List<Record>();
+            else if (records.Find(x => x.Name.ToLower() == NameEntry.Text.ToLower()) != null)
+            {
+                DisplayAlert("Error", "You already have a record of this name\nTry deleting it or naming this something else", "OK");
+                return;
+            }
 
-            Record rec = new Record(NameEntry.Text, Convert.ToDouble(BestScoreEntry.Text));
+            Record rec = new Record(NameEntry.Text.Trim(), Convert.ToDouble(BestScoreEntry.Text));
             rec.SelectedImage = ImageCarousel.CurrentItem.ToString();
             rec.Success = SuccessPicker.SelectedItem.ToString() == "Larger" ? SuccessInfo.LARGER : SuccessInfo.SMALLER;
             if (PrivacyPicker.SelectedItem.ToString() == "Public")
@@ -53,6 +67,16 @@ namespace NewRecord.Views
             string newcontents = JsonConvert.SerializeObject(records);
             File.WriteAllText(FilePath + FileName, newcontents);
             Navigation.PopModalAsync();
+        }
+
+        private void AddGoalButton_Clicked(object sender, EventArgs e)
+        {
+            /*Entry entry = new Entry();
+            DatePicker startpicker = new DatePicker();
+            DatePicker endpicker = new DatePicker();
+            AddGoalLayout.Children.Add(entry);
+            AddGoalLayout.Children.Add(startpicker);
+            AddGoalLayout.Children.Add(endpicker);*/
         }
     }
 }

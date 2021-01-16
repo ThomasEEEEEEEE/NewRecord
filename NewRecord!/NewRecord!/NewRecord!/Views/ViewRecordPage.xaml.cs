@@ -33,14 +33,25 @@ namespace NewRecord.Views
             {
             };
 
-            for (int i = 0; i < 50; ++i)
+            for (int i = 0; i < record.RecordHistory.Count; ++i)
             {
-                entries.Add(new ChartEntry(i * i / 4)
+                if (i == 0 || i == record.RecordHistory.Count - 1)
                 {
-                    Label = "04/24/19" + i.ToString(),
-                    //ValueLabel = i.ToString(),
-                    Color = SKColor.Parse("#5A2222")
-                });
+                    entries.Add(new ChartEntry((float)(record.RecordHistory[i].Score))
+                    {
+                        Label = record.RecordHistory[i].DateAchieved.ToShortDateString(),
+                        ValueLabel = record.RecordHistory[i].Score.ToString(),
+                        Color = SKColor.Parse("#5A2222")
+                    });
+                }
+                else
+                {
+                    entries.Add(new ChartEntry((float)(record.RecordHistory[i].Score))
+                    {
+                        //Label = "04/24/19" + i.ToString(),
+                        Color = SKColor.Parse("#5A2222")
+                    });
+                }
             }
 
             var chart = new LineChart()
