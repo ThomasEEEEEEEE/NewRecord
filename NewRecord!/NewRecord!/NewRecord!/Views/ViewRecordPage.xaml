@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewRecord.Views.ViewRecordPage"
-             xmlns:tabview="clr-namespace:Xam.Plugin.TabView;assembly=Xam.Plugin.TabView">
+             xmlns:tabview="clr-namespace:Xam.Plugin.TabView;assembly=Xam.Plugin.TabView"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal">
@@ -12,17 +13,32 @@
             <Label x:Name="PrivacyInfo" Text="Privacy" FontSize="24"/>
             <Label x:Name="SuccessSettings" Text="Success" FontSize="24"/>
 
+            <Button x:Name="UpdateButton" Text="New Record?" Clicked="UpdateButton_Clicked"/>
+
             <tabview:TabViewControl x:Name="RecTabView" HeaderBackgroundColor="Blue" HorizontalOptions="FillAndExpand" IsSwipeEnabled="True">
                 <tabview:TabViewControl.ItemSource>
                     <tabview:TabItem HeaderText="History">
-                        <Label Text="Insert record history listview"/>
+                        <ListView x:Name="RListView" ItemsSource="{Binding ListView}" SeparatorVisibility="None" SelectionMode="None" HasUnevenRows="False" Margin="0,-7,0,0">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame BackgroundColor="White">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Score}" HorizontalOptions="Start" TextColor="Black" FontSize="36"/>
+                                                <Label Text="{Binding DateAchieved}" HorizontalOptions="End" TextColor="Black" FontSize="36"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </tabview:TabItem>
                     <tabview:TabItem HeaderText="Graph">
-                        <Label Text="Insert record history graph"/>
+                        <microcharts:ChartView x:Name="RecChart" BackgroundColor="Green"/>
                     </tabview:TabItem>
                 </tabview:TabViewControl.ItemSource>
             </tabview:TabViewControl>
-            
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

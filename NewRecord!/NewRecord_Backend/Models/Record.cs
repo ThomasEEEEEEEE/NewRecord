@@ -26,12 +26,14 @@ namespace NewRecord_Backend.Models
             Name = name;
             RecordHistory = new List<RecordItem>();
             RecordHistory.Add(new RecordItem(score, DateTime.Now));
+            Goals = new List<Goal>();
         }
         public string Name { get; set; }
         public string SelectedImage { get; set; }
         public PrivacySettings Privacy { get; set; }
         public SuccessInfo Success { get; set; }
         public List<RecordItem> RecordHistory { get; set; }
+        public List<Goal> Goals { get; set; }
 
         //This property returns the best score of the record's RecordHistory
         public double BestScore 
