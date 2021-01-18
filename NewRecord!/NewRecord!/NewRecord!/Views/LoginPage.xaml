@@ -17,7 +17,7 @@
             </Frame>
             <Button HorizontalOptions="CenterAndExpand" Text="Log In" FontSize="35" TextColor="Red" BackgroundColor="Black" CornerRadius="6" Clicked="Button_Clicked"/>
             <Button HorizontalOptions="CenterAndExpand" Text="Sign Up" FontSize="35" TextColor="Red" BackgroundColor="Black" Clicked="Button_Clicked"/>
-            <Button VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" Text="Continue Without Account" FontSize="25" TextColor="Red" BackgroundColor="Black" Margin="5" Clicked="Button_Clicked"/>
+            <Button x:Name="ContinueButton" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" Text="Continue Without Account" FontSize="25" TextColor="Red" BackgroundColor="Black" Margin="5" Clicked="ContinueButton_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

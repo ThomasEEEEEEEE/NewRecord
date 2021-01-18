@@ -44,6 +44,7 @@ ImageView;C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRe
 integer;C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\lp\2\jl\res\values\vpi__defaults.xml
 item;C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\lp\2\jl\res\values\vpi__styles.xml
 item;C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\lp\46\jl\res\values\styles.xml
+item;obj\Debug\90\res\values\styles.xml
 LinearLayout;C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\lp\0\jl\res\layout\horizontal_viewpager.xml
 LinearLayout;C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\lp\0\jl\res\layout\vertical_viewpager.xml
 LinearLayout;C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\lp\46\jl\res\layout\bottomtablayout.xml

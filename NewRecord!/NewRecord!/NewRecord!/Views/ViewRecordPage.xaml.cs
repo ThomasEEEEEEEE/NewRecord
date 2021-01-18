@@ -19,7 +19,7 @@ namespace NewRecord.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViewRecordPage : ContentPage
     {
-        ListViewModel<RecordItem> History = new ListViewModel<RecordItem>();
+        ViewRecordViewModel vm = new ViewRecordViewModel();
         string FileName = "LocalRecords.json";
         public ViewRecordPage(Record record)
         {
@@ -41,7 +41,8 @@ namespace NewRecord.Views
                     {
                         Label = record.RecordHistory[i].DateAchieved.ToShortDateString(),
                         ValueLabel = record.RecordHistory[i].Score.ToString(),
-                        Color = SKColor.Parse("#5A2222")
+                        ValueLabelColor = SKColor.Parse("#FFFFFF"),
+                        Color = SKColor.Parse("#5A3333")
                     });
                 }
                 else
@@ -49,7 +50,7 @@ namespace NewRecord.Views
                     entries.Add(new ChartEntry((float)(record.RecordHistory[i].Score))
                     {
                         //Label = "04/24/19" + i.ToString(),
-                        Color = SKColor.Parse("#5A2222")
+                        Color = SKColor.Parse("#5A3333")
                     });
                 }
             }
@@ -58,7 +59,7 @@ namespace NewRecord.Views
             {
                 Entries = entries,
                 LineMode = LineMode.Straight,
-                BackgroundColor = SKColor.Parse("#250101"),
+                BackgroundColor = SKColor.Parse("#452222"),
                 PointMode = PointMode.Circle,
                 LabelTextSize = 30,
                 LineSize = 5,
@@ -69,13 +70,17 @@ namespace NewRecord.Views
             RecChart.Chart = chart;
 
 
-            record.RecordHistory.ForEach(x => History.ListView.Add(x));
-            BindingContext = History;
+            record.RecordHistory.ForEach(x => vm.History.ListView.Add(x));
+            record.Goals.ForEach(x => vm.Goals.ListView.Add(x));
+            BindingContext = vm;
         }
 
         async private void UpdateButton_Clicked(object sender, EventArgs e)
         {
             string score = await DisplayPromptAsync("New Record?", "Enter your new record", placeholder: "(eg 56.32)", keyboard: Keyboard.Numeric);
+
+            if (score == null)
+                return;
 
             string FilePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             List<Record> records;
@@ -85,10 +90,91 @@ namespace NewRecord.Views
             if (records == null)
                 records = new List<Record>();
 
-            records.Find(x => x.Name.ToLower() == RecordName.Text.ToLower()).RecordHistory.Add(new RecordItem(Convert.ToDouble(score), DateTime.Now));
+            RecordItem newitem = new RecordItem(Convert.ToDouble(score), DateTime.Now);
+            records.Find(x => x.Name.ToLower() == RecordName.Text.ToLower()).RecordHistory.Add(newitem);
 
             string newcontents = JsonConvert.SerializeObject(records);
             File.WriteAllText(FilePath + FileName, newcontents);
+
+            vm.History.ListView.Add(newitem);
+            //Update chart
+        }
+
+        async private void EditNameButton_Clicked(object sender, EventArgs e)
+        {
+            string newname = await DisplayPromptAsync("Change Record Name", "What is the new name for this record?", "Change", keyboard: Keyboard.Text);
+
+            if (newname == null)
+                return;
+            newname = newname.Trim();
+
+            string FilePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            List<Record> records;
+            string contents = File.ReadAllText(FilePath + FileName);
+            records = JsonConvert.DeserializeObject<List<Record>>(contents);
+
+            //Check for duplicate names
+            if (records.Find(x => x.Name.ToLower() == newname.ToLower()) != null)
+            {
+                await DisplayAlert("Error", "Duplicate Record Name", "OK");
+                return;
+            }
+
+            records.Find(x => x.Name.ToLower() == RecordName.Text.ToLower()).Name = newname;
+
+            string newcontents = JsonConvert.SerializeObject(records);
+            File.WriteAllText(FilePath + FileName, newcontents);
+
+            RecordName.Text = newname;
+        }
+
+        async private void EditPrivacyButton_Clicked(object sender, EventArgs e)
+        {
+            string[] privacyoptions = { "Public", "Private", "Friends Only" };
+            string choice = await DisplayActionSheet("Change Privacy", "Cancel", null, privacyoptions);
+
+            if (choice == "Cancel")
+                return;
+
+            string FilePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            List<Record> records;
+            string contents = File.ReadAllText(FilePath + FileName);
+            records = JsonConvert.DeserializeObject<List<Record>>(contents);
+
+            PrivacySettings privacy;
+            if (choice == "Public")
+                privacy = PrivacySettings.PUBLIC;
+            else if (choice == "Private")
+                privacy = PrivacySettings.PRIVATE;
+            else
+                privacy = PrivacySettings.FRIENDSONLY;
+
+            records.Find(x => x.Name.ToLower() == RecordName.Text.ToLower()).Privacy = privacy;
+
+            string newcontents = JsonConvert.SerializeObject(records);
+            File.WriteAllText(FilePath + FileName, newcontents);
+
+            PrivacyInfo.Text = privacy.ToString();
+        }
+
+        private void AddGoalButton_Clicked(object sender, EventArgs e)
+        {
+            Goal goal = new Goal();
+            goal.GoalScore = Convert.ToDouble(GoalScoreEntry.Text);
+            goal.StartDate = StartDatePicker.Date;
+            goal.EndDate = EndDatePicker.Date;
+            vm.Goals.ListView.Add(goal);
+
+            string FilePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            List<Record> records;
+            string contents = File.ReadAllText(FilePath + FileName);
+            records = JsonConvert.DeserializeObject<List<Record>>(contents);
+
+            records.Find(x => x.Name.ToLower() == RecordName.Text.ToLower()).Goals.Add(goal);
+
+            string newcontents = JsonConvert.SerializeObject(records);
+            File.WriteAllText(FilePath + FileName, newcontents);
+
         }
     }
 }

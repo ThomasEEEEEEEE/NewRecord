@@ -2,10 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewRecord.Views.AddRecordPage">
+    <ContentPage.Resources>
+
+    </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding Images.ListView}" HeightRequest="100" IndicatorView="indView">
+                <CarouselView ItemsSource="{Binding Images.ListView}" x:Name="ImageCarousel" HeightRequest="100" IndicatorView="indView">
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
                             <Image Source="{Binding .}" Aspect="AspectFit" HeightRequest="48" WidthRequest="48"/>
@@ -33,23 +36,26 @@
 
                 <Entry x:Name="BestScoreEntry" Placeholder="Current Best Score" BackgroundColor="Black" PlaceholderColor="GhostWhite" Keyboard="Numeric" HorizontalTextAlignment="Center" FontSize="42"/>
                 <Label Text="Goals" FontSize="36" HorizontalOptions="Center"/>
-                <Button x:Name="AddGoalButton" Text="Add A Goal" Clicked="AddGoalButton_Clicked"/>
-                <StackLayout x:Name="AddGoalLayout" Orientation="Vertical"/>
-                <StackLayout Orientation="Horizontal">
-                    <ListView ItemsSource="{Binding Goals.ListView}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <StackLayout Orientation="Vertical">
-                                        <Label Text="{Binding Score}"/>
-                                        <Label Text="{Binding StartDate}"/>
-                                        <Label Text="{Binding EndDate}"/>
-                                    </StackLayout>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+
+                <StackLayout x:Name="AddGoalLayout" Orientation="Vertical">
+                    <Entry x:Name="GoalScoreEntry" Placeholder="Goal Score"/>
+                    <DatePicker x:Name="StartDatePicker" Format="d"/>
+                    <DatePicker x:Name="EndDatePicker" Format="d" MinimumDate="{Binding Source={x:Reference StartDatePicker}, Path=Date}"/>
                 </StackLayout>
+                <Button x:Name="AddGoalButton" Text="Add A Goal" Clicked="AddGoalButton_Clicked"/>
+                <ListView ItemsSource="{Binding Goals.ListView}" HasUnevenRows="False" HeightRequest="200">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding GoalScore}"/>
+                                    <Label Text="{Binding StartDate, StringFormat='{0:MMMM d, yyyy}'}"/>
+                                    <Label Text="{Binding EndDate, StringFormat='{0:MMMM d, yyyy}'}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
                 <Button x:Name="AddButton" Text="ADD" FontSize="64" HorizontalOptions="Center" Clicked="AddButton_Clicked"/>
             </StackLayout>
         </ScrollView>

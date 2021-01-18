@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.IO;
 
 namespace NewRecord.Views
 {
@@ -19,6 +20,12 @@ namespace NewRecord.Views
 
         private void Button_Clicked(object sender, EventArgs e)
         {
+            Navigation.PushModalAsync(new MainTabbedPage());
+        }
+
+        private void ContinueButton_Clicked(object sender, EventArgs e)
+        {
+            File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "LocalRecords.json");
             Navigation.PushModalAsync(new MainTabbedPage());
         }
     }

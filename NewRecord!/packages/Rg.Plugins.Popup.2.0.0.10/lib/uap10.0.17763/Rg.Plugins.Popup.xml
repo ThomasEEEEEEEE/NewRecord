@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Rg.Plugins.Popup</name>
+    </assembly>
+    <members>
+        <member name="M:Rg.Plugins.Popup.Animations.Base.BaseAnimation.HidePage(Xamarin.Forms.Page)">
+            <summary>
+            Use this method for avoiding the problem with blinking animation on iOS
+            See https://github.com/rotorgames/Rg.Plugins.Popup/issues/404
+            </summary>
+            <param name="page">Page.</param>
+        </member>
+        <member name="M:Rg.Plugins.Popup.Animations.Base.BaseAnimation.ShowPage(Xamarin.Forms.Page)">
+            <summary>
+            Use this method for avoiding the problem with blinking animation on iOS
+            See https://github.com/rotorgames/Rg.Plugins.Popup/issues/404
+            </summary>
+            <param name="page">Page.</param>
+        </member>
+        <member name="M:Rg.Plugins.Popup.Popup.GetExtraAssemblies(System.Collections.Generic.IEnumerable{System.Reflection.Assembly})">
+            <summary>
+            Use this method for UWP project .NET Native compilation and add result to <see cref="T:Xamarin.Forms.Forms.Init"/>
+            </summary>
+            <param name="defaultAssemblies">Custom assemblies from other libs or your DI implementations and renderers</param>
+            <returns>All assemblies for <see cref="T:Xamarin.Forms.Forms.Init"/></returns>
+        </member>
+    </members>
+</doc>

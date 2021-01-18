@@ -18,14 +18,7 @@ namespace NewRecord.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddRecordPage : ContentPage
     {
-        struct VModel
-        {
-            public ListViewModel<string> Images;
-            public ListViewModel<Goal> Goals;
-        }
-
-        //ListViewModel<string> Images = new ListViewModel<string>();
-        VModel model = new VModel();
+        AddRecordViewModel model = new AddRecordViewModel();
         string FileName = "LocalRecords.json";
         public AddRecordPage()
         {
@@ -56,6 +49,7 @@ namespace NewRecord.Views
             Record rec = new Record(NameEntry.Text.Trim(), Convert.ToDouble(BestScoreEntry.Text));
             rec.SelectedImage = ImageCarousel.CurrentItem.ToString();
             rec.Success = SuccessPicker.SelectedItem.ToString() == "Larger" ? SuccessInfo.LARGER : SuccessInfo.SMALLER;
+            rec.Goals = model.Goals.ListView.ToList();
             if (PrivacyPicker.SelectedItem.ToString() == "Public")
                 rec.Privacy = PrivacySettings.PUBLIC;
             else if (PrivacyPicker.SelectedItem.ToString() == "Private")
@@ -71,12 +65,12 @@ namespace NewRecord.Views
 
         private void AddGoalButton_Clicked(object sender, EventArgs e)
         {
-            /*Entry entry = new Entry();
-            DatePicker startpicker = new DatePicker();
-            DatePicker endpicker = new DatePicker();
-            AddGoalLayout.Children.Add(entry);
-            AddGoalLayout.Children.Add(startpicker);
-            AddGoalLayout.Children.Add(endpicker);*/
+            Goal goal = new Goal();
+            goal.GoalScore = Convert.ToDouble(GoalScoreEntry.Text);
+            goal.StartDate = StartDatePicker.Date;
+            goal.EndDate = EndDatePicker.Date;
+            model.Goals.ListView.Add(goal);
+
         }
     }
 }
