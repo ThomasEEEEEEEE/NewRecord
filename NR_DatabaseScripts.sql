@@ -33,9 +33,9 @@ CREATE TABLE USERS(
 CREATE TABLE RECORDS(
         UserID INT NOT NULL,
         RecordName varchar(500) NOT NULL,
-        Image INT NOT NULL,
-        SuccessInfo varchar(50) NOT NULL,
-        Privacy varchar(50) NOT NULL
+        SelectedImage INT NOT NULL,
+        SuccessInfo INT NOT NULL, --0 larger, 1 smaller
+        Privacy INT NOT NULL --0 public, 1 private, 2 friends only
 );
 
 CREATE TABLE RECORD_HISTORY(
