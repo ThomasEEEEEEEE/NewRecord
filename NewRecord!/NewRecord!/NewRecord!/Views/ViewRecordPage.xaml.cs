@@ -29,6 +29,22 @@ namespace NewRecord.Views
             PrivacyInfo.Text = record.Privacy.ToString();
             SuccessSettings.Text = record.Success.ToString();
 
+            string ExpiredGoals = "";
+
+            for (int i = 0; i < record.Goals.Count; ++i)
+            {
+                if (record.Goals[i].EndDate > DateTime.Now)
+                {
+                    ExpiredGoals += record.Goals[i].GoalScore.ToString() + " before " + record.Goals[i].EndDate.ToString() + "\n";
+                }
+            }
+
+            if (!String.IsNullOrWhiteSpace(ExpiredGoals))
+                DisplayAlert("You have failed to reach the following goals in time", ExpiredGoals, "OK");
+
+            record.Goals.RemoveAll(x => x.EndDate > DateTime.Now);
+            //Still need to write to DB/file here
+
             List<ChartEntry> entries = new List<ChartEntry>()
             {
             };
@@ -91,7 +107,26 @@ namespace NewRecord.Views
                 records = new List<Record>();
 
             RecordItem newitem = new RecordItem(Convert.ToDouble(score), DateTime.Now);
-            records.Find(x => x.Name.ToLower() == RecordName.Text.ToLower()).RecordHistory.Add(newitem);
+            Record thisrec = records.Find(x => x.Name.ToLower() == RecordName.Text.ToLower());
+            thisrec.RecordHistory.Add(newitem);
+
+            string AchievedGoals = "";
+            for (int i = 0; i < thisrec.Goals.Count; ++i)
+            {
+                Goal goal = thisrec.Goals[i];
+                if (thisrec.Success == SuccessInfo.LARGER && goal.GoalScore <= Convert.ToDouble(score))
+                {
+                    AchievedGoals += goal.GoalScore.ToString() + " by " + goal.EndDate + "\n";
+                }
+                else if (thisrec.Success == SuccessInfo.SMALLER && goal.GoalScore >= Convert.ToDouble(score))
+                {
+                    AchievedGoals += goal.GoalScore.ToString() + " by " + goal.EndDate + "\n";
+                }
+            }
+
+            if (!String.IsNullOrWhiteSpace(AchievedGoals))
+                await DisplayAlert("You've achieved the following goals!", AchievedGoals, "OK");
+            //Changes not saved currently
 
             string newcontents = JsonConvert.SerializeObject(records);
             File.WriteAllText(FilePath + FileName, newcontents);

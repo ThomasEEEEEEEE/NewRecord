@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.IO;
+using NewRecord_Database;
 
 namespace NewRecord.Views
 {
@@ -16,6 +17,8 @@ namespace NewRecord.Views
         public LoginPage()
         {
             InitializeComponent();
+            //Debug user
+            AzureDBAccess.ID = 1;
         }
 
         private void Button_Clicked(object sender, EventArgs e)

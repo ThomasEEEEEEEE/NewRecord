@@ -11,11 +11,12 @@ namespace NewRecord_Database
 {
     public class AzureDBAccess : iDBAccess
     {
-        const string DataSource = "tcp:nr-server.database.windows.net";
-        const string UserID = "NRadmin";
+        public static int ID { get; set; }
+        const string DataSource = "tcp:newrecord-server.database.windows.net";
+        const string UserID = "NewRecordAdmin";
         const string Password = "Hootie8667";
         const string InitialCatalog = "NewRecordDB";
-        private string ConnectionString
+        private static string ConnectionString
         {
             get
             {
