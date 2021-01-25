@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using NewRecord_Backend.Models;
 using NewRecord_Backend.Interfaces;
 using NewRecord_Backend.Database;
+using NewRecord_Backend.Views;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -20,13 +21,9 @@ namespace NewRecord_Backend.ViewModels
         private iDBAccess DBAccess;
         private iFileAccess FileAccess;
         private INavigation navigation;
-        private Type AddPage;
-        private Type ViewPage;
-        public RecordViewModel(INavigation nav, Type addpage, Type viewpage)
+        public RecordViewModel(INavigation nav)
         {
             navigation = nav;
-            AddPage = addpage;
-            ViewPage = viewpage;
 
             DBAccess = new AzureDBAccess();
             FileAccess = new JsonFileAccess();
@@ -49,9 +46,7 @@ namespace NewRecord_Backend.ViewModels
         private List<Record> GetRecords()
         {
             if (AzureDBAccess.ID == -1)
-            {
                 return FileAccess.GetRecords();
-            }
             else
                 return DBAccess.GetAllUserRecords(AzureDBAccess.ID);
         }
@@ -64,12 +59,12 @@ namespace NewRecord_Backend.ViewModels
 
         public void AddButtonPressed()
         {
-            navigation.PushModalAsync((Page)Activator.CreateInstance(AddPage));
+            navigation.PushModalAsync(new AddRecordPage());
         }
 
         public void ItemTapped(int index)
         {
-            navigation.PushModalAsync((Page)Activator.CreateInstance(ViewPage));
+            navigation.PushModalAsync(new ViewRecordPage(Records.ListView[index].Name));
         }
         #region PropertyChangedImplementation
         public event PropertyChangedEventHandler PropertyChanged = delegate { };

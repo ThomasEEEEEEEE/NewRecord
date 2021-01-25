@@ -13,6 +13,11 @@ namespace NewRecord_Backend.Database
     public class JsonFileAccess : iFileAccess
     {
         private const string FileName = "LocalRecords.json";
+        public JsonFileAccess()
+        {
+            if (!File.Exists(FilePath))
+                File.Create(FilePath);
+        }
         private string FilePath
         {
             get

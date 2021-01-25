@@ -16,6 +16,10 @@ namespace NewRecord_Backend.ViewModels
         {
             ListView = new ObservableCollection<T>();
         }
+        public ListViewModel(IList<T> ilist)
+        {
+            ListView = new ObservableCollection<T>(ilist);
+        }
 
         #region PropertyChangedImplementation
         public event PropertyChangedEventHandler PropertyChanged;

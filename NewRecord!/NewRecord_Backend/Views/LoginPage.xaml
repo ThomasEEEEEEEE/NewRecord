@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewRecord_Backend.Views.LoginPage"
+             Background="#272727">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="New" FontSize="50" TextColor="Red"/>
+                <Label Text="Record!" FontSize="50" TextColor="Black"/>
+            </StackLayout>
+            <Frame HorizontalOptions="FillAndExpand" BackgroundColor="#2f2f2f" BorderColor="Black" Margin="10,0">
+                <Entry Placeholder="Username" PlaceholderColor="GhostWhite"/>
+            </Frame>
+            <Frame HorizontalOptions="FillAndExpand" BackgroundColor="#2f2f2f" BorderColor="Black" Margin="10,0">
+                <Entry Placeholder="Password" IsPassword="True" PlaceholderColor="GhostWhite"/>
+            </Frame>
+            <Button HorizontalOptions="CenterAndExpand" Text="Log In" FontSize="35" TextColor="Red" BackgroundColor="Black" CornerRadius="6" Clicked="Button_Clicked"/>
+            <Button HorizontalOptions="CenterAndExpand" Text="Sign Up" FontSize="35" TextColor="Red" BackgroundColor="Black" Clicked="Button_Clicked"/>
+            <Button x:Name="ContinueButton" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" Text="Continue Without Account" FontSize="25" TextColor="Red" BackgroundColor="Black" Margin="5" Clicked="ContinueButton_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

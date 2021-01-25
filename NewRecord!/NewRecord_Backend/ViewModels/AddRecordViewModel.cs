@@ -6,19 +6,48 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using NewRecord_Backend.Models;
+using NewRecord_Backend.Interfaces;
+using NewRecord_Backend.Database;
 
 namespace NewRecord_Backend.ViewModels
 {
     public class AddRecordViewModel : INotifyPropertyChanged
     {
+        iDBAccess DBAccess;
+        iFileAccess FileAccess;
         public AddRecordViewModel()
         {
             Images = new ListViewModel<string>();
             Goals = new ListViewModel<Goal>();
+
+            DBAccess = new AzureDBAccess();
+            FileAccess = new JsonFileAccess();
+
+            AddImages();
         }
+
+        void AddImages()
+        {
+            Images.ListView.Add("bench_press.png");
+            Images.ListView.Add("swimming.png");
+            //Insert more images
+        }
+
+        public void AddButtonPressed(Record record)
+        {
+            if (AzureDBAccess.ID == -1)
+                FileAccess.AddRecord(record);
+            else
+                DBAccess.AddRecordToUser(AzureDBAccess.ID, record);
+        }
+
+        public void AddGoalButtonPressed(Goal goal)
+        {
+            Goals.ListView.Add(goal);
+        }
+
         private ListViewModel<string> images;
         private ListViewModel<Goal> goals;
-
         public ListViewModel<string> Images
         {
             get
