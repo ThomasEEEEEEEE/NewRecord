@@ -9,7 +9,7 @@ namespace NewRecord_Backend.Models
     
     public enum PrivacySettings
     {
-        PUBLIC,
+        PUBLIC = 0,
         PRIVATE,
         FRIENDSONLY
     }
@@ -21,13 +21,13 @@ namespace NewRecord_Backend.Models
     public class Record
     {
         public Record() { }
-        public Record(string name, double score)
+        /*public Record(string name, double score)
         {
             Name = name;
             RecordHistory = new List<RecordItem>();
             RecordHistory.Add(new RecordItem(score, DateTime.Now));
             Goals = new List<Goal>();
-        }
+        }*/
         public string Name { get; set; }
         public string SelectedImage { get; set; }
         public PrivacySettings Privacy { get; set; }

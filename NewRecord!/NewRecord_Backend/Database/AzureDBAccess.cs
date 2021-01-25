@@ -7,11 +7,11 @@ using NewRecord_Backend.Interfaces;
 using NewRecord_Backend.Models;
 using System.Data.SqlClient;
 
-namespace NewRecord_Database
+namespace NewRecord_Backend.Database
 {
-    /*public class AzureDBAccess : iDBAccess
+    public class AzureDBAccess : iDBAccess
     {
-        public static int ID { get; set; } = -1;
+        public static int ID { get; set; }
 
         const string DataSource = "tcp:newrecord-server.database.windows.net";
         const string UserID = "NewRecordAdmin";
@@ -238,5 +238,5 @@ namespace NewRecord_Database
         {
             throw new NotImplementedException();
         }
-    }*/
+    }
 }

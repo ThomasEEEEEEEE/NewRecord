@@ -12,31 +12,22 @@ namespace NewRecord_Backend.Interfaces
         void DoQuery_NoReturn(string query);
         Record DoQuery_OneRecord(string query);
         List<Record> DoQuery_MultipleRecords(string query);
+        List<RecordItem> DoQuery_MultipleRecordItems(string query);
+        List<Goal> DoQuery_MultipleGoals(string query);
         User DoQuery_OneUser(string query);
 
-        void AddRecordToUser(User user, Record record);
         void AddRecordToUser(int userid, Record record);
-        void RemoveRecordFromUser(User user, Record record);
-        void RemoveRecordFromUser(int userid, Record record);
-        void AddGoalToRecord(User user, Record record, Goal goal);
-        void AddGoalToRecord(int userid, Record record, Goal goal);
-        void RemoveGoalFromRecord(User user, Record record, Goal goal);
-        void RemoveGoalFromRecord(int userid, Record record, Goal goal);
-        void EditRecordName(User user, Record record, string newname);
-        void EditRecordName(int userid, Record record, string newname);
-        void EditRecordPrivacy(User user, Record record, PrivacySettings newsetting);
-        void EditRecordPrivacy(int userid, Record record, PrivacySettings newsetting);
-        void UpdateRecord(User user, Record record, double newscore);
-        void UpdateRecord(int userid, Record record, double newscore);
-        Record GetRecordFromUser(User user, string recordname);
+        void RemoveRecordFromUser(int userid, string recordname);
+        void AddGoalToRecord(int userid, string recordname, Goal goal);
+        void RemoveGoalFromRecord(int userid, string recordname, Goal goal);
+        void EditRecordName(int userid, string recordname, string newname);
+        void EditRecordPrivacy(int userid, string recordname, PrivacySettings newsetting);
+        void UpdateRecord(int userid, string recordname, double newscore);
         Record GetRecordFromUser(int userid, string recordname);
-        List<Record> GetAllUserRecords(User user);
         List<Record> GetAllUserRecords(int userid);
         //Below may be redundant
-        List<Goal> GetAllRecordGoals(User user, Record record);
-        List<Goal> GetAllRecordGoals(int userid, Record record);
-        List<RecordItem> GetRecordHistory(User user, Record record);
-        List<RecordItem> GetRecordHistory(int userid, Record record);
+        List<Goal> GetAllRecordGoals(int userid, string recordname);
+        List<RecordItem> GetRecordHistory(int userid, string recordname);
 
     }
 }

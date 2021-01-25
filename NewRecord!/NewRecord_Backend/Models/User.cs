@@ -8,5 +8,6 @@ namespace NewRecord_Backend.Models
 {
     public class User : Person
     {
+        public string PasswordHash { get; set; }
     }
 }

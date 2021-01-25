@@ -18,16 +18,18 @@ namespace NewRecord.Views
         {
             InitializeComponent();
             //Debug user
-            AzureDBAccess.ID = 1;
+            
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
+            AzureDBAccess.ID = 1;
             Navigation.PushModalAsync(new MainTabbedPage());
         }
 
         private void ContinueButton_Clicked(object sender, EventArgs e)
         {
+            AzureDBAccess.ID = -1;
             File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "LocalRecords.json");
             Navigation.PushModalAsync(new MainTabbedPage());
         }

@@ -67,7 +67,7 @@ namespace NewRecord.Views
         {
             Goal goal = new Goal();
             goal.GoalScore = Convert.ToDouble(GoalScoreEntry.Text);
-            goal.StartDate = StartDatePicker.Date;
+            //goal.StartDate = StartDatePicker.Date;
             goal.EndDate = EndDatePicker.Date;
             model.Goals.ListView.Add(goal);
 
