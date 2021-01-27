@@ -7,15 +7,15 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Image x:Name="RecordImage" Aspect="AspectFill"/>
-                <Label x:Name="RecordName" Text="Record" FontSize="36" TextColor="GhostWhite"/>
+                <Image x:Name="RecordImage" Aspect="AspectFill" Source="{Binding ViewRecord.SelectedImage}"/>
+                <Label x:Name="RecordName" Text="{Binding ViewRecord.Name}" FontSize="36" TextColor="GhostWhite"/>
                 <ImageButton x:Name="EditNameButton" Source="edit.png" Clicked="EditNameButton_Clicked"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Label x:Name="PrivacyInfo" Text="Privacy" FontSize="24"/>
+                <Label x:Name="PrivacyInfo" Text="{Binding ViewRecord.Privacy}" FontSize="24"/>
                 <ImageButton x:Name="EditPrivacyButton" Source="edit.png" Clicked="EditPrivacyButton_Clicked"/>
             </StackLayout>
-            <Label x:Name="SuccessSettings" Text="Success" FontSize="24"/>
+            <Label x:Name="SuccessSettings" Text="{Binding ViewRecord.Success}" FontSize="24"/>
             <Button x:Name="UpdateButton" Text="New Record?" Clicked="UpdateButton_Clicked"/>
 
             <tabview:TabViewControl x:Name="RecTabView" HeaderBackgroundColor="Blue" HorizontalOptions="FillAndExpand" IsSwipeEnabled="True">
@@ -43,9 +43,8 @@
                 <StackLayout>
                 <Label Text="Add A Goal" FontSize="24" HorizontalOptions="Center"/>
                 <StackLayout x:Name="AddGoalLayout" Orientation="Vertical">
-                    <Entry x:Name="GoalScoreEntry" Placeholder="Goal Score"/>
-                    <DatePicker x:Name="StartDatePicker" Format="d"/>
-                    <DatePicker x:Name="EndDatePicker" Format="d" MinimumDate="{Binding Source={x:Reference StartDatePicker}, Path=Date}"/>
+                        <Entry x:Name="GoalScoreEntry" Placeholder="Goal Score"/>
+                        <DatePicker x:Name="EndDatePicker" Format="d" Date="{Binding EndDatePicker}"/> <!--Potential error-->
                     <Button x:Name="AddGoalButton" Text="Add A Goal" Clicked="AddGoalButton_Clicked"/>
                 </StackLayout>
                 <Label Text="Goals" FontSize="24" HorizontalOptions="Center"/>
@@ -54,9 +53,8 @@
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding GoalScore}"/>
-                                    <Label Text="{Binding StartDate, StringFormat='{0:MMMM d, yyyy}'}"/>
-                                    <Label Text="{Binding EndDate, StringFormat='{0:MMMM d, yyyy}'}"/>
+                                        <Label Text="{Binding GoalScore}"/>
+                                        <Label Text="{Binding EndDate, StringFormat='{0:MMMM d, yyyy}'}"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

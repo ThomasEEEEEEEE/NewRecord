@@ -15,19 +15,24 @@ using SkiaSharp;
 using System.Collections.ObjectModel;
 
 namespace NewRecord_Backend.ViewModels
-{//Continue here
+{
     public class ViewRecordViewModel : INotifyPropertyChanged
     {
         iDBAccess DBAccess;
         iFileAccess FileAccess;
-        Record ViewRecord;
-        public ViewRecordViewModel(Record rec)
+        public ViewRecordViewModel(string recordname)
         {
-            ViewRecord = rec;
+            DBAccess = new AzureDBAccess();
+            FileAccess = new JsonFileAccess();
+
+            if (AzureDBAccess.ID == -1)
+                ViewRecord = FileAccess.GetRecord(recordname);
+            else
+                ViewRecord = DBAccess.GetRecordFromUser(AzureDBAccess.ID, recordname);
             History = new ListViewModel<RecordItem>(ViewRecord.RecordHistory);
             Goals = new ListViewModel<Goal>(ViewRecord.Goals);
 
-            string ExpiredGoals = "";
+            /*string ExpiredGoals = "";
             for (int i = 0; i < ViewRecord.Goals.Count; ++i)
             {
                 if (ViewRecord.Goals[i].EndDate > DateTime.Now)
@@ -37,10 +42,7 @@ namespace NewRecord_Backend.ViewModels
             }
 
             if (!String.IsNullOrWhiteSpace(ExpiredGoals))
-                Application.Current.MainPage.DisplayAlert("You have failed to reach the following goals in time", ExpiredGoals, "OK");
-
-            DBAccess = new AzureDBAccess();
-            FileAccess = new JsonFileAccess();
+                Application.Current.MainPage.DisplayAlert("You have failed to reach the following goals in time", ExpiredGoals, "OK");*/
         }
 
         void PopulateChart()
@@ -83,6 +85,11 @@ namespace NewRecord_Backend.ViewModels
 
         public void UpdateButtonClicked(string recordname, double newscore)
         {
+            if (ViewRecord.Success == SuccessInfo.LARGER && ViewRecord.BestScore >= newscore)
+                return;
+            if (ViewRecord.Success == SuccessInfo.SMALLER && ViewRecord.BestScore <= newscore)
+                return;
+
             if (AzureDBAccess.ID == -1)
                 FileAccess.UpdateRecord(recordname, newscore);
             else
@@ -109,9 +116,42 @@ namespace NewRecord_Backend.ViewModels
                 await DisplayAlert("You've achieved the following goals!", AchievedGoals, "OK");*/
         }
 
+        public void EditNameButtonClicked(string newname)
+        {
+            if (AzureDBAccess.ID == -1)
+                FileAccess.EditRecordName(ViewRecord.Name, newname);
+            else
+                DBAccess.EditRecordName(AzureDBAccess.ID, ViewRecord.Name, newname);
+
+            ViewRecord.Name = newname;
+        }
+
+        public void EditPrivacyButtonClicked(PrivacySettings privacy)
+        {
+            if (AzureDBAccess.ID == -1)
+                FileAccess.EditRecordPrivacy(ViewRecord.Name, privacy);
+            else
+                DBAccess.EditRecordPrivacy(AzureDBAccess.ID, ViewRecord.Name, privacy);
+
+            ViewRecord.Privacy = privacy;
+        }
+
+        public void AddGoalButtonClicked(double goalscore)
+        {
+            Goal goal = new Goal(goalscore, EndDatePicker.Date);
+            if (AzureDBAccess.ID == -1)
+                FileAccess.AddGoalToRecord(ViewRecord.Name, goal);
+            else
+                DBAccess.AddGoalToRecord(AzureDBAccess.ID, ViewRecord.Name, goal);
+
+            Goals.ListView.Add(goal);
+        }
+
         private ListViewModel<RecordItem> history;
         private ListViewModel<Goal> goals;
         private LineChart recordchart;
+        private Record viewrecord;
+        private DatePicker enddatepicker;
 
         public ListViewModel<RecordItem> History
         {
@@ -149,6 +189,32 @@ namespace NewRecord_Backend.ViewModels
             {
                 recordchart = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("RecordChart"));
+            }
+        }
+
+        public Record ViewRecord 
+        {
+            get
+            {
+                return viewrecord;
+            }
+            set
+            {
+                viewrecord = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("ViewRecord"));
+            }
+        }
+
+        public DatePicker EndDatePicker
+        {
+            get
+            {
+                return enddatepicker;
+            }
+            set
+            {
+                enddatepicker = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("EndDatePicker"));
             }
         }
 
