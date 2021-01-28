@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\NewRecord_Backend\NewRecord_Backend.csproj" />
-    <ProjectReference Include="..\..\NewRecord_Database\NewRecord_Database.csproj" />
   </ItemGroup>
 
   <ItemGroup>

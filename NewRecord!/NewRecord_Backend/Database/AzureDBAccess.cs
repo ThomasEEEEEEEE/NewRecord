@@ -27,10 +27,9 @@ namespace NewRecord_Backend.Database
                 builder.Password = Password;
                 builder.InitialCatalog = InitialCatalog;
                 return builder.ConnectionString;
-                //return "Server=tcp:nr-server.database.windows.net,1433;Initial Catalog=NewRecordDB;Persist Security Info=False;User ID=NRadmin;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             }
         }
-        public void DoQuery_NoReturn(string query)
+        void DoQuery_NoReturn(string query)
         {
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
@@ -38,12 +37,13 @@ namespace NewRecord_Backend.Database
                 {
                     con.Open();
                     comm.ExecuteNonQuery();
+                    con.Close();
                 }
             }
         }
 
         //For now this does not return goals or record history
-        public Record DoQuery_OneRecord(string query)
+        Record DoQuery_OneRecord(string query)
         {
             Record record = null;
             using (SqlConnection con = new SqlConnection(ConnectionString))
@@ -61,12 +61,13 @@ namespace NewRecord_Backend.Database
                         record.Success = (SuccessInfo)reader.GetInt32(3);
                         record.Privacy = (PrivacySettings)reader.GetInt32(4);
                     }
+                    con.Close();
                 }
             }
             return record;
         }
 
-        public User DoQuery_OneUser(string query)
+        User DoQuery_OneUser(string query)
         {
             User user = null;
             using (SqlConnection con = new SqlConnection(ConnectionString))
@@ -83,13 +84,14 @@ namespace NewRecord_Backend.Database
                         user.Username = reader.GetString(1);
                         user.PasswordHash = reader.GetString(2);
                     }
+                    con.Close();
                 }
             }
             return user;
         }
 
         //For now this does not fill in Goals or RecordHistory
-        public List<Record> DoQuery_MultipleRecords(string query)
+        List<Record> DoQuery_MultipleRecords(string query)
         {
             List<Record> records = null;
             using (SqlConnection con = new SqlConnection(ConnectionString))
@@ -109,12 +111,13 @@ namespace NewRecord_Backend.Database
                         record.Privacy = (PrivacySettings)reader.GetInt32(4);
                         records.Add(record);
                     }
+                    con.Close();
                 }
             }
             return records;
         }
 
-        public List<RecordItem> DoQuery_MultipleRecordItems(string query)
+        List<RecordItem> DoQuery_MultipleRecordItems(string query)
         {
             List<RecordItem> recorditems = null;
             using (SqlConnection con = new SqlConnection(ConnectionString))
@@ -130,13 +133,14 @@ namespace NewRecord_Backend.Database
                     {
                         recorditems.Add(new RecordItem(reader.GetDouble(2), reader.GetDateTime(3)));
                     }
+                    con.Close();
                 }
             }
 
             return recorditems;
         }
 
-        public List<Goal> DoQuery_MultipleGoals(string query)
+        List<Goal> DoQuery_MultipleGoals(string query)
         {
             List<Goal> goals = null;
             using (SqlConnection con = new SqlConnection(ConnectionString))
@@ -152,6 +156,7 @@ namespace NewRecord_Backend.Database
                     {
                         goals.Add(new Goal(reader.GetDouble(2), reader.GetDateTime(3)));
                     }
+                    con.Close();
                 }
             }
             return goals;
@@ -168,7 +173,7 @@ namespace NewRecord_Backend.Database
             //Note: may not account for nullable dates
             foreach (Goal g in record.Goals)
             {
-                query += String.Format("({0}, '{1}', {2}, '{3}'), ", userid, record.Name, g.GoalScore, g.EndDate);
+                query += String.Format("({0}, '{1}', {2}, '{3}'), ", userid, record.Name, g.GoalScore, g.EndDate.ToShortDateString());
             }
             query = query.Remove(query.Length - 2); //Sketch way of removing extra comma and space
             DoQuery_NoReturn(query);
@@ -226,6 +231,19 @@ namespace NewRecord_Backend.Database
         {
             string query = String.Format("SELECT * FROM RECORDS WHERE UserID={0};", userid);
             return DoQuery_MultipleRecords(query);
+        }
+
+        public void RemoveMultipleGoalsFromRecord(int userid, string recordname, List<Goal> goals)
+        {
+            string query = String.Format("DELETE FROM GOALS WHERE UserID={0} AND RecordName='{1}' AND (", userid, recordname);
+            foreach (Goal g in goals)
+            {
+                query += String.Format("(GoalScore={0} AND DateAchieved='{1}') OR ", g.GoalScore, g.EndDate.ToShortDateString());
+            }
+            query = query.Remove(query.Length - 4); //Remove the OR and two spaces
+            query += ");";
+
+            DoQuery_NoReturn(query);
         }
 
         //Purposefully unimplemented

@@ -38,10 +38,10 @@
       <HintPath>..\packages\CarouselView.FormsPlugin.5.2.0\lib\netstandard2.0\CarouselView.FormsPlugin.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Microcharts, Version=0.9.5.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microcharts.Forms.0.9.5.9\lib\netstandard2.0\Microcharts.dll</HintPath>
+      <HintPath>..\packages\Microcharts.Forms.0.9.5.8\lib\netstandard2.0\Microcharts.dll</HintPath>
     </Reference>
     <Reference Include="Microcharts.Forms, Version=0.9.5.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microcharts.Forms.0.9.5.9\lib\netstandard2.0\Microcharts.Forms.dll</HintPath>
+      <HintPath>..\packages\Microcharts.Forms.0.9.5.8\lib\netstandard2.0\Microcharts.Forms.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -153,6 +153,9 @@
     <EmbeddedResource Include="Views\ViewRecordPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewRecord!", "NewRecord!\Ne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewRecord_Backend", "NewRecord_Backend\NewRecord_Backend.csproj", "{727075A4-6FDA-464A-AC60-3D3476FCA963}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewRecord_Database", "NewRecord_Database\NewRecord_Database.csproj", "{D590B3E8-511F-43A6-8597-AB8EEB58CAB0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +31,6 @@ Global
 		{727075A4-6FDA-464A-AC60-3D3476FCA963}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{727075A4-6FDA-464A-AC60-3D3476FCA963}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{727075A4-6FDA-464A-AC60-3D3476FCA963}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D590B3E8-511F-43A6-8597-AB8EEB58CAB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D590B3E8-511F-43A6-8597-AB8EEB58CAB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D590B3E8-511F-43A6-8597-AB8EEB58CAB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D590B3E8-511F-43A6-8597-AB8EEB58CAB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

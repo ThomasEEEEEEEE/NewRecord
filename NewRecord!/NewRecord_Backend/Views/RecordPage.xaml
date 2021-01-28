@@ -9,32 +9,30 @@
                 <Label Text="Records" FontSize="60"/>
                 <Button x:Name="AddButton" Text="+" FontSize="70" Clicked="AddButton_Clicked"/>
             </StackLayout>
-
-            <ListView x:Name="RListView" ItemsSource="{Binding Records.ListView}" SeparatorVisibility="None" SelectionMode="None" HasUnevenRows="False" Margin="0,-7,0,0" RowHeight="100" ItemTapped="RListView_ItemTapped">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <!--<SwipeView>
-                                <SwipeView.LeftItems>
-                                    <SwipeItems>
-                                        <SwipeItem Text="Delete" BackgroundColor="Red" IconImageSource="swimming.png"/>
-                                    </SwipeItems>
-                                </SwipeView.LeftItems>-->
-                            <Frame Padding="4" BorderColor="#2f0000" BackgroundColor="DarkRed">
-                                <StackLayout Orientation="Horizontal">
-                                    <Frame BackgroundColor="AliceBlue">
-                                        <Image Source="{Binding SelectedImage}" Aspect="AspectFill"/>
-                                    </Frame>
-                                    <StackLayout Orientation="Vertical">
-                                        <Label Text="{Binding Name}" FontSize="Large" TextColor="GhostWhite"/>
-                                        <Label Text="{Binding BestScore}" FontSize="16" TextColor="GhostWhite"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ListView x:Name="RListView" ItemsSource="{Binding Records.ListView}" SeparatorVisibility="None" HasUnevenRows="False" Margin="0,-7,0,0" ItemTapped="RListView_ItemTapped" IsPullToRefreshEnabled="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Padding="4" BorderColor="#2f0000" BackgroundColor="DarkRed">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Frame BackgroundColor="AliceBlue">
+                                            <Image Source="{Binding SelectedImage}" Aspect="AspectFill"/>
+                                        </Frame>
+                                        <StackLayout Orientation="Vertical">
+                                            <Label Text="{Binding Name}" FontSize="30" TextColor="GhostWhite"/>
+                                            <Label Text="{Binding SelectedImage}" FontSize="16" TextColor="GhostWhite"/>
+                                        </StackLayout>
                                     </StackLayout>
-                                </StackLayout>
-                            </Frame>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

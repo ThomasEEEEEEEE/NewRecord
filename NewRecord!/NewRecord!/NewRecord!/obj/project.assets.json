@@ -103,16 +103,6 @@
         "runtime": {
           "bin/placeholder/NewRecord_Backend.dll": {}
         }
-      },
-      "NewRecord_Database/1.0.0": {
-        "type": "project",
-        "framework": ".NETFramework,Version=v4.7.2",
-        "compile": {
-          "bin/placeholder/NewRecord_Database.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/NewRecord_Database.dll": {}
-        }
       }
     }
   },
@@ -743,11 +733,6 @@
       "type": "project",
       "path": "../../NewRecord_Backend/NewRecord_Backend.csproj",
       "msbuildProject": "../../NewRecord_Backend/NewRecord_Backend.csproj"
-    },
-    "NewRecord_Database/1.0.0": {
-      "type": "project",
-      "path": "../../NewRecord_Database/NewRecord_Database.csproj",
-      "msbuildProject": "../../NewRecord_Database/NewRecord_Database.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -755,7 +740,6 @@
       "CarouselView.FormsPlugin >= 5.2.0",
       "NETStandard.Library >= 2.0.3",
       "NewRecord_Backend >= 1.0.0",
-      "NewRecord_Database >= 1.0.0",
       "Newtonsoft.Json >= 12.0.3",
       "Xam.Plugin.TabView >= 1.1.1",
       "Xamarin.Essentials >= 1.6.0",
@@ -798,9 +782,6 @@
           "projectReferences": {
             "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Backend\\NewRecord_Backend.csproj": {
               "projectPath": "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Backend\\NewRecord_Backend.csproj"
-            },
-            "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Database\\NewRecord_Database.csproj": {
-              "projectPath": "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Database\\NewRecord_Database.csproj"
             }
           }
         }

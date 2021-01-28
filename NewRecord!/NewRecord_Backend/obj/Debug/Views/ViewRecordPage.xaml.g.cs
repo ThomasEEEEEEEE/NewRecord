@@ -44,7 +44,7 @@ namespace NewRecord_Backend.Views {
         private global::Xamarin.Forms.ListView RListView;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Microcharts.Forms.ChartView RecChart;
+        private global::Xamarin.Forms.StackLayout ChartLayout;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.StackLayout AddGoalLayout;
@@ -70,7 +70,7 @@ namespace NewRecord_Backend.Views {
             UpdateButton = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Button>(this, "UpdateButton");
             RecTabView = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xam.Plugin.TabView.TabViewControl>(this, "RecTabView");
             RListView = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ListView>(this, "RListView");
-            RecChart = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Microcharts.Forms.ChartView>(this, "RecChart");
+            ChartLayout = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.StackLayout>(this, "ChartLayout");
             AddGoalLayout = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.StackLayout>(this, "AddGoalLayout");
             GoalScoreEntry = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "GoalScoreEntry");
             EndDatePicker = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.DatePicker>(this, "EndDatePicker");

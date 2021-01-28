@@ -39,8 +39,7 @@
 
                 <StackLayout x:Name="AddGoalLayout" Orientation="Vertical">
                     <Entry x:Name="GoalScoreEntry" Placeholder="Goal Score"/>
-                    <DatePicker x:Name="StartDatePicker" Format="d"/>
-                    <DatePicker x:Name="EndDatePicker" Format="d" MinimumDate="{Binding Source={x:Reference StartDatePicker}, Path=Date}"/>
+                    <DatePicker x:Name="EndDatePicker" Format="d" Date="{Binding EndDate}"/>
                 </StackLayout>
                 <Button x:Name="AddGoalButton" Text="Add A Goal" Clicked="AddGoalButton_Clicked"/>
                 <ListView ItemsSource="{Binding Goals.ListView}" HasUnevenRows="False" HeightRequest="200">
@@ -49,7 +48,6 @@
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="{Binding GoalScore}"/>
-                                    <Label Text="{Binding StartDate, StringFormat='{0:MMMM d, yyyy}'}"/>
                                     <Label Text="{Binding EndDate, StringFormat='{0:MMMM d, yyyy}'}"/>
                                 </StackLayout>
                             </ViewCell>

@@ -19,9 +19,11 @@ namespace NewRecord_Backend.ViewModels
         {
             Images = new ListViewModel<string>();
             Goals = new ListViewModel<Goal>();
+            EndDate = DateTime.Now;
 
             DBAccess = new AzureDBAccess();
             FileAccess = new JsonFileAccess();
+
 
             AddImages();
         }
@@ -48,6 +50,7 @@ namespace NewRecord_Backend.ViewModels
 
         private ListViewModel<string> images;
         private ListViewModel<Goal> goals;
+        private DateTime enddate;
         public ListViewModel<string> Images
         {
             get
@@ -70,6 +73,18 @@ namespace NewRecord_Backend.ViewModels
             {
                 goals = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("Goals"));
+            }
+        }
+        public DateTime EndDate
+        {
+            get
+            {
+                return enddate;
+            }
+            set
+            {
+                enddate = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("EndDate"));
             }
         }
 

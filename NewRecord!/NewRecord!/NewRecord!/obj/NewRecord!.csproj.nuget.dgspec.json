@@ -35,9 +35,6 @@
             "projectReferences": {
               "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Backend\\NewRecord_Backend.csproj": {
                 "projectPath": "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Backend\\NewRecord_Backend.csproj"
-              },
-              "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Database\\NewRecord_Database.csproj": {
-                "projectPath": "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Database\\NewRecord_Database.csproj"
               }
             }
           }
@@ -101,83 +98,6 @@
       },
       "frameworks": {
         "net472": {}
-      }
-    },
-    "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Database\\NewRecord_Database.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Database\\NewRecord_Database.csproj",
-        "projectName": "NewRecord_Database",
-        "projectPath": "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Database\\NewRecord_Database.csproj",
-        "packagesPath": "C:\\Users\\Thomas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Database\\obj\\",
-        "projectStyle": "PackageReference",
-        "skipContentFileWrite": true,
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\Thomas\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net472"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net472": {
-            "projectReferences": {
-              "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Backend\\NewRecord_Backend.csproj": {
-                "projectPath": "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Backend\\NewRecord_Backend.csproj"
-              }
-            }
-          }
-        }
-      },
-      "frameworks": {
-        "net472": {
-          "dependencies": {
-            "CarouselView.FormsPlugin": {
-              "target": "Package",
-              "version": "[5.2.0, )"
-            },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[12.0.3, )"
-            },
-            "System.Data.SqlClient": {
-              "target": "Package",
-              "version": "[4.8.2, )"
-            },
-            "Xam.Plugin.TabView": {
-              "target": "Package",
-              "version": "[1.1.1, )"
-            },
-            "Xamarin.Essentials": {
-              "target": "Package",
-              "version": "[1.6.0, )"
-            },
-            "Xamarin.Forms": {
-              "target": "Package",
-              "version": "[4.8.0.1821, )"
-            }
-          }
-        }
-      },
-      "runtimes": {
-        "win": {
-          "#import": []
-        },
-        "win-x64": {
-          "#import": []
-        },
-        "win-x86": {
-          "#import": []
-        }
       }
     }
   }

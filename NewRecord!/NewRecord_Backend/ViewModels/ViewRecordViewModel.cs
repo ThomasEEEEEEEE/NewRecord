@@ -32,17 +32,64 @@ namespace NewRecord_Backend.ViewModels
             History = new ListViewModel<RecordItem>(ViewRecord.RecordHistory);
             Goals = new ListViewModel<Goal>(ViewRecord.Goals);
 
-            /*string ExpiredGoals = "";
+            EndDate = DateTime.Now;
+
+            CheckForExpiredGoals();
+        }
+
+        async void CheckForExpiredGoals()
+        {
+            List<Goal> ExpiredGoals = new List<Goal>();
+            string alert = "";
             for (int i = 0; i < ViewRecord.Goals.Count; ++i)
             {
-                if (ViewRecord.Goals[i].EndDate > DateTime.Now)
+                if (Goals.ListView[i].EndDate < DateTime.Now)
                 {
-                    ExpiredGoals += ViewRecord.Goals[i].GoalScore.ToString() + " before " + ViewRecord.Goals[i].EndDate.ToString() + "\n";
+                    ExpiredGoals.Add(Goals.ListView[i]);
+                    alert += ViewRecord.Goals[i].GoalScore.ToString() + " before " + ViewRecord.Goals[i].EndDate.ToString() + "\n";
                 }
             }
 
-            if (!String.IsNullOrWhiteSpace(ExpiredGoals))
-                Application.Current.MainPage.DisplayAlert("You have failed to reach the following goals in time", ExpiredGoals, "OK");*/
+            if (String.IsNullOrWhiteSpace(alert))
+                return;
+
+            await Application.Current.MainPage.DisplayAlert("You have failed to reach the following goals in time", alert, "OK");
+            ExpiredGoals.ForEach(x => Goals.ListView.Remove(x));
+
+            if (AzureDBAccess.ID == -1)
+                FileAccess.RemoveGoalsFromRecord(ViewRecord.Name, ExpiredGoals);
+            else
+                DBAccess.RemoveMultipleGoalsFromRecord(AzureDBAccess.ID, ViewRecord.Name, ExpiredGoals);
+        }
+
+        async void CheckForAchievedGoals(double newscore)
+        {
+            string alert = "";
+            List<Goal> AchievedGoals = new List<Goal>();
+
+            for (int i = 0; i < Goals.ListView.Count; ++i)
+            {
+                Goal goal = Goals.ListView[i];
+                if (ViewRecord.Success == SuccessInfo.LARGER && goal.GoalScore <= newscore)
+                {
+                    AchievedGoals.Add(goal);
+                    alert += goal.GoalScore.ToString() + " by " + goal.EndDate + "\n";
+                }
+                else if (ViewRecord.Success == SuccessInfo.SMALLER && goal.GoalScore >= newscore)
+                {
+                    alert += goal.GoalScore.ToString() + " by " + goal.EndDate + "\n";
+                    AchievedGoals.Add(goal);
+                }
+            }
+            if (String.IsNullOrWhiteSpace(alert))
+                return;
+
+            await Application.Current.MainPage.DisplayAlert("You've achieved the following goals!", alert, "OK");
+
+            if (AzureDBAccess.ID == -1)
+                FileAccess.RemoveGoalsFromRecord(ViewRecord.Name, AchievedGoals);
+            else
+                DBAccess.RemoveMultipleGoalsFromRecord(AzureDBAccess.ID, ViewRecord.Name, AchievedGoals);
         }
 
         void PopulateChart()
@@ -57,8 +104,8 @@ namespace NewRecord_Backend.ViewModels
                     {
                         Label = ViewRecord.RecordHistory[i].DateAchieved.ToShortDateString(),
                         ValueLabel = ViewRecord.RecordHistory[i].Score.ToString(),
-                        ValueLabelColor = SKColor.Parse("#FFFFFF"),
-                        Color = SKColor.Parse("#5A3333")
+                        TextColor = SKColor.Parse("#FFFFFF"),
+                        Color = SKColor.Parse("#5A3333"),
                     });
                 }
                 else
@@ -99,21 +146,7 @@ namespace NewRecord_Backend.ViewModels
 
             PopulateChart();
 
-            /*string AchievedGoals = "";
-            for (int i = 0; i < Goals.ListView.Count; ++i)
-            {
-                Goal goal = Goals.ListView[i];
-                if (ViewRecord.Success == SuccessInfo.LARGER && goal.GoalScore <= Convert.ToDouble(score))
-                {
-                    AchievedGoals += goal.GoalScore.ToString() + " by " + goal.EndDate + "\n";
-                }
-                else if (ViewRecord.Success == SuccessInfo.SMALLER && goal.GoalScore >= Convert.ToDouble(score))
-                {
-                    AchievedGoals += goal.GoalScore.ToString() + " by " + goal.EndDate + "\n";
-                }
-            }
-            if (!String.IsNullOrWhiteSpace(AchievedGoals))
-                await DisplayAlert("You've achieved the following goals!", AchievedGoals, "OK");*/
+            CheckForAchievedGoals(newscore);
         }
 
         public void EditNameButtonClicked(string newname)
@@ -138,7 +171,7 @@ namespace NewRecord_Backend.ViewModels
 
         public void AddGoalButtonClicked(double goalscore)
         {
-            Goal goal = new Goal(goalscore, EndDatePicker.Date);
+            Goal goal = new Goal(goalscore, EndDate);
             if (AzureDBAccess.ID == -1)
                 FileAccess.AddGoalToRecord(ViewRecord.Name, goal);
             else
@@ -151,7 +184,7 @@ namespace NewRecord_Backend.ViewModels
         private ListViewModel<Goal> goals;
         private LineChart recordchart;
         private Record viewrecord;
-        private DatePicker enddatepicker;
+        private DateTime enddate;
 
         public ListViewModel<RecordItem> History
         {
@@ -205,16 +238,16 @@ namespace NewRecord_Backend.ViewModels
             }
         }
 
-        public DatePicker EndDatePicker
+        public DateTime EndDate
         {
             get
             {
-                return enddatepicker;
+                return enddate;
             }
             set
             {
-                enddatepicker = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("EndDatePicker"));
+                enddate = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("EndDate"));
             }
         }
 

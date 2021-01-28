@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using NewRecord_Database;
+using NewRecord_Backend.Database;
 
 namespace NewRecord_
 {
@@ -19,7 +19,7 @@ namespace NewRecord_
         private void Button_Clicked(object sender, EventArgs e)
         {
             AzureDBAccess dbaccess = new AzureDBAccess();
-            dbaccess.AddUser(DBTestEntry.Text);
+            //dbaccess.AddUser(DBTestEntry.Text);
             DisplayAlert("Success", "Hopefully anyways", "YE");
         }
     }

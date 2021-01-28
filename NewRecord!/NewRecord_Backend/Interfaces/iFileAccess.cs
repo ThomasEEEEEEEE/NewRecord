@@ -22,5 +22,6 @@ namespace NewRecord_Backend.Interfaces
         void EditRecordPrivacy(string recordname, PrivacySettings privacy);
         void AddGoalToRecord(string recordname, Goal goal);
         void RemoveGoalFromRecord(string recordname, Goal goal);
+        void RemoveGoalsFromRecord(string recordname, List<Goal> goals);
     }
 }

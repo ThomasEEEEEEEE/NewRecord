@@ -27,20 +27,10 @@ namespace NewRecord_Backend.ViewModels
 
             DBAccess = new AzureDBAccess();
             FileAccess = new JsonFileAccess();
-            Records.ListView = new ObservableCollection<Record>(GetRecords());
-        }
-        ListViewModel<Record> records;
-        ListViewModel<Record> Records
-        {
-            get
-            {
-                return records;
-            }
-            set
-            {
-                records = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Records"));
-            }
+            Records = new ListViewModel<Record>();
+            //Records.ListView = new ObservableCollection<Record>(GetRecords());
+            //GetRecords().ForEach(x => Records.ListView.Add(x));
+            
         }
 
         private List<Record> GetRecords()
@@ -54,17 +44,38 @@ namespace NewRecord_Backend.ViewModels
         public void OnAppearing()
         {
             Records.ListView.Clear();
-            Records.ListView = new ObservableCollection<Record>(GetRecords());
+            //Records.ListView = new ObservableCollection<Record>(GetRecords());
+            GetRecords().ForEach(x => Records.ListView.Add(x));
+            
         }
 
         public void AddButtonPressed()
         {
+            /*var recs = GetRecords();
+            foreach (Record r in recs)
+            {
+                Records.ListView.Add(r);
+            }*/
             navigation.PushModalAsync(new AddRecordPage());
         }
 
         public void ItemTapped(int index)
         {
             navigation.PushModalAsync(new ViewRecordPage(Records.ListView[index].Name));
+        }
+
+        ListViewModel<Record> records;
+        public ListViewModel<Record> Records
+        {
+            get
+            {
+                return records;
+            }
+            set
+            {
+                records = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Records"));
+            }
         }
         #region PropertyChangedImplementation
         public event PropertyChangedEventHandler PropertyChanged = delegate { };

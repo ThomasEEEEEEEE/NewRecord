@@ -1,2 +1,0 @@
-C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Database\obj\Debug\NewRecord_Database.csprojAssemblyReference.cache
-C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Database\obj\Debug\NewRecord_Database.csproj.CoreCompileInputs.cache

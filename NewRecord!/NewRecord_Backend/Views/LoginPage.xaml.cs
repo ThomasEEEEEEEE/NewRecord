@@ -30,8 +30,12 @@ namespace NewRecord_Backend.Views
         private void ContinueButton_Clicked(object sender, EventArgs e)
         {
             AzureDBAccess.ID = -1;
-            File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "LocalRecords.json");
             Navigation.PushModalAsync(new MainTabbedPage());
+        }
+
+        private void Button_Clicked_1(object sender, EventArgs e)
+        {
+            File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "LocalRecords.json");
         }
     }
 }
