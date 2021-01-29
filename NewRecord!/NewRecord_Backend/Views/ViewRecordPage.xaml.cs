@@ -10,6 +10,7 @@ using NewRecord_Backend.Models;
 using Microcharts;
 using Microcharts.Forms;
 using SkiaSharp;
+using SkiaSharp.Views.Forms;
 using NewRecord_Backend.ViewModels;
 using System.IO;
 using Newtonsoft.Json;
@@ -25,6 +26,24 @@ namespace NewRecord_Backend.Views
             InitializeComponent();
             vm = new ViewRecordViewModel(recordname);
             BindingContext = vm;
+
+            /*List<ChartEntry> entries = new List<ChartEntry>();
+            ChartView cv = new ChartView();
+            cv.Chart = new LineChart()
+            {
+                Entries = entries,
+                LineMode = LineMode.Straight,
+                BackgroundColor = SKColor.Parse("#452222"),
+                PointMode = PointMode.Circle,
+                LabelTextSize = 30,
+                LineSize = 12,
+                PointSize = 20,
+                LabelOrientation = Orientation.Horizontal,
+                ValueLabelOrientation = Orientation.Horizontal
+            };*/
+            ChartView cv = new ChartView();
+            cv.Chart = vm.PopulateChart();
+            ChartLayout.Children.Add(cv);
         }
 
         async private void UpdateButton_Clicked(object sender, EventArgs e)
@@ -44,8 +63,6 @@ namespace NewRecord_Backend.Views
             if (newname == null)
                 return;
             vm.EditNameButtonClicked(newname.Trim());
-            
-            //RecordName.Text = newname;
         }
 
         async private void EditPrivacyButton_Clicked(object sender, EventArgs e)
@@ -56,9 +73,23 @@ namespace NewRecord_Backend.Views
             if (choice == "Cancel")
                 return;
 
-            vm.EditPrivacyButtonClicked((PrivacySettings)Enum.Parse(typeof(PrivacySettings), choice));
-
-            //PrivacyInfo.Text = privacy.ToString();
+            PrivacySettings privacy;
+            switch (choice)
+            {
+                case "Public":
+                    privacy = PrivacySettings.PUBLIC;
+                    break;
+                case "Private":
+                    privacy = PrivacySettings.PRIVATE;
+                    break;
+                case "Friends Only":
+                    privacy = PrivacySettings.FRIENDSONLY;
+                    break;
+                default:
+                    privacy = PrivacySettings.PRIVATE; //Should never happen
+                    break;
+            }
+            vm.EditPrivacyButtonClicked(privacy);
         }
 
         private void AddGoalButton_Clicked(object sender, EventArgs e)

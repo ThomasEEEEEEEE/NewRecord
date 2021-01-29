@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,24 +20,65 @@ namespace NewRecord_Backend.Models
         LARGER,
         SMALLER
     }
-    public class Record
+    public class Record : INotifyPropertyChanged
     {
         public Record() 
         {
             RecordHistory = new List<RecordItem>();
             Goals = new List<Goal>();
         }
-        /*public Record(string name, double score)
+        private string name;
+        public string Name 
+        { 
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Name"));
+            }
+        }
+        private string selectedimage;
+        public string SelectedImage
         {
-            Name = name;
-            RecordHistory = new List<RecordItem>();
-            RecordHistory.Add(new RecordItem(score, DateTime.Now));
-            Goals = new List<Goal>();
-        }*/
-        public string Name { get; set; }
-        public string SelectedImage { get; set; }
-        public PrivacySettings Privacy { get; set; }
-        public SuccessInfo Success { get; set; }
+            get
+            {
+                return selectedimage;
+            }
+            set
+            {
+                selectedimage = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("SelectedImage"));
+            }
+        }
+        private PrivacySettings privacy;
+        public PrivacySettings Privacy 
+        {
+            get
+            {
+                return privacy;
+            }
+            set
+            {
+                privacy = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Privacy"));
+            }
+        }
+        private SuccessInfo success;
+        public SuccessInfo Success 
+        {
+            get
+            {
+                return success;
+            }
+            set
+            {
+                success = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Success"));
+            }
+        }
         public List<RecordItem> RecordHistory { get; set; }
         public List<Goal> Goals { get; set; }
 
@@ -52,5 +95,14 @@ namespace NewRecord_Backend.Models
                     return RecordHistory.Min(x => x.Score);
             }
         }
+        #region PropertyChangedImplementation
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+        void OnPropertyChanged([CallerMemberName] string propertyname = "")
+        {
+            if (PropertyChanged == null)
+                return;
+            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyname));
+        }
+        #endregion
     }
 }

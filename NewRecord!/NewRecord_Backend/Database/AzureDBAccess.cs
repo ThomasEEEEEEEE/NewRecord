@@ -201,6 +201,10 @@ namespace NewRecord_Backend.Database
         {
             string query = String.Format("UPDATE RECORDS SET RecordName='{0}' WHERE UserID={1} AND RecordName='{2}';", newname, userid, recordname);
             DoQuery_NoReturn(query);
+            query = String.Format("UPDATE RECORD_HISTORY SET RecordName='{0}' WHERE UserID={1} AND RecordName='{2}';", newname, userid, recordname);
+            DoQuery_NoReturn(query);
+            query = String.Format("UPDATE GOALS SET RecordName='{0}' WHERE UserID={1} AND RecordName='{2}';", newname, userid, recordname);
+            DoQuery_NoReturn(query);
         }
 
         public void EditRecordPrivacy(int userid, string recordname, PrivacySettings newsetting)

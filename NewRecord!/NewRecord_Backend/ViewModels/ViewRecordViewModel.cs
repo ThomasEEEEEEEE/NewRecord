@@ -92,7 +92,7 @@ namespace NewRecord_Backend.ViewModels
                 DBAccess.RemoveMultipleGoalsFromRecord(AzureDBAccess.ID, ViewRecord.Name, AchievedGoals);
         }
 
-        void PopulateChart()
+        public LineChart PopulateChart()
         {
             List<ChartEntry> entries = new List<ChartEntry>();
 
@@ -128,6 +128,7 @@ namespace NewRecord_Backend.ViewModels
                 LabelOrientation = Orientation.Horizontal,
                 ValueLabelOrientation = Orientation.Horizontal
             };
+            return RecordChart;
         }
 
         public void UpdateButtonClicked(string recordname, double newscore)
@@ -146,7 +147,7 @@ namespace NewRecord_Backend.ViewModels
 
             PopulateChart();
 
-            CheckForAchievedGoals(newscore);
+            //CheckForAchievedGoals(newscore);
         }
 
         public void EditNameButtonClicked(string newname)

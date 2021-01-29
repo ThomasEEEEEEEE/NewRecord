@@ -8,13 +8,16 @@ C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\bin\
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\bin\Debug\netstandard2.0\NewRecord!.pdb
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\bin\Debug\netstandard2.0\NewRecord_Backend.dll
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\bin\Debug\netstandard2.0\Microcharts.dll
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\bin\Debug\netstandard2.0\Microcharts.Forms.dll
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\bin\Debug\netstandard2.0\SkiaSharp.dll
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\bin\Debug\netstandard2.0\SkiaSharp.Views.Forms.dll
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\bin\Debug\netstandard2.0\System.Memory.dll
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\bin\Debug\netstandard2.0\System.Buffers.dll
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\bin\Debug\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\bin\Debug\netstandard2.0\NewRecord_Backend.pdb
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\bin\Debug\netstandard2.0\NewRecord_Backend.dll.config
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\bin\Debug\netstandard2.0\SkiaSharp.xml
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\bin\Debug\netstandard2.0\SkiaSharp.Views.Forms.xml
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\bin\Debug\netstandard2.0\System.Memory.xml
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\bin\Debug\netstandard2.0\System.Buffers.xml
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!\bin\Debug\netstandard2.0\System.Runtime.CompilerServices.Unsafe.xml
