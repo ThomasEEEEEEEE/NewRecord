@@ -26,9 +26,7 @@ namespace NewRecord_Backend.Interfaces
         void UpdateRecord(int userid, string recordname, double newscore);
         Record GetRecordFromUser(int userid, string recordname);
         List<Record> GetAllUserRecords(int userid);
-        //Below may be redundant
-        List<Goal> GetAllRecordGoals(int userid, string recordname);
-        List<RecordItem> GetRecordHistory(int userid, string recordname);
-
+        void SendNotification(DBNotification notif);
+        List<DBNotification> GetNotifications(int userid);
     }
 }

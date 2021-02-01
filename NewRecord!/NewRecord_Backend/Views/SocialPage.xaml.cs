@@ -6,15 +6,20 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using NewRecord_Backend.ViewModels;
 
 namespace NewRecord_Backend.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class SocialPage : ContentPage
-{
-    public SocialPage()
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class SocialPage : ContentPage
     {
-        InitializeComponent();
+        SocialViewModel vm;
+        public SocialPage()
+        {
+            InitializeComponent();
+
+            vm = new SocialViewModel();
+            BindingContext = vm;
+        }
     }
-}
 }

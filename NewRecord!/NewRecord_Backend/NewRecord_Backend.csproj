@@ -124,6 +124,7 @@
     <Compile Include="Database\JsonFileAccess.cs" />
     <Compile Include="Interfaces\iDBAccess.cs" />
     <Compile Include="Interfaces\iFileAccess.cs" />
+    <Compile Include="Models\DBNotification.cs" />
     <Compile Include="Models\Goal.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\RecImage.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="ViewModels\AddRecordViewModel.cs" />
     <Compile Include="ViewModels\ListViewModel.cs" />
     <Compile Include="ViewModels\RecordViewModel.cs" />
+    <Compile Include="ViewModels\SocialViewModel.cs" />
     <Compile Include="ViewModels\ViewRecordViewModel.cs" />
     <Compile Include="Views\AddRecordPage.xaml.cs">
       <DependentUpon>AddRecordPage.xaml</DependentUpon>

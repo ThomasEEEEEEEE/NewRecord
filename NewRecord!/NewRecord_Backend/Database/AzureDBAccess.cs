@@ -162,6 +162,12 @@ namespace NewRecord_Backend.Database
             return goals;
         }
 
+        List<DBNotification> DoQuery_MultipleNotifications(string query)
+        {
+            List<DBNotification> notifs = new List<DBNotification>();
+            return notifs;
+        }
+
         public void AddRecordToUser(int userid, Record record)
         {
             string query = String.Format("INSERT INTO RECORDS VALUES({0}, '{1}', '{2}', {3}, {4});", userid, record.Name, record.SelectedImage, (int)record.Success, (int)record.Privacy);
@@ -249,16 +255,14 @@ namespace NewRecord_Backend.Database
 
             DoQuery_NoReturn(query);
         }
+        public void SendNotification(DBNotification notif)
+        { 
 
-        //Purposefully unimplemented
-        public List<Goal> GetAllRecordGoals(int userid, string recordname)
-        {
-            throw new NotImplementedException();
         }
-
-        public List<RecordItem> GetRecordHistory(int userid, string recordname)
+        public List<DBNotification> GetNotifications(int userid)
         {
-            throw new NotImplementedException();
+            string query = String.Format("");
+            return DoQuery_MultipleNotifications(query);
         }
     }
 }
