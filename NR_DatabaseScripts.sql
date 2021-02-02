@@ -16,12 +16,13 @@ GO
 DROP TABLE IF EXISTS NOTIFICATIONS
 GO
 
---Unfinished
+--One friendship is one entry
 CREATE TABLE FRIENDS(
         UserID INT NOT NULL,
         FriendID INT NOT NULL,
         UserName nvarchar(500) NOT NULL,
-        FriendName nvarchar(500) NOT NULL
+        FriendName nvarchar(500) NOT NULL,
+        Pending BIT NOT NULL
 );
 
 CREATE TABLE USERS(
@@ -49,24 +50,27 @@ CREATE TABLE GOALS(
         UserID INT NOT NULL,
         RecordName varchar(500) NOT NULL,
         GoalScore FLOAT NOT NULL,
-        StartDate DATE, --Nullable
         EndDate DATE --Nullable
 );
 
---Unfinished
 CREATE TABLE CHALLENGES(
-        Participants varchar(500) NOT NULL, --In the form id,id,id
+        ChallengeID INT IDENTITY(1,1) NOT NULL,
         RecordName varchar(500) NOT NULL,
         GoalScore FLOAT NOT NULL,
-        StartDate DATE, --Nullable
-        EndDate DATE, --Nullable
-        WinnerID INT --Nullable
+        SuccessInfo INT NOT NULL,
+        EndDate DATE --Nullable
 );
 
---Very Unfinished
+CREATE TABLE CHALLENGE_PARTICIPANTS(
+        ChallengeID INT NOT NULL,
+        ParticipantID INT NOT NULL,
+        ParticipantName nvarchar(500) NOT NULL,
+        Pending BIT NOT NULL
+);
+
 CREATE TABLE NOTIFICATIONS(
         SenderUserID INT NOT NULL,
         ReceiverUserID INT NOT NULL,
-        MessageType varchar(100) NOT NULL,
-        MessageInfo varchar(1000) NOT NULL
+        MessageType INT NOT NULL,
+        ChallengeID INT --Nullable
 );
