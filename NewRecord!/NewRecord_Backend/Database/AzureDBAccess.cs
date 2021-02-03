@@ -256,13 +256,41 @@ namespace NewRecord_Backend.Database
             DoQuery_NoReturn(query);
         }
         public void SendNotification(DBNotification notif)
-        { 
-
+        {
+            string query = String.Format("INSERT INTO NOTIFICATIONS VALUES ({0}, {1}, {2}, {3});", notif.SenderID, notif.ReceiverID, (int)notif.NotificationType, notif.ChallengeID);
+            DoQuery_NoReturn(query);
         }
         public List<DBNotification> GetNotifications(int userid)
         {
-            string query = String.Format("");
+            string query = String.Format("SELECT * FROM NOTIFICATIONS WHERE ReceiverID={0};", userid);
             return DoQuery_MultipleNotifications(query);
+        }
+        public List<Challenge> GetUserChallenges(int userid)
+        {
+            //SELECT * FROM CHALLENGES WHERE (SELECT ParticipantID FROM CHALLENGE_PARTICIPANTS WHERE ChallengeID=CHALLENGES.ChallengeID)=1;
+            //string query = String.Format("SELECT * FROM CHALLENGES JOIN CHALLENGE_PARTICIPANTS AS CP ON ChallengeID WHERE CP.ParticipantID={0};");
+            //return DoQuery_MultipleChallenges(query);
+            throw new NotImplementedException();
+        }
+        public List<User> GetUserFriends(int userid)
+        {
+            string query = String.Format("SELECT * FROM FRIENDS WHERE UserID={0} OR FriendID={0};", userid);
+            //return DoQuery_MultipleFriends(query);
+            throw new NotImplementedException();
+        }
+        public void CreateChallenge(Challenge challenge)
+        {
+            string query = String.Format("INSERT INTO CHALLENGES(RecordName, GoalScore, SuccessInfo, EndDate) VALUES('{0}', {1}, {2}, '{3}');", challenge.RecordName, challenge.GoalScore, (int)challenge.Success, challenge.EndDate.ToShortDateString());
+            DoQuery_NoReturn(query);
+        }
+        public void SendFriendRequest(int userid, int friendid)
+        {
+            //string query = String.Format("INSERT INTO");
+        }
+        public void AcceptFriendRequest(int userid, int friendid)
+        {
+            string query = String.Format("UPDATE FRIENDS SET Pending=0 WHERE (UserID={0} AND FriendID={1}) OR (UserID={1} AND Friend{0});", userid, friendid);
+            DoQuery_NoReturn(query);
         }
     }
 }

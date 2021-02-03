@@ -4,9 +4,41 @@
              x:Class="NewRecord_Backend.Views.SocialPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <AbsoluteLayout>
+            <Frame
+            x:Name="Flist"
+            HasShadow="False"
+            IsVisible="True"
+            
+            BackgroundColor="#1293D8"
+            BorderColor="Black"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="1.0,0,0.7,1"
+>
+                <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+                    <Label Text="Friends" FontSize="48" HorizontalOptions="Center"/>
+                    <Frame BorderColor="Black" BackgroundColor="Cyan">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Jeremy" HorizontalOptions="Start"/>
+                            <Label Text="X" HorizontalOptions="End"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+            <ListView x:Name="CListView" ItemsSource="{Binding Challenges.ListView}" SeparatorVisibility="None" HasUnevenRows="False" Margin="0,-7,0,0" IsPullToRefreshEnabled="True" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding RecordName}" FontSize="Large"/>
+                                <Label Text="Race to " FontSize="26"/>
+                                <Label Text="{Binding GoalScore}" FontSize="30"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            </AbsoluteLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

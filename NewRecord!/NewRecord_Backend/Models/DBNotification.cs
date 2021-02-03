@@ -18,7 +18,7 @@ namespace NewRecord_Backend.Models
     }
     public class DBNotification
     {
-        public DBNotification(int sendid, int recid, NotificationType type, int challid = -1)
+        public DBNotification(int sendid, int recid, NotificationType type, int? challid = null)
         {
             SenderID = sendid;
             ReceiverID = recid;
@@ -28,7 +28,7 @@ namespace NewRecord_Backend.Models
 
         public int SenderID { get; set; }
         public int ReceiverID { get; set; }
-        public int ChallengeID { get; set; }
+        public int? ChallengeID { get; set; }
         public NotificationType NotificationType { get; set; }
     }
 }

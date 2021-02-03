@@ -8,7 +8,6 @@ namespace NewRecord_Backend.Models
 {
     public class Person
     {
-        public int ID { get; set; }
-        public string Username { get; set; }
+        
     }
 }

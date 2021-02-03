@@ -38,6 +38,53 @@ namespace NewRecord_Backend.ViewModels
                 timer.AutoReset = true;
                 timer.Enabled = true;
             }).ConfigureAwait(false);
+            DBAccess = new AzureDBAccess();
+            FriendsListVisible = false;
+
+            //Challenges = new ListViewModel<Challenge>(DBAccess.GetUserChallenges());
+            //Friends = new ListViewModel<User>(DBAccess.GetAllUserFriends());
+        }
+
+        private ListViewModel<Challenge> challenges;
+        public ListViewModel<Challenge> Challenges
+        {
+            get
+            {
+                return challenges;
+            }
+            set
+            {
+                challenges = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Challenges"));
+            }
+        }
+
+        private ListViewModel<User> friends;
+        public ListViewModel<User> Friends
+        {
+            get
+            {
+                return friends;
+            }
+            set
+            {
+                friends = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Friends"));
+            }
+        }
+
+        private bool friendslistvisible;
+        public bool FriendsListVisible
+        {
+            get
+            {
+                return friendslistvisible;
+            }
+            set
+            {
+                friendslistvisible = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("FriendsListVisible"));
+            }
         }
         #region PropertyChangedImplementation
         public event PropertyChangedEventHandler PropertyChanged = delegate { };

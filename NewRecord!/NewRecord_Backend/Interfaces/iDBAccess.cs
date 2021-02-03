@@ -9,13 +9,6 @@ namespace NewRecord_Backend.Interfaces
 {
     public interface iDBAccess
     {
-        /*void DoQuery_NoReturn(string query);
-        Record DoQuery_OneRecord(string query);
-        List<Record> DoQuery_MultipleRecords(string query);
-        List<RecordItem> DoQuery_MultipleRecordItems(string query);
-        List<Goal> DoQuery_MultipleGoals(string query);
-        User DoQuery_OneUser(string query);*/
-
         void AddRecordToUser(int userid, Record record);
         void RemoveRecordFromUser(int userid, string recordname);
         void AddGoalToRecord(int userid, string recordname, Goal goal);
@@ -28,5 +21,10 @@ namespace NewRecord_Backend.Interfaces
         List<Record> GetAllUserRecords(int userid);
         void SendNotification(DBNotification notif);
         List<DBNotification> GetNotifications(int userid);
+        List<Challenge> GetUserChallenges(int userid);
+        List<User> GetUserFriends(int userid);
+        void CreateChallenge(Challenge challenge);
+        void SendFriendRequest(int userid, int friendid);
+        void AcceptFriendRequest(int userid, int friendid);
     }
 }
