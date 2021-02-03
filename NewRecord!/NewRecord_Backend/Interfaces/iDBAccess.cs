@@ -26,5 +26,8 @@ namespace NewRecord_Backend.Interfaces
         void CreateChallenge(Challenge challenge);
         void SendFriendRequest(int userid, int friendid);
         void AcceptFriendRequest(int userid, int friendid);
+        void AddUser(User user);
+        User GetUser(int userid);
+        User GetUser(string username);
     }
 }

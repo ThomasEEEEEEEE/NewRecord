@@ -164,10 +164,115 @@ namespace NewRecord_Backend.Database
 
         List<DBNotification> DoQuery_MultipleNotifications(string query)
         {
-            List<DBNotification> notifs = new List<DBNotification>();
+            List<DBNotification> notifs = null;
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand(query, con))
+                {
+                    con.Open();
+
+                    notifs = new List<DBNotification>();
+                    SqlDataReader reader = comm.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        int sendid = reader.GetInt32(0);
+                        int recid = reader.GetInt32(1);
+                        NotificationType type = (NotificationType)reader.GetInt32(2);
+                        int? challid = null;
+                        if (!reader.IsDBNull(3)) reader.GetInt32(3);
+
+                        notifs.Add(new DBNotification(sendid, recid, type, challid));
+                    }
+
+                    con.Close();
+                }
+            }
             return notifs;
         }
 
+        List<User> DoQuery_MultipleUsers(string query)
+        {
+            List<User> users = null;
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand(query, con))
+                {
+                    con.Open();
+
+                    users = new List<User>();
+                    SqlDataReader reader = comm.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        User user = new User();
+                        user.ID = reader.GetInt32(0);
+                        user.Username = reader.GetString(1);
+                        user.PasswordHash = reader.GetString(2);
+                        users.Add(user);
+                    }
+
+                    con.Close();
+                }
+            }
+            return users;
+        }
+
+        Challenge DoQuery_OneChallenge(string query)
+        {
+            Challenge challenge = null;
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand(query, con))
+                {
+                    con.Open();
+
+                    SqlDataReader reader = comm.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        challenge = new Challenge();
+                        challenge.ChallengeID = reader.GetInt32(0);
+                        challenge.RecordName = reader.GetString(1);
+                        challenge.GoalScore = reader.GetDouble(2);
+                        challenge.Success = (SuccessInfo)reader.GetInt32(3);
+                        challenge.EndDate = reader.GetDateTime(4);
+                    }
+
+                    con.Close();
+                }
+            }
+            return challenge;
+        }
+
+        List<Challenge> DoQuery_MultipleChallenges(string query)
+        {
+            List<Challenge> challenges = null;
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand comm = new SqlCommand(query, con))
+                {
+                    con.Open();
+
+                    challenges = new List<Challenge>();
+                    SqlDataReader reader = comm.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Challenge chal = new Challenge();
+                        chal.ChallengeID = reader.GetInt32(0);
+                        chal.RecordName = reader.GetString(1);
+                        chal.GoalScore = reader.GetDouble(2);
+                        chal.Success = (SuccessInfo)reader.GetInt32(3);
+                        chal.EndDate = reader.GetDateTime(4);
+                        challenges.Add(chal);
+                    }
+
+                    con.Close();
+                }
+            }
+            return challenges;
+        }
         public void AddRecordToUser(int userid, Record record)
         {
             string query = String.Format("INSERT INTO RECORDS VALUES({0}, '{1}', '{2}', {3}, {4});", userid, record.Name, record.SelectedImage, (int)record.Success, (int)record.Privacy);
@@ -275,7 +380,7 @@ namespace NewRecord_Backend.Database
         public List<User> GetUserFriends(int userid)
         {
             string query = String.Format("SELECT * FROM FRIENDS WHERE UserID={0} OR FriendID={0};", userid);
-            //return DoQuery_MultipleFriends(query);
+            //return DoQuery_MultipleUsers(query);
             throw new NotImplementedException();
         }
         public void CreateChallenge(Challenge challenge)
@@ -291,6 +396,21 @@ namespace NewRecord_Backend.Database
         {
             string query = String.Format("UPDATE FRIENDS SET Pending=0 WHERE (UserID={0} AND FriendID={1}) OR (UserID={1} AND Friend{0});", userid, friendid);
             DoQuery_NoReturn(query);
+        }
+        public void AddUser(User user)
+        {
+            string query = String.Format("INSERT INTO USERS(Username, PasswordHash) VALUES('{0}', '{1}');", user.Username, user.PasswordHash);
+            DoQuery_NoReturn(query);
+        }
+        public User GetUser(int userid)
+        {
+            string query = String.Format("SELECT * FROM USERS WHERE ID={0};", userid);
+            return DoQuery_OneUser(query);
+        }
+        public User GetUser(string username)
+        {
+            string query = String.Format("SELECT * FROM USERS WHERE Username='{0}';", username);
+            return DoQuery_OneUser(query);
         }
     }
 }
