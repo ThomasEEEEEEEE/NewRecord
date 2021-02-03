@@ -34,7 +34,7 @@ namespace NewRecord_Backend.ViewModels
 
             EndDate = DateTime.Now;
 
-            CheckForExpiredGoals();
+            //CheckForExpiredGoals();
         }
 
         async void CheckForExpiredGoals()

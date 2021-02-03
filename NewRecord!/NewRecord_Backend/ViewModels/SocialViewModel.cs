@@ -24,6 +24,16 @@ namespace NewRecord_Backend.ViewModels
                 timer.Elapsed += (object source, ElapsedEventArgs e) =>
                 {
                     List<DBNotification> notifs = DBAccess.GetNotifications(AzureDBAccess.ID);
+                    foreach (DBNotification notif in notifs)
+                    {
+                        switch (notif.NotificationType)
+                        {
+                            case NotificationType.FRIEND_REQUEST:
+                                break;
+                            case NotificationType.CHALLENGE_REQUEST:
+                                break;
+                        }
+                    }
                 };
                 timer.AutoReset = true;
                 timer.Enabled = true;
