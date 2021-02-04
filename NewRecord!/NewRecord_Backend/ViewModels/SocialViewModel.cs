@@ -44,7 +44,8 @@ namespace NewRecord_Backend.ViewModels
             FriendsListVisible = true;
 
             //Challenges = new ListViewModel<Challenge>(DBAccess.GetUserChallenges(AzureDBAccess.ID));
-            //Friends = new ListViewModel<User>(DBAccess.GetUserFriends(AzureDBAccess.ID));
+            Friends = new ListViewModel<User>(DBAccess.GetUserFriends(AzureDBAccess.ID));
+            FriendRequests = new ListViewModel<User>(DBAccess.GetUserFriendRequests(AzureDBAccess.ID));
         }
 
         private ListViewModel<Challenge> challenges;
@@ -75,6 +76,32 @@ namespace NewRecord_Backend.ViewModels
             }
         }
 
+        private ListViewModel<User> friendrequests;
+        public ListViewModel<User> FriendRequests 
+        { 
+            get
+            {
+                return friendrequests;
+            }
+            set
+            {
+                friendrequests = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("FriendRequests"));
+            }
+        }
+        private double flistscalex;
+        public double FListScaleX
+        {
+            get
+            {
+                return flistscalex;
+            }
+            set
+            {
+                flistscalex = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("FlistScaleX"));
+            }
+        }
         private bool friendslistvisible;
         public bool FriendsListVisible
         {
@@ -86,6 +113,11 @@ namespace NewRecord_Backend.ViewModels
             {
                 friendslistvisible = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("FriendsListVisible"));
+
+                if (value == false)
+                    FListScaleX = 0.0;
+                else
+                    FListScaleX = 1.0;
             }
         }
         #region PropertyChangedImplementation

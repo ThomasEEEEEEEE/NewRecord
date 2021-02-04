@@ -9,7 +9,6 @@
             x:Name="Flist"
             HasShadow="False"
             IsVisible="{Binding FriendsListVisible}"
-            
             BackgroundColor="#1293D8"
             BorderColor="Black"
             AbsoluteLayout.LayoutFlags="All"

@@ -335,6 +335,52 @@ namespace NewRecord_Backend.Database
             }
             return challenges;
         }
+        List<User> DoQuery_MultipleFriends(string query, int id)
+        {
+            List<User> friendships = null;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand comm = new SqlCommand(query, con))
+                    {
+                        con.Open();
+
+                        friendships = new List<User>();
+                        SqlDataReader reader = comm.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            int userid = reader.GetInt32(0);
+                            int friendid = reader.GetInt32(1);
+                            string username = reader.GetString(2);
+                            string friendname = reader.GetString(3);
+                            bool pending = reader.GetBoolean(4);
+
+                            User user = new User();
+                            if (userid == id)
+                            {
+                                user.ID = friendid;
+                                user.Username = friendname;
+                            }
+                            else
+                            {
+                                user.ID = userid;
+                                user.Username = username;
+                            }
+                            friendships.Add(user);
+                        }
+
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            return friendships;
+        }
         public void AddRecordToUser(int userid, Record record)
         {
             string query = String.Format("INSERT INTO RECORDS VALUES({0}, '{1}', '{2}', {3}, {4});", userid, record.Name, record.SelectedImage, (int)record.Success, (int)record.Privacy);
@@ -442,8 +488,12 @@ namespace NewRecord_Backend.Database
         public List<User> GetUserFriends(int userid)
         {
             string query = String.Format("SELECT * FROM FRIENDS WHERE UserID={0} OR FriendID={0};", userid);
-            //return DoQuery_MultipleUsers(query);
-            throw new NotImplementedException();
+            return DoQuery_MultipleFriends(query, userid);
+        }
+        public List<User> GetUserFriendRequests(int userid)
+        {
+            string query = String.Format("SELECT * FROM FRIENDS WHERE Pending=1 AND FriendID={0};", userid);
+            return DoQuery_MultipleFriends(query, userid);
         }
         public void CreateChallenge(Challenge challenge)
         {
