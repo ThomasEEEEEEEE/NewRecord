@@ -46,23 +46,30 @@ namespace NewRecord_Backend.Database
         Record DoQuery_OneRecord(string query)
         {
             Record record = null;
-            using (SqlConnection con = new SqlConnection(ConnectionString))
+            try
             {
-                using (SqlCommand comm = new SqlCommand(query, con))
+                using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
-                    con.Open();
-                    SqlDataReader reader = comm.ExecuteReader();
-
-                    record = new Record();
-                    if (reader.Read())
+                    using (SqlCommand comm = new SqlCommand(query, con))
                     {
-                        record.Name = reader.GetString(1);
-                        record.SelectedImage = reader.GetString(2);
-                        record.Success = (SuccessInfo)reader.GetInt32(3);
-                        record.Privacy = (PrivacySettings)reader.GetInt32(4);
+                        con.Open();
+                        SqlDataReader reader = comm.ExecuteReader();
+
+                        record = new Record();
+                        if (reader.Read())
+                        {
+                            record.Name = reader.GetString(1);
+                            record.SelectedImage = reader.GetString(2);
+                            record.Success = (SuccessInfo)reader.GetInt32(3);
+                            record.Privacy = (PrivacySettings)reader.GetInt32(4);
+                        }
+                        con.Close();
                     }
-                    con.Close();
                 }
+            }
+            catch (Exception)
+            {
+                return null;
             }
             return record;
         }
@@ -70,22 +77,29 @@ namespace NewRecord_Backend.Database
         User DoQuery_OneUser(string query)
         {
             User user = null;
-            using (SqlConnection con = new SqlConnection(ConnectionString))
+            try
             {
-                using (SqlCommand comm = new SqlCommand(query, con))
+                using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
-                    con.Open();
-                    SqlDataReader reader = comm.ExecuteReader();
-
-                    if (reader.Read())
+                    using (SqlCommand comm = new SqlCommand(query, con))
                     {
-                        user = new User();
-                        user.ID = reader.GetInt32(0);
-                        user.Username = reader.GetString(1);
-                        user.PasswordHash = reader.GetString(2);
+                        con.Open();
+                        SqlDataReader reader = comm.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            user = new User();
+                            user.ID = reader.GetInt32(0);
+                            user.Username = reader.GetString(1);
+                            user.PasswordHash = reader.GetString(2);
+                        }
+                        con.Close();
                     }
-                    con.Close();
                 }
+            }
+            catch (Exception)
+            {
+                return null;
             }
             return user;
         }
@@ -94,25 +108,32 @@ namespace NewRecord_Backend.Database
         List<Record> DoQuery_MultipleRecords(string query)
         {
             List<Record> records = null;
-            using (SqlConnection con = new SqlConnection(ConnectionString))
+            try
             {
-                using (SqlCommand comm = new SqlCommand(query, con))
+                using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
-                    con.Open();
-                    SqlDataReader reader = comm.ExecuteReader();
-
-                    records = new List<Record>();
-                    while (reader.Read())
+                    using (SqlCommand comm = new SqlCommand(query, con))
                     {
-                        Record record = new Record();
-                        record.Name = reader.GetString(1);
-                        record.SelectedImage = reader.GetString(2);
-                        record.Success = (SuccessInfo)reader.GetInt32(3);
-                        record.Privacy = (PrivacySettings)reader.GetInt32(4);
-                        records.Add(record);
+                        con.Open();
+                        SqlDataReader reader = comm.ExecuteReader();
+
+                        records = new List<Record>();
+                        while (reader.Read())
+                        {
+                            Record record = new Record();
+                            record.Name = reader.GetString(1);
+                            record.SelectedImage = reader.GetString(2);
+                            record.Success = (SuccessInfo)reader.GetInt32(3);
+                            record.Privacy = (PrivacySettings)reader.GetInt32(4);
+                            records.Add(record);
+                        }
+                        con.Close();
                     }
-                    con.Close();
                 }
+            }
+            catch (Exception)
+            {
+                return null;
             }
             return records;
         }
@@ -120,44 +141,57 @@ namespace NewRecord_Backend.Database
         List<RecordItem> DoQuery_MultipleRecordItems(string query)
         {
             List<RecordItem> recorditems = null;
-            using (SqlConnection con = new SqlConnection(ConnectionString))
+            try
             {
-                using (SqlCommand comm = new SqlCommand(query, con))
+                using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
-                    con.Open();
-                    SqlDataReader reader = comm.ExecuteReader();
-
-                    recorditems = new List<RecordItem>();
-
-                    while (reader.Read())
+                    using (SqlCommand comm = new SqlCommand(query, con))
                     {
-                        recorditems.Add(new RecordItem(reader.GetDouble(2), reader.GetDateTime(3)));
+                        con.Open();
+                        SqlDataReader reader = comm.ExecuteReader();
+
+                        recorditems = new List<RecordItem>();
+
+                        while (reader.Read())
+                        {
+                            recorditems.Add(new RecordItem(reader.GetDouble(2), reader.GetDateTime(3)));
+                        }
+                        con.Close();
                     }
-                    con.Close();
                 }
             }
-
+            catch (Exception)
+            {
+                return null;
+            }
             return recorditems;
         }
 
         List<Goal> DoQuery_MultipleGoals(string query)
         {
             List<Goal> goals = null;
-            using (SqlConnection con = new SqlConnection(ConnectionString))
+            try
             {
-                using (SqlCommand comm = new SqlCommand(query, con))
+                using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
-                    con.Open();
-                    SqlDataReader reader = comm.ExecuteReader();
-
-                    goals = new List<Goal>();
-
-                    while (reader.Read())
+                    using (SqlCommand comm = new SqlCommand(query, con))
                     {
-                        goals.Add(new Goal(reader.GetDouble(2), reader.GetDateTime(3)));
+                        con.Open();
+                        SqlDataReader reader = comm.ExecuteReader();
+
+                        goals = new List<Goal>();
+
+                        while (reader.Read())
+                        {
+                            goals.Add(new Goal(reader.GetDouble(2), reader.GetDateTime(3)));
+                        }
+                        con.Close();
                     }
-                    con.Close();
                 }
+            }
+            catch (Exception)
+            {
+                return null;
             }
             return goals;
         }
@@ -165,28 +199,35 @@ namespace NewRecord_Backend.Database
         List<DBNotification> DoQuery_MultipleNotifications(string query)
         {
             List<DBNotification> notifs = null;
-            using (SqlConnection con = new SqlConnection(ConnectionString))
+            try
             {
-                using (SqlCommand comm = new SqlCommand(query, con))
+                using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
-                    con.Open();
-
-                    notifs = new List<DBNotification>();
-                    SqlDataReader reader = comm.ExecuteReader();
-
-                    while (reader.Read())
+                    using (SqlCommand comm = new SqlCommand(query, con))
                     {
-                        int sendid = reader.GetInt32(0);
-                        int recid = reader.GetInt32(1);
-                        NotificationType type = (NotificationType)reader.GetInt32(2);
-                        int? challid = null;
-                        if (!reader.IsDBNull(3)) reader.GetInt32(3);
+                        con.Open();
 
-                        notifs.Add(new DBNotification(sendid, recid, type, challid));
+                        notifs = new List<DBNotification>();
+                        SqlDataReader reader = comm.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            int sendid = reader.GetInt32(0);
+                            int recid = reader.GetInt32(1);
+                            NotificationType type = (NotificationType)reader.GetInt32(2);
+                            int? challid = null;
+                            if (!reader.IsDBNull(3)) reader.GetInt32(3);
+
+                            notifs.Add(new DBNotification(sendid, recid, type, challid));
+                        }
+
+                        con.Close();
                     }
-
-                    con.Close();
                 }
+            }
+            catch (Exception)
+            {
+                return null;
             }
             return notifs;
         }
@@ -194,26 +235,33 @@ namespace NewRecord_Backend.Database
         List<User> DoQuery_MultipleUsers(string query)
         {
             List<User> users = null;
-            using (SqlConnection con = new SqlConnection(ConnectionString))
+            try
             {
-                using (SqlCommand comm = new SqlCommand(query, con))
+                using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
-                    con.Open();
-
-                    users = new List<User>();
-                    SqlDataReader reader = comm.ExecuteReader();
-
-                    while (reader.Read())
+                    using (SqlCommand comm = new SqlCommand(query, con))
                     {
-                        User user = new User();
-                        user.ID = reader.GetInt32(0);
-                        user.Username = reader.GetString(1);
-                        user.PasswordHash = reader.GetString(2);
-                        users.Add(user);
-                    }
+                        con.Open();
 
-                    con.Close();
+                        users = new List<User>();
+                        SqlDataReader reader = comm.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            User user = new User();
+                            user.ID = reader.GetInt32(0);
+                            user.Username = reader.GetString(1);
+                            user.PasswordHash = reader.GetString(2);
+                            users.Add(user);
+                        }
+
+                        con.Close();
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                return null;
             }
             return users;
         }
@@ -221,26 +269,33 @@ namespace NewRecord_Backend.Database
         Challenge DoQuery_OneChallenge(string query)
         {
             Challenge challenge = null;
-            using (SqlConnection con = new SqlConnection(ConnectionString))
+            try
             {
-                using (SqlCommand comm = new SqlCommand(query, con))
+                using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
-                    con.Open();
-
-                    SqlDataReader reader = comm.ExecuteReader();
-
-                    while (reader.Read())
+                    using (SqlCommand comm = new SqlCommand(query, con))
                     {
-                        challenge = new Challenge();
-                        challenge.ChallengeID = reader.GetInt32(0);
-                        challenge.RecordName = reader.GetString(1);
-                        challenge.GoalScore = reader.GetDouble(2);
-                        challenge.Success = (SuccessInfo)reader.GetInt32(3);
-                        challenge.EndDate = reader.GetDateTime(4);
-                    }
+                        con.Open();
 
-                    con.Close();
+                        SqlDataReader reader = comm.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            challenge = new Challenge();
+                            challenge.ChallengeID = reader.GetInt32(0);
+                            challenge.RecordName = reader.GetString(1);
+                            challenge.GoalScore = reader.GetDouble(2);
+                            challenge.Success = (SuccessInfo)reader.GetInt32(3);
+                            challenge.EndDate = reader.GetDateTime(4);
+                        }
+
+                        con.Close();
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                return null;
             }
             return challenge;
         }
@@ -248,28 +303,35 @@ namespace NewRecord_Backend.Database
         List<Challenge> DoQuery_MultipleChallenges(string query)
         {
             List<Challenge> challenges = null;
-            using (SqlConnection con = new SqlConnection(ConnectionString))
+            try
             {
-                using (SqlCommand comm = new SqlCommand(query, con))
+                using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
-                    con.Open();
-
-                    challenges = new List<Challenge>();
-                    SqlDataReader reader = comm.ExecuteReader();
-
-                    while (reader.Read())
+                    using (SqlCommand comm = new SqlCommand(query, con))
                     {
-                        Challenge chal = new Challenge();
-                        chal.ChallengeID = reader.GetInt32(0);
-                        chal.RecordName = reader.GetString(1);
-                        chal.GoalScore = reader.GetDouble(2);
-                        chal.Success = (SuccessInfo)reader.GetInt32(3);
-                        chal.EndDate = reader.GetDateTime(4);
-                        challenges.Add(chal);
-                    }
+                        con.Open();
 
-                    con.Close();
+                        challenges = new List<Challenge>();
+                        SqlDataReader reader = comm.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            Challenge chal = new Challenge();
+                            chal.ChallengeID = reader.GetInt32(0);
+                            chal.RecordName = reader.GetString(1);
+                            chal.GoalScore = reader.GetDouble(2);
+                            chal.Success = (SuccessInfo)reader.GetInt32(3);
+                            chal.EndDate = reader.GetDateTime(4);
+                            challenges.Add(chal);
+                        }
+
+                        con.Close();
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                return null;
             }
             return challenges;
         }
@@ -390,7 +452,16 @@ namespace NewRecord_Backend.Database
         }
         public void SendFriendRequest(int userid, int friendid)
         {
-            //string query = String.Format("INSERT INTO");
+            string query = String.Format("SELECT * FROM USERS WHERE UserID={0} OR UserID={1};", userid, friendid); //Should have exactly two results
+            List<User> users = DoQuery_MultipleUsers(query);
+
+            string username = users.Find(x => x.ID == userid).Username;
+            string friendname = users.Find(x => x.ID == friendid).Username;
+            query = String.Format("INSERT INTO FRIENDS VALUES({0}, {1}, '{2}', '{3}', 1);", userid, friendid, username, friendname);
+            DoQuery_NoReturn(query);
+
+            DBNotification notif = new DBNotification(userid, friendid, NotificationType.FRIEND_REQUEST);
+            SendNotification(notif);
         }
         public void AcceptFriendRequest(int userid, int friendid)
         {

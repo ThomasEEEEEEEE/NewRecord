@@ -25,7 +25,7 @@ namespace NewRecord_Backend.ViewModels
         public void LoginButtonPressed()
         {
             User user = DBAccess.GetUser(Username);
-            if (Hashing.VerifyPassword(Password, user.PasswordHash))
+            if (user != null && Hashing.VerifyPassword(Password, user.PasswordHash))
             {
                 AzureDBAccess.ID = user.ID;
                 Navigation.PushModalAsync(new MainTabbedPage());
@@ -36,6 +36,11 @@ namespace NewRecord_Backend.ViewModels
         }
         public async void SignupButtonPressed()
         {
+            if (DBAccess.GetUser(Username) != null)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "An account with that username already exists", "OK");
+                return;
+            }
             User user = new User();
             user.Username = Username;
             user.PasswordHash = Hashing.HashPassword(Password);
@@ -48,14 +53,13 @@ namespace NewRecord_Backend.ViewModels
             bool conf = await Application.Current.MainPage.DisplayAlert("Confirmation", "Are you sure you want to continue without an account?\nYou won't be able use the full functionality of the app", "Yes", "No");
             if (!conf)
                 return;
-            else
-            {
-                AzureDBAccess.ID = -1;
-                MainTabbedPage page = new MainTabbedPage();
-                page.Children.RemoveAt(1);
-                page.Children.Add(new UnregisteredSocialPage());
-                await Navigation.PushModalAsync(new MainTabbedPage());
-            }    
+
+            AzureDBAccess.ID = -1;
+            MainTabbedPage page = new MainTabbedPage();
+            //page.Children.RemoveAt(1);
+            //page.Children.Add(new UnregisteredSocialPage());
+            await Navigation.PushModalAsync(page);
+
         }
         private string username;
         public string Username

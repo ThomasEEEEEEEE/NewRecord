@@ -548,3 +548,5 @@ C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Andr
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\stamp\_GenerateJavaStubs.stamp
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\DevOne.Security.Cryptography.BCrypt.dll
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\DevOne.Security.Cryptography.BCrypt.dll

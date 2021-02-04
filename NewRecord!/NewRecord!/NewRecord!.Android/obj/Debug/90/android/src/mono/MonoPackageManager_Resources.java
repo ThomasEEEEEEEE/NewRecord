@@ -4,6 +4,7 @@ public class MonoPackageManager_Resources {
 		/* We need to ensure that "NewRecord!.Android.dll" comes first in this list. */
 		"NewRecord!.Android.dll",
 		"NewRecord_Backend.dll",
+		"DevOne.Security.Cryptography.BCrypt.dll",
 		"CarouselView.FormsPlugin.Abstractions.dll",
 		"CarouselView.FormsPlugin.Android.dll",
 		"Com.Android.DeskClock.dll",

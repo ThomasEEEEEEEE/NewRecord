@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using Xamarin.Forms;
 using NewRecord_Backend.Database;
 using NewRecord_Backend.Interfaces;
 using NewRecord_Backend.Models;
@@ -29,6 +30,7 @@ namespace NewRecord_Backend.ViewModels
                         switch (notif.NotificationType)
                         {
                             case NotificationType.FRIEND_REQUEST:
+                                //Application.Current.MainPage.DisplayAlert("Friend Request Received", "From " + notif.SenderID, "OK");
                                 break;
                             case NotificationType.CHALLENGE_REQUEST:
                                 break;
@@ -39,10 +41,10 @@ namespace NewRecord_Backend.ViewModels
                 timer.Enabled = true;
             }).ConfigureAwait(false);
             DBAccess = new AzureDBAccess();
-            FriendsListVisible = false;
+            FriendsListVisible = true;
 
-            //Challenges = new ListViewModel<Challenge>(DBAccess.GetUserChallenges());
-            //Friends = new ListViewModel<User>(DBAccess.GetAllUserFriends());
+            //Challenges = new ListViewModel<Challenge>(DBAccess.GetUserChallenges(AzureDBAccess.ID));
+            //Friends = new ListViewModel<User>(DBAccess.GetUserFriends(AzureDBAccess.ID));
         }
 
         private ListViewModel<Challenge> challenges;
