@@ -11,6 +11,8 @@
             IsVisible="{Binding FriendsListVisible}"
             BackgroundColor="#1293D8"
             BorderColor="Black"
+            AnchorX="0.5"
+            AnchorY="0.5"
             AbsoluteLayout.LayoutFlags="All"
             AbsoluteLayout.LayoutBounds="1.0,0,0.7,1"
 >
@@ -20,9 +22,10 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <Frame BorderColor="Black" BackgroundColor="Cyan">
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding Username}" HorizontalOptions="Start" FontSize="Large"/>
+                                        <Frame BorderColor="Black" BackgroundColor="Transparent" Padding="10,0,0,0" CornerRadius="20" HasShadow="True">
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                            <Label Text="{Binding Username}" FontSize="30" HorizontalTextAlignment="Start" TextColor="#A81212"/>
+                                                <Label Text="X" FontSize="30" HorizontalTextAlignment="End" TextColor="#A81212" FontAttributes="Bold"/>
                                             </StackLayout>
                                         </Frame>
                                     </ViewCell>
@@ -44,6 +47,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <Button Text="E" CornerRadius="100" HeightRequest="60" WidthRequest="60" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize" x:Name="FLbutton" Clicked="FLbutton_Clicked" Margin="0,0,25,10"/>
             </AbsoluteLayout>
         </StackLayout>
     </ContentPage.Content>

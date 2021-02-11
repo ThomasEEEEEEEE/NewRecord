@@ -10,6 +10,7 @@ using NewRecord_Backend.Database;
 using NewRecord_Backend.Models;
 using NewRecord_Backend.Views;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace NewRecord_Backend.ViewModels
 {
@@ -21,6 +22,9 @@ namespace NewRecord_Backend.ViewModels
         {
             DBAccess = new AzureDBAccess();
             Navigation = navigation;
+
+            Username = Preferences.Get("LastLoginUsername", "");
+            Password = Preferences.Get("LastLoginPassword", "");
         }
         public void LoginButtonPressed()
         {
@@ -28,6 +32,9 @@ namespace NewRecord_Backend.ViewModels
             if (user != null && Hashing.VerifyPassword(Password, user.PasswordHash))
             {
                 AzureDBAccess.ID = user.ID;
+                Preferences.Set("LastLoginUsername", Username);
+                Preferences.Set("LastLoginPassword", Password);
+
                 Navigation.PushModalAsync(new MainTabbedPage());
             }
             else

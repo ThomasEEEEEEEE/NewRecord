@@ -21,10 +21,11 @@ namespace NewRecord_Backend.Interfaces
         List<Record> GetAllUserRecords(int userid);
         void SendNotification(DBNotification notif);
         List<DBNotification> GetNotifications(int userid);
+        void RemoveNotification(DBNotification notification);
         List<Challenge> GetUserChallenges(int userid);
         List<User> GetUserFriends(int userid);
         List<User> GetUserFriendRequests(int userid);
-        void CreateChallenge(Challenge challenge);
+        int CreateChallenge(Challenge challenge);
         void SendFriendRequest(int userid, int friendid);
         void AcceptFriendRequest(int userid, int friendid);
         void AddUser(User user);

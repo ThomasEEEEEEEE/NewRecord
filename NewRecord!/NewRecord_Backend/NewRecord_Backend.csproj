@@ -137,12 +137,16 @@
     <Compile Include="Models\RecordItem.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AddChallengeViewModel.cs" />
     <Compile Include="ViewModels\AddRecordViewModel.cs" />
     <Compile Include="ViewModels\ListViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RecordViewModel.cs" />
     <Compile Include="ViewModels\SocialViewModel.cs" />
     <Compile Include="ViewModels\ViewRecordViewModel.cs" />
+    <Compile Include="Views\AddChallengePage.xaml.cs">
+      <DependentUpon>AddChallengePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddRecordPage.xaml.cs">
       <DependentUpon>AddRecordPage.xaml</DependentUpon>
     </Compile>
@@ -195,6 +199,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\UnregisteredSocialPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\AddChallengePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

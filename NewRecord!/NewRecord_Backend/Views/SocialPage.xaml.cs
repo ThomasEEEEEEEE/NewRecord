@@ -21,5 +21,10 @@ namespace NewRecord_Backend.Views
             vm = new SocialViewModel();
             BindingContext = vm;
         }
+
+        private void FLbutton_Clicked(object sender, EventArgs e)
+        {
+            vm.FriendsButtonPressed();
+        }
     }
 }

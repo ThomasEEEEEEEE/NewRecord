@@ -21,18 +21,37 @@ namespace NewRecord_Backend.ViewModels
         {
             System.Threading.Tasks.Task.Run(() =>
             {
-                Timer timer = new Timer(5000);
-                timer.Elapsed += (object source, ElapsedEventArgs e) =>
+                //A timer that will elapse every ten seconds and check for new notifications
+                Timer timer = new Timer(10000);
+                timer.Elapsed += async (object source, ElapsedEventArgs e) =>
                 {
                     List<DBNotification> notifs = DBAccess.GetNotifications(AzureDBAccess.ID);
                     foreach (DBNotification notif in notifs)
                     {
+                        bool acc;
                         switch (notif.NotificationType)
                         {
                             case NotificationType.FRIEND_REQUEST:
-                                //Application.Current.MainPage.DisplayAlert("Friend Request Received", "From " + notif.SenderID, "OK");
+                                acc = false;
+                                await Device.InvokeOnMainThreadAsync(async () =>
+                                {
+                                    acc = await Application.Current.MainPage.DisplayAlert("Friend Request Received", "From " + notif.SenderID, "Accept", "Decline");
+                                });
+
+                                if (acc)
+                                    DBAccess.AcceptFriendRequest(AzureDBAccess.ID, notif.SenderID);
+                                DBAccess.RemoveNotification(notif);
                                 break;
                             case NotificationType.CHALLENGE_REQUEST:
+                                acc = false;
+                                await Device.InvokeOnMainThreadAsync(async () =>
+                                {
+                                    acc = await Application.Current.MainPage.DisplayAlert("Challenge Request Received", "From " + notif.SenderID, "Accept", "Decline");
+                                });
+
+                                //if (acc)
+                                    //DBAccess.AcceptChallengeRequest();
+                                //DBAccess.RemoveNotification(notif);
                                 break;
                         }
                     }
@@ -41,11 +60,16 @@ namespace NewRecord_Backend.ViewModels
                 timer.Enabled = true;
             }).ConfigureAwait(false);
             DBAccess = new AzureDBAccess();
-            FriendsListVisible = true;
+            FriendsListVisible = false;
 
             //Challenges = new ListViewModel<Challenge>(DBAccess.GetUserChallenges(AzureDBAccess.ID));
             Friends = new ListViewModel<User>(DBAccess.GetUserFriends(AzureDBAccess.ID));
             FriendRequests = new ListViewModel<User>(DBAccess.GetUserFriendRequests(AzureDBAccess.ID));
+        }
+
+        public void FriendsButtonPressed()
+        {
+            FriendsListVisible = !FriendsListVisible;
         }
 
         private ListViewModel<Challenge> challenges;
@@ -77,8 +101,8 @@ namespace NewRecord_Backend.ViewModels
         }
 
         private ListViewModel<User> friendrequests;
-        public ListViewModel<User> FriendRequests 
-        { 
+        public ListViewModel<User> FriendRequests
+        {
             get
             {
                 return friendrequests;
@@ -89,7 +113,7 @@ namespace NewRecord_Backend.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs("FriendRequests"));
             }
         }
-        private double flistscalex;
+        /*private double flistscalex;
         public double FListScaleX
         {
             get
@@ -101,7 +125,7 @@ namespace NewRecord_Backend.ViewModels
                 flistscalex = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("FlistScaleX"));
             }
-        }
+        }*/
         private bool friendslistvisible;
         public bool FriendsListVisible
         {
@@ -113,11 +137,6 @@ namespace NewRecord_Backend.ViewModels
             {
                 friendslistvisible = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("FriendsListVisible"));
-
-                if (value == false)
-                    FListScaleX = 0.0;
-                else
-                    FListScaleX = 1.0;
             }
         }
         #region PropertyChangedImplementation

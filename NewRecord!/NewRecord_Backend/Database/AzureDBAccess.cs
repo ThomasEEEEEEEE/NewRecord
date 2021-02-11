@@ -478,6 +478,17 @@ namespace NewRecord_Backend.Database
             string query = String.Format("SELECT * FROM NOTIFICATIONS WHERE ReceiverID={0};", userid);
             return DoQuery_MultipleNotifications(query);
         }
+        public void RemoveNotification(DBNotification notification)
+        {
+            string chal = "";
+            if (notification.ChallengeID != null)
+                chal = "=" + notification.ChallengeID;
+            else
+                chal = " IS NULL";
+
+            string query = String.Format("DELETE FROM NOTIFICATIONS WHERE SenderID={0} AND ReceiverID={1} AND MessageType={2} AND ChallengeID{3}", notification.SenderID, notification.ReceiverID, (int)notification.NotificationType, chal);
+            DoQuery_NoReturn(query);
+        }
         public List<Challenge> GetUserChallenges(int userid)
         {
             //SELECT * FROM CHALLENGES WHERE (SELECT ParticipantID FROM CHALLENGE_PARTICIPANTS WHERE ChallengeID=CHALLENGES.ChallengeID)=1;
@@ -495,10 +506,11 @@ namespace NewRecord_Backend.Database
             string query = String.Format("SELECT * FROM FRIENDS WHERE Pending=1 AND FriendID={0};", userid);
             return DoQuery_MultipleFriends(query, userid);
         }
-        public void CreateChallenge(Challenge challenge)
+        public int CreateChallenge(Challenge challenge)
         {
-            string query = String.Format("INSERT INTO CHALLENGES(RecordName, GoalScore, SuccessInfo, EndDate) VALUES('{0}', {1}, {2}, '{3}');", challenge.RecordName, challenge.GoalScore, (int)challenge.Success, challenge.EndDate.ToShortDateString());
-            DoQuery_NoReturn(query);
+            string query = String.Format("INSERT INTO CHALLENGES(RecordName, GoalScore, SuccessInfo, EndDate, InProgress) VALUES('{0}', {1}, {2}, '{3}', 0); SELECT * FROM CHALLENGES WHERE ChallengeID=SCOPE_IDENTITY();", challenge.RecordName, challenge.GoalScore, (int)challenge.Success, challenge.EndDate.ToShortDateString());
+            //DoQuery_NoReturn(query);
+            return DoQuery_OneChallenge(query).ChallengeID;
         }
         public void SendFriendRequest(int userid, int friendid)
         {
@@ -515,7 +527,7 @@ namespace NewRecord_Backend.Database
         }
         public void AcceptFriendRequest(int userid, int friendid)
         {
-            string query = String.Format("UPDATE FRIENDS SET Pending=0 WHERE (UserID={0} AND FriendID={1}) OR (UserID={1} AND Friend{0});", userid, friendid);
+            string query = String.Format("UPDATE FRIENDS SET Pending=0 WHERE (UserID={0} AND FriendID={1}) OR (UserID={1} AND FriendID={0});", userid, friendid);
             DoQuery_NoReturn(query);
         }
         public void AddUser(User user)
