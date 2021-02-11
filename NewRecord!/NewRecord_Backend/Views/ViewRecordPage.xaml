@@ -35,8 +35,8 @@
                         </ListView>
                     </tabview:TabItem>
                     <tabview:TabItem HeaderText="Graph">
-                        <StackLayout>
-                            
+                        <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+                            <microcharts:ChartView Chart="{Binding RecordChart}" VerticalOptions="FillAndExpand"/>
                         </StackLayout>
                     </tabview:TabItem>
                 </tabview:TabViewControl.ItemSource>

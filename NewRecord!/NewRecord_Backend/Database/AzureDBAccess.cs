@@ -387,15 +387,18 @@ namespace NewRecord_Backend.Database
             DoQuery_NoReturn(query);
             query = String.Format("INSERT INTO RECORD_HISTORY VALUES({0}, '{1}', {2}, '{3}');", userid, record.Name, record.BestScore, record.RecordHistory.First().DateAchieved.ToShortDateString());
             DoQuery_NoReturn(query);
-            query = "INSERT INTO GOALS VALUES ";
-
-            //Note: may not account for nullable dates
-            foreach (Goal g in record.Goals)
+            if (record.Goals.Count > 0)
             {
-                query += String.Format("({0}, '{1}', {2}, '{3}'), ", userid, record.Name, g.GoalScore, g.EndDate.ToShortDateString());
+                query = "INSERT INTO GOALS VALUES ";
+
+                //Note: may not account for nullable dates
+                foreach (Goal g in record.Goals)
+                {
+                    query += String.Format("({0}, '{1}', {2}, '{3}'), ", userid, record.Name, g.GoalScore, g.EndDate.ToShortDateString());
+                }
+                query = query.Remove(query.Length - 2); //Sketch way of removing extra comma and space
+                DoQuery_NoReturn(query);
             }
-            query = query.Remove(query.Length - 2); //Sketch way of removing extra comma and space
-            DoQuery_NoReturn(query);
         }
 
         public void RemoveRecordFromUser(int userid, string recordname)

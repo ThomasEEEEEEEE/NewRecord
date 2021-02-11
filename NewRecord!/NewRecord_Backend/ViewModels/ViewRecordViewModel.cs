@@ -35,6 +35,7 @@ namespace NewRecord_Backend.ViewModels
             EndDate = DateTime.Now;
 
             //CheckForExpiredGoals();
+            PopulateChart();
         }
 
         async void CheckForExpiredGoals()
@@ -104,15 +105,15 @@ namespace NewRecord_Backend.ViewModels
                     {
                         Label = ViewRecord.RecordHistory[i].DateAchieved.ToShortDateString(),
                         ValueLabel = ViewRecord.RecordHistory[i].Score.ToString(),
-                        TextColor = SKColor.Parse("#FFFFFF"),
-                        Color = SKColor.Parse("#5A3333"),
+                        TextColor = SKColor.Parse("#000000"),
+                        Color = SKColor.Parse("#FF0000"),
                     });
                 }
                 else
                 {
                     entries.Add(new ChartEntry((float)(ViewRecord.RecordHistory[i].Score))
                     {
-                        Color = SKColor.Parse("#5A3333")
+                        Color = SKColor.Parse("#FF0000")
                     });
                 }
             }
@@ -120,11 +121,11 @@ namespace NewRecord_Backend.ViewModels
             {
                 Entries = entries,
                 LineMode = LineMode.Straight,
-                BackgroundColor = SKColor.Parse("#452222"),
+                BackgroundColor = SKColor.Parse("#EEEEEE"),
                 PointMode = PointMode.Circle,
                 LabelTextSize = 30,
-                LineSize = 12,
-                PointSize = 20,
+                LineSize = 15,
+                PointSize = 35,
                 LabelOrientation = Orientation.Horizontal,
                 ValueLabelOrientation = Orientation.Horizontal
             };

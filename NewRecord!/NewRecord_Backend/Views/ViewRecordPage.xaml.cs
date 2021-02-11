@@ -41,9 +41,9 @@ namespace NewRecord_Backend.Views
                 LabelOrientation = Orientation.Horizontal,
                 ValueLabelOrientation = Orientation.Horizontal
             };*/
-            ChartView cv = new ChartView();
-            cv.Chart = vm.PopulateChart();
-            ChartLayout.Children.Add(cv);
+            //ChartView cv = new ChartView();
+            //cv.Chart = vm.PopulateChart();
+            //ChartLayout.Children.Add(cv);
         }
 
         async private void UpdateButton_Clicked(object sender, EventArgs e)
