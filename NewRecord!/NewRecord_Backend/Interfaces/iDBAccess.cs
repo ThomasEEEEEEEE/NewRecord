@@ -19,11 +19,14 @@ namespace NewRecord_Backend.Interfaces
         void UpdateRecord(int userid, string recordname, double newscore);
         Record GetRecordFromUser(int userid, string recordname);
         List<Record> GetAllUserRecords(int userid);
+        List<Record> GetPublicUserRecords(int userid);
+        List<Record> GetNonPrivateUserRecords(int userid);
         void SendNotification(DBNotification notif);
         List<DBNotification> GetNotifications(int userid);
         void RemoveNotification(DBNotification notification);
         List<Challenge> GetUserChallenges(int userid);
         List<User> GetUserFriends(int userid);
+        bool CheckForFriendship(int user1, int user2);
         List<User> GetUserFriendRequests(int userid);
         int CreateChallenge(Challenge challenge);
         void SendFriendRequest(int userid, int friendid);

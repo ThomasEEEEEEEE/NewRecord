@@ -17,8 +17,11 @@ namespace NewRecord_Backend.ViewModels
     public class SocialViewModel : INotifyPropertyChanged
     {
         iDBAccess DBAccess;
-        public SocialViewModel()
+        INavigation Navigation;
+        public SocialViewModel(INavigation navigation)
         {
+            Navigation = navigation;
+
             System.Threading.Tasks.Task.Run(() =>
             {
                 //A timer that will elapse every ten seconds and check for new notifications
@@ -72,6 +75,49 @@ namespace NewRecord_Backend.ViewModels
             FriendsListVisible = !FriendsListVisible;
         }
 
+        public async void AddFriendButtonPressed()
+        {
+            string name = await Application.Current.MainPage.DisplayPromptAsync("Send Friend Request", "Enter Their Username", "Add", "Cancel", "Username");
+            if (name == null || name == "Cancel")
+                return;
+
+            User user = DBAccess.GetUser(name);
+
+            //If user doesn't exist
+            if (user == null)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "User Not Found", "OK");
+                return;
+            }
+
+            //If user is already a friend
+            if (DBAccess.GetUserFriends(AzureDBAccess.ID).Find(x => x.ID == user.ID) != null)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "That user is already a friend", "OK");
+                return;
+            }
+
+            //Also need to check for dup requests
+
+            DBAccess.SendFriendRequest(AzureDBAccess.ID, user.ID);
+        }
+
+        public async void SearchButtonClicked()
+        {
+            string name = await Application.Current.MainPage.DisplayPromptAsync("Search Public Records", "Enter Their Username", "Search", "Cancel", "Username");
+            
+            User user = DBAccess.GetUser(name);
+
+            //If user doesn't exist
+            if (user == null)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "User Not Found", "OK");
+                return;
+            }
+
+            _ = Navigation.PushModalAsync(new Views.PublicRecordsPage(user.ID));
+        }
+
         private ListViewModel<Challenge> challenges;
         public ListViewModel<Challenge> Challenges
         {
@@ -113,19 +159,7 @@ namespace NewRecord_Backend.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs("FriendRequests"));
             }
         }
-        /*private double flistscalex;
-        public double FListScaleX
-        {
-            get
-            {
-                return flistscalex;
-            }
-            set
-            {
-                flistscalex = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("FlistScaleX"));
-            }
-        }*/
+
         private bool friendslistvisible;
         public bool FriendsListVisible
         {

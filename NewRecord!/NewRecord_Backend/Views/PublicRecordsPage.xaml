@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewRecord_Backend.Views.PublicRecordsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Public Records" FontSize="70" HorizontalOptions="Center"/>
+            <ListView x:Name="RListView" ItemsSource="{Binding ShowRecords.ListView}" SeparatorVisibility="None" HasUnevenRows="False" Margin="0,-7,0,0" ItemTapped="RListView_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Padding="4" BorderColor="#2f0000" BackgroundColor="DarkRed">
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame BackgroundColor="AliceBlue">
+                                        <Image Source="{Binding SelectedImage}" Aspect="AspectFill"/>
+                                    </Frame>
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding Name}" FontSize="30" TextColor="GhostWhite"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

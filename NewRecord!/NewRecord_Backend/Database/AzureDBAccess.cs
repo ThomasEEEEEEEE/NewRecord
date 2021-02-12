@@ -458,6 +458,16 @@ namespace NewRecord_Backend.Database
             string query = String.Format("SELECT * FROM RECORDS WHERE UserID={0};", userid);
             return DoQuery_MultipleRecords(query);
         }
+        public List<Record> GetPublicUserRecords(int userid)
+        {
+            string query = String.Format("SELECT * FROM RECORDS WHERE UserID={0} AND Privacy=0;", userid);
+            return DoQuery_MultipleRecords(query);
+        }
+        public List<Record> GetNonPrivateUserRecords(int userid)
+        {
+            string query = String.Format("SELECT * FROM RECORDS WHERE UserID={0} AND (Privacy=0 OR Privacy=2);", userid);
+            return DoQuery_MultipleRecords(query);
+        }
 
         public void RemoveMultipleGoalsFromRecord(int userid, string recordname, List<Goal> goals)
         {
@@ -501,13 +511,17 @@ namespace NewRecord_Backend.Database
         }
         public List<User> GetUserFriends(int userid)
         {
-            string query = String.Format("SELECT * FROM FRIENDS WHERE UserID={0} OR FriendID={0};", userid);
+            string query = String.Format("SELECT * FROM FRIENDS WHERE (UserID={0} OR FriendID={0}) AND Pending=0;", userid);
             return DoQuery_MultipleFriends(query, userid);
         }
         public List<User> GetUserFriendRequests(int userid)
         {
             string query = String.Format("SELECT * FROM FRIENDS WHERE Pending=1 AND FriendID={0};", userid);
             return DoQuery_MultipleFriends(query, userid);
+        }
+        public bool CheckForFriendship(int user1, int user2)
+        {
+            return GetUserFriends(user1).Find(x => x.ID == user2) != null;
         }
         public int CreateChallenge(Challenge challenge)
         {

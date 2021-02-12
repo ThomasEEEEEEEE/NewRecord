@@ -141,6 +141,7 @@
     <Compile Include="ViewModels\AddRecordViewModel.cs" />
     <Compile Include="ViewModels\ListViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\PublicRecordsViewModel.cs" />
     <Compile Include="ViewModels\RecordViewModel.cs" />
     <Compile Include="ViewModels\SocialViewModel.cs" />
     <Compile Include="ViewModels\ViewRecordViewModel.cs" />
@@ -155,6 +156,9 @@
     </Compile>
     <Compile Include="Views\MainTabbedPage.xaml.cs">
       <DependentUpon>MainTabbedPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PublicRecordsPage.xaml.cs">
+      <DependentUpon>PublicRecordsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RecordPage.xaml.cs">
       <DependentUpon>RecordPage.xaml</DependentUpon>
@@ -204,6 +208,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\AddChallengePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\PublicRecordsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

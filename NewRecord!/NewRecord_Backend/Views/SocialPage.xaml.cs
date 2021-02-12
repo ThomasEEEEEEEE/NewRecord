@@ -18,13 +18,23 @@ namespace NewRecord_Backend.Views
         {
             InitializeComponent();
 
-            vm = new SocialViewModel();
+            vm = new SocialViewModel(Navigation);
             BindingContext = vm;
         }
 
         private void FLbutton_Clicked(object sender, EventArgs e)
         {
             vm.FriendsButtonPressed();
+        }
+
+        private void AddFriendButton_Clicked(object sender, EventArgs e)
+        {
+            vm.AddFriendButtonPressed();
+        }
+
+        private void SearchButton_Clicked(object sender, EventArgs e)
+        {
+            vm.SearchButtonClicked();
         }
     }
 }
