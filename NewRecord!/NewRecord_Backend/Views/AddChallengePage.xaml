@@ -4,19 +4,19 @@
              x:Class="NewRecord_Backend.Views.AddChallengePage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Create Challenge" FontSize="Header"/>
+            <Label Text="Create Challenge" FontSize="40"/>
             <Entry Placeholder="Record Name" Text="{Binding RecordName}"/>
-            <Entry Placeholder="Goal Score/Time"/>
+            <Entry Placeholder="Goal Score/Time" Text="{Binding GoalScore}"/>
             <DatePicker Date="{Binding EndDate}"/>
             <Label Text="Participants" FontSize="Large"/>
-            <ListView x:Name="FListView" ItemsSource="{Binding Friends.ListView}" SeparatorVisibility="None" HasUnevenRows="False" Margin="0,-7,0,0">
+            <ListView x:Name="FListView" ItemsSource="{Binding Friends.ListView}" SeparatorVisibility="None" HasUnevenRows="False" Margin="0,-7,0,0" ItemTapped="FListView_ItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Frame BorderColor="Black" BackgroundColor="Transparent" Padding="10,0,0,0" CornerRadius="20" HasShadow="True">
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                    <CheckBox BindingContext="{Binding .}" CheckedChanged="CheckBox_CheckedChanged" HorizontalOptions="Start"/>
-                                    <Label Text="{Binding Username}" FontSize="30" HorizontalTextAlignment="End" TextColor="#A81212"/>
+                                    <CheckBox BindingContext="{Binding .}" CheckedChanged="CheckBox_CheckedChanged" HorizontalOptions="Start" Color="DarkRed"/>
+                                    <Label Text="{Binding Username}" FontSize="30" HorizontalTextAlignment="End" TextColor="#C91422"/>
                                 </StackLayout>
                             </Frame>
                         </ViewCell>

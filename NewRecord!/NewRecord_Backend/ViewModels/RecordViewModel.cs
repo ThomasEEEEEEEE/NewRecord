@@ -28,8 +28,7 @@ namespace NewRecord_Backend.ViewModels
             DBAccess = new AzureDBAccess();
             FileAccess = new JsonFileAccess();
             Records = new ListViewModel<Record>();
-            //Records.ListView = new ObservableCollection<Record>(GetRecords());
-            //GetRecords().ForEach(x => Records.ListView.Add(x));
+
             
         }
 
@@ -51,11 +50,6 @@ namespace NewRecord_Backend.ViewModels
 
         public void AddButtonPressed()
         {
-            /*var recs = GetRecords();
-            foreach (Record r in recs)
-            {
-                Records.ListView.Add(r);
-            }*/
             navigation.PushModalAsync(new AddRecordPage());
         }
 

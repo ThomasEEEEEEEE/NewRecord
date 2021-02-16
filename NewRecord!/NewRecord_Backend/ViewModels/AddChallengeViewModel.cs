@@ -17,7 +17,9 @@ namespace NewRecord_Backend.ViewModels
         public AddChallengeViewModel()
         {
             DBAccess = new AzureDBAccess();
-            Friends = DBAccess.GetUserFriends(AzureDBAccess.ID);
+            Friends = new ListViewModel<User>(DBAccess.GetUserFriends(AzureDBAccess.ID));
+            EndDate = DateTime.Now;
+            SelectedFriends = new List<User>();
         }
 
         public void CheckboxChecked(User user, bool boxchecked)
@@ -30,9 +32,11 @@ namespace NewRecord_Backend.ViewModels
 
         public void CreateButtonClicked()
         {
+            //No more than 5 participants
             if (SelectedFriends.Count > 5)
                 return;
 
+            //Record must exist and must not be private
             Record chalrec = DBAccess.GetRecordFromUser(AzureDBAccess.ID, RecordName);
             if (chalrec == null || chalrec.Privacy == PrivacySettings.PRIVATE)
                 return;
@@ -43,6 +47,7 @@ namespace NewRecord_Backend.ViewModels
                 if (partrec == null || partrec.Privacy == PrivacySettings.PRIVATE || partrec.Success != chalrec.Success) //Also need to check if any participants have beat goal already
                     return;
             }
+            //Add self to participants
             List<User> participants = new List<User>(SelectedFriends);
             participants.Add(DBAccess.GetUser(AzureDBAccess.ID));
 
@@ -51,8 +56,10 @@ namespace NewRecord_Backend.ViewModels
             challenge.GoalScore = GoalScore;
             challenge.Success = chalrec.Success;
             challenge.EndDate = EndDate;
-            challenge.Participants = SelectedFriends;
+            challenge.Participants = participants;
             int challengeid = DBAccess.CreateChallenge(challenge);
+
+            //Need to add changes to CHALLENGE_PARTICIPANTS
 
             foreach (User participant in SelectedFriends)
             {
@@ -100,8 +107,8 @@ namespace NewRecord_Backend.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs("RecordName"));
             }
         }
-        private List<User> friends;
-        public List<User> Friends
+        private ListViewModel<User> friends;
+        public ListViewModel<User> Friends
         {
             get
             {

@@ -55,9 +55,9 @@ namespace NewRecord_Backend.Database
                         con.Open();
                         SqlDataReader reader = comm.ExecuteReader();
 
-                        record = new Record();
                         if (reader.Read())
                         {
+                            record = new Record();
                             record.Name = reader.GetString(1);
                             record.SelectedImage = reader.GetString(2);
                             record.Success = (SuccessInfo)reader.GetInt32(3);
@@ -446,6 +446,9 @@ namespace NewRecord_Backend.Database
         {
             string query = String.Format("SELECT * FROM RECORDS WHERE UserID={0} AND RecordName='{1}';", userid, recordname);
             Record record = DoQuery_OneRecord(query);
+            if (record == null)
+                return null;
+
             query = String.Format("SELECT * FROM RECORD_HISTORY WHERE UserID={0} AND RecordName='{1}';", userid, recordname);
             record.RecordHistory = DoQuery_MultipleRecordItems(query);
             query = String.Format("SELECT * FROM GOALS WHERE UserID={0} AND RecordName='{1}';", userid, recordname);

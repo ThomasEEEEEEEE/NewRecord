@@ -32,5 +32,9 @@ namespace NewRecord_Backend.Views
         {
             vm.CreateButtonClicked();
         }
+
+        private void FListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+        }
     }
 }

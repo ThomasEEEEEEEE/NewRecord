@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using NewRecord_Backend.Database;
 using NewRecord_Backend.Interfaces;
 using NewRecord_Backend.Models;
+using NewRecord_Backend.Views;
 using Timer = System.Timers.Timer;
 
 namespace NewRecord_Backend.ViewModels
@@ -105,7 +106,10 @@ namespace NewRecord_Backend.ViewModels
         public async void SearchButtonClicked()
         {
             string name = await Application.Current.MainPage.DisplayPromptAsync("Search Public Records", "Enter Their Username", "Search", "Cancel", "Username");
-            
+
+            if (name == null || name == "Cancel")
+                return;
+
             User user = DBAccess.GetUser(name);
 
             //If user doesn't exist
@@ -115,7 +119,12 @@ namespace NewRecord_Backend.ViewModels
                 return;
             }
 
-            _ = Navigation.PushModalAsync(new Views.PublicRecordsPage(user.ID));
+            _ = Navigation.PushModalAsync(new PublicRecordsPage(user.ID));
+        }
+
+        public void AddChallengeButtonClicked()
+        {
+            _ = Navigation.PushModalAsync(new AddChallengePage());
         }
 
         private ListViewModel<Challenge> challenges;
