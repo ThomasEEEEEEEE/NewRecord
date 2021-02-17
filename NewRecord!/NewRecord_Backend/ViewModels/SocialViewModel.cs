@@ -46,6 +46,7 @@ namespace NewRecord_Backend.ViewModels
                                     DBAccess.AcceptFriendRequest(AzureDBAccess.ID, notif.SenderID);
                                 DBAccess.RemoveNotification(notif);
                                 break;
+
                             case NotificationType.CHALLENGE_REQUEST:
                                 acc = false;
                                 await Device.InvokeOnMainThreadAsync(async () =>
@@ -53,9 +54,12 @@ namespace NewRecord_Backend.ViewModels
                                     acc = await Application.Current.MainPage.DisplayAlert("Challenge Request Received", "From " + notif.SenderID, "Accept", "Decline");
                                 });
 
-                                //if (acc)
-                                    //DBAccess.AcceptChallengeRequest();
-                                //DBAccess.RemoveNotification(notif);
+                                if (acc)
+                                    DBAccess.AcceptChallengeRequest(notif);
+                                else
+                                    DBAccess.DeclineChallengeRequest(notif);
+
+                                DBAccess.RemoveNotification(notif);
                                 break;
                         }
                     }
@@ -66,7 +70,7 @@ namespace NewRecord_Backend.ViewModels
             DBAccess = new AzureDBAccess();
             FriendsListVisible = false;
 
-            //Challenges = new ListViewModel<Challenge>(DBAccess.GetUserChallenges(AzureDBAccess.ID));
+            Challenges = new ListViewModel<Challenge>(DBAccess.GetUserChallenges(AzureDBAccess.ID));
             Friends = new ListViewModel<User>(DBAccess.GetUserFriends(AzureDBAccess.ID));
             FriendRequests = new ListViewModel<User>(DBAccess.GetUserFriendRequests(AzureDBAccess.ID));
         }

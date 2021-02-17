@@ -14,10 +14,11 @@ namespace NewRecord_Backend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddChallengePage : ContentPage
     {
-        AddChallengeViewModel vm = new AddChallengeViewModel();
+        AddChallengeViewModel vm;
         public AddChallengePage()
         {
             InitializeComponent();
+            vm = new AddChallengeViewModel(Navigation);
             BindingContext = vm;
         }
 

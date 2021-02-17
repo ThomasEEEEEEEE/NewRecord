@@ -8,18 +8,21 @@ using System.Threading.Tasks;
 using NewRecord_Backend.Interfaces;
 using NewRecord_Backend.Database;
 using NewRecord_Backend.Models;
+using Xamarin.Forms;
 
 namespace NewRecord_Backend.ViewModels
 {
     public class AddChallengeViewModel : INotifyPropertyChanged
     {
         iDBAccess DBAccess;
-        public AddChallengeViewModel()
+        INavigation Navigation;
+        public AddChallengeViewModel(INavigation navigation)
         {
             DBAccess = new AzureDBAccess();
             Friends = new ListViewModel<User>(DBAccess.GetUserFriends(AzureDBAccess.ID));
             EndDate = DateTime.Now;
             SelectedFriends = new List<User>();
+            Navigation = navigation;
         }
 
         public void CheckboxChecked(User user, bool boxchecked)
@@ -33,7 +36,7 @@ namespace NewRecord_Backend.ViewModels
         public void CreateButtonClicked()
         {
             //No more than 5 participants
-            if (SelectedFriends.Count > 5)
+            if (SelectedFriends.Count >= 5 || SelectedFriends.Count == 0)
                 return;
 
             //Record must exist and must not be private
@@ -59,13 +62,14 @@ namespace NewRecord_Backend.ViewModels
             challenge.Participants = participants;
             int challengeid = DBAccess.CreateChallenge(challenge);
 
-            //Need to add changes to CHALLENGE_PARTICIPANTS
-
             foreach (User participant in SelectedFriends)
             {
                 DBNotification notification = new DBNotification(AzureDBAccess.ID, participant.ID, NotificationType.CHALLENGE_REQUEST, challengeid);
                 DBAccess.SendNotification(notification);
             }
+
+            Application.Current.MainPage.DisplayAlert("Success", "Challenge Successfully Rreated", "OK");
+
         }
 
         private DateTime enddate;

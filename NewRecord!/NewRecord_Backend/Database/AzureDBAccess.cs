@@ -251,7 +251,8 @@ namespace NewRecord_Backend.Database
                             User user = new User();
                             user.ID = reader.GetInt32(0);
                             user.Username = reader.GetString(1);
-                            user.PasswordHash = reader.GetString(2);
+                            if (reader.FieldCount == 3)
+                                user.PasswordHash = reader.GetString(2);
                             users.Add(user);
                         }
 
@@ -507,10 +508,8 @@ namespace NewRecord_Backend.Database
         }
         public List<Challenge> GetUserChallenges(int userid)
         {
-            //SELECT * FROM CHALLENGES WHERE (SELECT ParticipantID FROM CHALLENGE_PARTICIPANTS WHERE ChallengeID=CHALLENGES.ChallengeID)=1;
-            //string query = String.Format("SELECT * FROM CHALLENGES JOIN CHALLENGE_PARTICIPANTS AS CP ON ChallengeID WHERE CP.ParticipantID={0};");
-            //return DoQuery_MultipleChallenges(query);
-            throw new NotImplementedException();
+            string query = String.Format("SELECT * FROM CHALLENGES WHERE {0} IN (SELECT ParticipantID FROM CHALLENGE_PARTICIPANTS WHERE ChallengeID = CHALLENGES.ChallengeID);", userid);
+            return DoQuery_MultipleChallenges(query);
         }
         public List<User> GetUserFriends(int userid)
         {
@@ -529,8 +528,17 @@ namespace NewRecord_Backend.Database
         public int CreateChallenge(Challenge challenge)
         {
             string query = String.Format("INSERT INTO CHALLENGES(RecordName, GoalScore, SuccessInfo, EndDate, InProgress) VALUES('{0}', {1}, {2}, '{3}', 0); SELECT * FROM CHALLENGES WHERE ChallengeID=SCOPE_IDENTITY();", challenge.RecordName, challenge.GoalScore, (int)challenge.Success, challenge.EndDate.ToShortDateString());
-            //DoQuery_NoReturn(query);
-            return DoQuery_OneChallenge(query).ChallengeID;
+            int id = DoQuery_OneChallenge(query).ChallengeID;
+
+            query = String.Format("INSERT INTO CHALLENGE_PARTICIPANTS VALUES ");
+            foreach (User user in challenge.Participants)
+            {
+                query += String.Format("({0}, {1}, '{2}', {3}), ", id, user.ID, user.Username, (user.ID == AzureDBAccess.ID ? 0 : 1));
+            }
+            query = query.Remove(query.Length - 2);
+            DoQuery_NoReturn(query);
+
+            return id;
         }
         public void SendFriendRequest(int userid, int friendid)
         {
@@ -549,6 +557,45 @@ namespace NewRecord_Backend.Database
         {
             string query = String.Format("UPDATE FRIENDS SET Pending=0 WHERE (UserID={0} AND FriendID={1}) OR (UserID={1} AND FriendID={0});", userid, friendid);
             DoQuery_NoReturn(query);
+        }
+        public void AcceptChallengeRequest(DBNotification notification)
+        {
+            string query = String.Format("UPDATE CHALLENGE_PARTICIPANTS SET Pending=0 WHERE ChallengeID={0} AND ParticipantID={1};", notification.ChallengeID, notification.ReceiverID);
+            DoQuery_NoReturn(query);
+
+            //Check if there are any remaining pending participants
+            query = String.Format("SELECT ParticipantID, ParticipantName FROM CHALLENGE_PARTICIPANTS WHERE ChallengeID={0} AND Pending=1;", notification.ChallengeID);
+            List<User> users = DoQuery_MultipleUsers(query);
+
+            //If no then set the challenge to be in progress
+            if (users.Count == 0)
+            {
+                query = String.Format("UPDATE CHALLENGES SET InProgress=1 WHERE ChallengeID={0};", notification.ChallengeID);
+                DoQuery_NoReturn(query);
+            }
+        }
+        public void DeclineChallengeRequest(DBNotification notification)
+        {
+            string query = String.Format("DELETE FROM CHALLENGE_PARTICIPANTS WHERE ChallengeID={0} AND ParticipantID={1}; SELECT ParticipantID, ParticipantName FROM CHALLENGE_PARTICIPANTS WHERE ChallengeID={0};", notification.ChallengeID, notification.ReceiverID);
+            int participants = DoQuery_MultipleUsers(query).Count;
+
+            //If there is exactly one participant left (the creator) the challenge should be cancelled
+            if (participants == 1)
+            {
+                query = String.Format("DELETE FROM CHALLENGE_PARTICIPANTS WHERE ChallengeID={0}; DELETE FROM CHALLENGES WHERE ChallengeID={0};", notification.ChallengeID);
+                DoQuery_NoReturn(query);
+            }
+            else //Otherwise check if there is anyone else pending
+            {
+                query = String.Format("SELECT ParticipantID, ParticipantName FROM CHALLENGE_PARTICIPANTS WHERE ChallengeID={0} AND Pending=1;", notification.ChallengeID);
+                int pendingparticipants = DoQuery_MultipleUsers(query).Count;
+
+                if (pendingparticipants == 0) //If nobody is pending then begin the challenge
+                {
+                    query = String.Format("UPDATE CHALLENGES SET InProgress=1 WHERE ChallengeID={0};", notification.ChallengeID);
+                    DoQuery_NoReturn(query);
+                }
+            }
         }
         public void AddUser(User user)
         {
