@@ -19,16 +19,18 @@ namespace NewRecord_Backend.ViewModels
     {
         iDBAccess DBAccess;
         INavigation Navigation;
+        //TODO: Add an onappearing that refreshes challenges
         public SocialViewModel(INavigation navigation)
         {
             Navigation = navigation;
 
-            System.Threading.Tasks.Task.Run(() =>
-            {
+            //System.Threading.Tasks.Task.Run(() =>
+            //{
                 //A timer that will elapse every ten seconds and check for new notifications
-                Timer timer = new Timer(10000);
+                Timer timer = new Timer(15000);
                 timer.Elapsed += async (object source, ElapsedEventArgs e) =>
                 {
+                    timer.Stop();
                     List<DBNotification> notifs = DBAccess.GetNotifications(AzureDBAccess.ID);
                     foreach (DBNotification notif in notifs)
                     {
@@ -43,7 +45,13 @@ namespace NewRecord_Backend.ViewModels
                                 });
 
                                 if (acc)
+                                {
                                     DBAccess.AcceptFriendRequest(AzureDBAccess.ID, notif.SenderID);
+                                    Friends.ListView.Add(DBAccess.GetUser(notif.SenderID));
+                                }
+                                else
+                                    DBAccess.DeclineFriendRequest(notif);
+
                                 DBAccess.RemoveNotification(notif);
                                 break;
 
@@ -55,7 +63,10 @@ namespace NewRecord_Backend.ViewModels
                                 });
 
                                 if (acc)
+                                {
                                     DBAccess.AcceptChallengeRequest(notif);
+                                    //Challenges.ListView.Add(DBAccess.GetChallenge());
+                                }
                                 else
                                     DBAccess.DeclineChallengeRequest(notif);
 
@@ -63,16 +74,17 @@ namespace NewRecord_Backend.ViewModels
                                 break;
                         }
                     }
+                    timer.Start();
                 };
                 timer.AutoReset = true;
                 timer.Enabled = true;
-            }).ConfigureAwait(false);
+            //}).ConfigureAwait(false);
             DBAccess = new AzureDBAccess();
             FriendsListVisible = false;
 
             Challenges = new ListViewModel<Challenge>(DBAccess.GetUserChallenges(AzureDBAccess.ID));
             Friends = new ListViewModel<User>(DBAccess.GetUserFriends(AzureDBAccess.ID));
-            FriendRequests = new ListViewModel<User>(DBAccess.GetUserFriendRequests(AzureDBAccess.ID));
+            //FriendRequests = new ListViewModel<User>(DBAccess.GetUserFriendRequests(AzureDBAccess.ID));
         }
 
         public void FriendsButtonPressed()
@@ -96,7 +108,7 @@ namespace NewRecord_Backend.ViewModels
             }
 
             //If user is already a friend
-            if (DBAccess.GetUserFriends(AzureDBAccess.ID).Find(x => x.ID == user.ID) != null)
+            if (DBAccess.CheckForFriendship(AzureDBAccess.ID, user.ID))
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "That user is already a friend", "OK");
                 return;
@@ -129,6 +141,11 @@ namespace NewRecord_Backend.ViewModels
         public void AddChallengeButtonClicked()
         {
             _ = Navigation.PushModalAsync(new AddChallengePage());
+        }
+
+        public void ChallengeItemTapped(int index)
+        {
+            _ = Navigation.PushModalAsync(new ViewChallengePage(Challenges.ListView[index].ChallengeID));
         }
 
         private ListViewModel<Challenge> challenges;

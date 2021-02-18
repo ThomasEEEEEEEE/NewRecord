@@ -148,6 +148,20 @@ namespace NewRecord_Backend.ViewModels
 
             PopulateChart();
 
+            //Check to see if the user won any challenges
+            List<Challenge> chals = DBAccess.GetUserChallengesForRecord(AzureDBAccess.ID, ViewRecord.Name);
+            foreach (Challenge chal in chals)
+            {
+                if (ViewRecord.Success == SuccessInfo.LARGER && newscore >= chal.GoalScore)
+                {
+                    DBAccess.WinChallenge(AzureDBAccess.ID, chal);
+                }
+                else if (ViewRecord.Success == SuccessInfo.SMALLER && newscore <= chal.GoalScore)
+                {
+                    DBAccess.WinChallenge(AzureDBAccess.ID, chal);
+                }
+            }
+
             //CheckForAchievedGoals(newscore);
         }
 

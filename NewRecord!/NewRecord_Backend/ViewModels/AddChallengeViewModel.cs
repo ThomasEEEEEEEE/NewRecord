@@ -68,8 +68,8 @@ namespace NewRecord_Backend.ViewModels
                 DBAccess.SendNotification(notification);
             }
 
-            Application.Current.MainPage.DisplayAlert("Success", "Challenge Successfully Rreated", "OK");
-
+            Application.Current.MainPage.DisplayAlert("Success", "Challenge Successfully Created", "OK");
+            Navigation.PopModalAsync();
         }
 
         private DateTime enddate;

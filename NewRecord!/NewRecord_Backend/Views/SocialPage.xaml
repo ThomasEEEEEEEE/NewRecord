@@ -8,6 +8,22 @@
     <ContentPage.Content>
         <StackLayout>
             <AbsoluteLayout>
+                <StackLayout Orientation="Vertical" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                    <Button x:Name="AddChallengeButton" Text="AddChallenge" FontSize="30" Clicked="AddChallengeButton_Clicked"/>
+                    <ListView x:Name="CListView" ItemsSource="{Binding Challenges.ListView}" SeparatorVisibility="None" HasUnevenRows="False" Margin="0,-7,0,0" ItemTapped="CListView_ItemTapped">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding RecordName}" FontSize="Large"/>
+                                        <Label Text="Race to " FontSize="26"/>
+                                        <Label Text="{Binding GoalScore}" FontSize="30"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
                 <Frame
             x:Name="Flist"
             HasShadow="False"
@@ -22,7 +38,7 @@
                     <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
                         <Button x:Name="AddFriendButton" Text="+" Font="25" Clicked="AddFriendButton_Clicked" HorizontalOptions="Center"/>
                         <Label Text="Friends" FontSize="48" HorizontalOptions="Center"/>
-                        <ListView x:Name="FListView" ItemsSource="{Binding Friends.ListView}" SeparatorVisibility="None" HasUnevenRows="False" Margin="0,-7,0,0" IsPullToRefreshEnabled="True">
+                        <ListView x:Name="FListView" ItemsSource="{Binding Friends.ListView}" SeparatorVisibility="None" HasUnevenRows="False" Margin="0,-7,0,0">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -38,22 +54,7 @@
                         </ListView>
                     </StackLayout>
                 </Frame>
-                <StackLayout Orientation="Vertical" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-                    <Button x:Name="AddChallengeButton" Text="AddChallenge" FontSize="30" Clicked="AddChallengeButton_Clicked"/>
-                    <ListView x:Name="CListView" ItemsSource="{Binding Challenges.ListView}" SeparatorVisibility="None" HasUnevenRows="False" Margin="0,-7,0,0" IsPullToRefreshEnabled="True">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <StackLayout>
-                                        <Label Text="{Binding RecordName}" FontSize="Large"/>
-                                        <Label Text="Race to " FontSize="26"/>
-                                        <Label Text="{Binding GoalScore}" FontSize="30"/>
-                                    </StackLayout>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
+                
                 <Button Text="E" CornerRadius="100" HeightRequest="60" WidthRequest="60" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize" x:Name="FLbutton" Clicked="FLbutton_Clicked" Margin="0,0,25,10"/>
             </AbsoluteLayout>
         </StackLayout>

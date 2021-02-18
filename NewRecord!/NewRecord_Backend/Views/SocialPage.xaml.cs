@@ -41,5 +41,10 @@ namespace NewRecord_Backend.Views
         {
             vm.AddChallengeButtonClicked();
         }
+
+        private void CListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            vm.ChallengeItemTapped(e.ItemIndex);
+        }
     }
 }

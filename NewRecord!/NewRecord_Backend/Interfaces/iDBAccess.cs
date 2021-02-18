@@ -25,12 +25,16 @@ namespace NewRecord_Backend.Interfaces
         List<DBNotification> GetNotifications(int userid);
         void RemoveNotification(DBNotification notification);
         List<Challenge> GetUserChallenges(int userid);
+        List<Challenge> GetUserChallengesForRecord(int userid, string recordname);
+        Challenge GetChallenge(int chalid);
         List<User> GetUserFriends(int userid);
         bool CheckForFriendship(int user1, int user2);
         List<User> GetUserFriendRequests(int userid);
         int CreateChallenge(Challenge challenge);
+        void WinChallenge(int userid, Challenge challenge);
         void SendFriendRequest(int userid, int friendid);
         void AcceptFriendRequest(int userid, int friendid);
+        void DeclineFriendRequest(DBNotification notification);
         void AcceptChallengeRequest(DBNotification notification);
         void DeclineChallengeRequest(DBNotification notification);
         void AddUser(User user);
