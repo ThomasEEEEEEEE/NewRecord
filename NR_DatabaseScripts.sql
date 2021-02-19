@@ -15,6 +15,8 @@ DROP TABLE IF EXISTS CHALLENGES
 GO
 DROP TABLE IF EXISTS NOTIFICATIONS
 GO
+DROP TABLE IF EXISTS FINISHED_CHALLENGES
+GO
 
 --One friendship is one entry
 CREATE TABLE FRIENDS(
@@ -34,7 +36,7 @@ CREATE TABLE USERS(
 CREATE TABLE RECORDS(
         UserID INT NOT NULL,
         RecordName varchar(500) NOT NULL,
-        SelectedImage INT NOT NULL,
+        SelectedImage varchar(250) NOT NULL,
         SuccessInfo INT NOT NULL, --0 larger, 1 smaller
         Privacy INT NOT NULL --0 public, 1 private, 2 friends only
 );
@@ -58,7 +60,8 @@ CREATE TABLE CHALLENGES(
         RecordName varchar(500) NOT NULL,
         GoalScore FLOAT NOT NULL,
         SuccessInfo INT NOT NULL,
-        EndDate DATE --Nullable
+        EndDate DATE, --Nullable
+        InProgress BIT NOT NULL
 );
 
 CREATE TABLE CHALLENGE_PARTICIPANTS(
@@ -69,8 +72,17 @@ CREATE TABLE CHALLENGE_PARTICIPANTS(
 );
 
 CREATE TABLE NOTIFICATIONS(
-        SenderUserID INT NOT NULL,
-        ReceiverUserID INT NOT NULL,
+        SenderID INT NOT NULL,
+        ReceiverID INT NOT NULL,
         MessageType INT NOT NULL,
         ChallengeID INT --Nullable
+);
+
+CREATE TABLE FINISHED_CHALLENGES
+(
+	ChallengeID INT NOT NULL,
+	RecordName varchar(500) NOT NULL,
+	GoalScore FLOAT NOT NULL,
+	WinnerID INT NOT NULL,
+	DateFinished DATE NOT NULL
 );
