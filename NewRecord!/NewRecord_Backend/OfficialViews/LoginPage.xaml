@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewRecord_Backend.OfficialViews.LoginPage"
+             BackgroundColor="#222222">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1">
+                
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,45,0,25">
+                    <Label Text="New" FontSize="60" TextColor="Red"/>
+                    <Label Text="Record!" FontSize="60" TextColor="Black"/>
+                </StackLayout>
+                
+                <Frame HorizontalOptions="FillAndExpand" BackgroundColor="Black" BorderColor="Black" Margin="20,30,20,0" CornerRadius="40">
+                    <Entry Placeholder="Username" PlaceholderColor="Red" Text="{Binding Username}" TextColor="Red" Keyboard="Plain" FontSize="20"/>
+                </Frame>
+                <Frame HorizontalOptions="FillAndExpand" BackgroundColor="Black" BorderColor="Black" Margin="20,0" CornerRadius="40">
+                    <Entry Placeholder="Password" IsPassword="True" PlaceholderColor="Red" Text="{Binding Password}" TextColor="Red" Keyboard="Plain" FontSize="20"/>
+                </Frame>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,2,0,0">
+                    <Label Text="Don't Have An Account?" FontSize="17" TextColor="LightGray"/>
+                    <Label Text="Sign Up" FontSize="17" TextColor="DodgerBlue" TextDecorations="Underline">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+                <Button Text="Log In" FontSize="27" CornerRadius="50" BackgroundColor="Black" TextColor="Red" Margin="50,20,50,0"/>
+                <Button Text="Continue Without Account" FontSize="20" CornerRadius="30" BackgroundColor="Black" TextColor="Red" VerticalOptions="EndAndExpand" Margin="10,0,10,20"/>
+            </StackLayout>
+            
+            <Frame BackgroundColor="#2c2c2c" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="25,35,0.86,0.8" HasShadow="True" CornerRadius="4" BorderColor="#333333">
+                <StackLayout HorizontalOptions="FillAndExpand">
+                    <Button Text="X" HorizontalOptions="End" FontSize="25" BackgroundColor="#2c2c2c" CornerRadius="100"/>
+                    
+                    <Label Text="Create Account" FontSize="35" HorizontalOptions="CenterAndExpand" TextColor="Red" Margin="0,30,0,0"/>
+                    <Frame HorizontalOptions="FillAndExpand" BackgroundColor="Black" BorderColor="Black" CornerRadius="40">
+                        <Entry Placeholder="Username" PlaceholderColor="Red" Text="{Binding Username}" TextColor="Red" Keyboard="Plain" FontSize="15"/>
+                    </Frame>
+                    <Frame HorizontalOptions="FillAndExpand" BackgroundColor="Black" BorderColor="Black" CornerRadius="40">
+                        <Entry Placeholder="Password" IsPassword="True" PlaceholderColor="Red" Text="{Binding Password}" TextColor="Red" Keyboard="Plain" FontSize="15"/>
+                    </Frame>
+                    <Button Text="Sign Up" HorizontalOptions="CenterAndExpand" FontSize="30" BackgroundColor="Black" TextColor="Red" CornerRadius="50" Margin="0,20,0,0"/>
+                </StackLayout>
+            </Frame>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

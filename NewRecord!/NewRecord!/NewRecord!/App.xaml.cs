@@ -11,10 +11,8 @@ namespace NewRecord_
         {
             InitializeComponent();
 
-            //if (userisloggedin) then
-            //MainPage = new TabbedPage();
-            //else
-            MainPage = new NewRecord_Backend.Views.LoginPage();
+            //MainPage = new NewRecord_Backend.Views.LoginPage();
+            MainPage = new NewRecord_Backend.OfficialViews.LoginPage();
         }
 
         protected override void OnStart()

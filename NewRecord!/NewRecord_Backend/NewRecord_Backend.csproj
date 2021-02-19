@@ -136,6 +136,9 @@
     <Compile Include="Models\Record.cs" />
     <Compile Include="Models\RecordItem.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="OfficialViews\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AddChallengeViewModel.cs" />
     <Compile Include="ViewModels\AddRecordViewModel.cs" />
@@ -222,6 +225,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ViewChallengePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="OfficialViews\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

@@ -68,3 +68,4 @@ C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debu
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\Views\AddChallengePage.xaml.g.cs
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\Views\PublicRecordsPage.xaml.g.cs
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\Views\ViewChallengePage.xaml.g.cs
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\OfficialViews\LoginPage.xaml.g.cs
