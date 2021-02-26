@@ -25,6 +25,7 @@ namespace NewRecord_Backend.ViewModels
 
             Username = Preferences.Get("LastLoginUsername", "");
             Password = Preferences.Get("LastLoginPassword", "");
+            ShowSignUp = false;
         }
         public void LoginButtonPressed()
         {
@@ -40,6 +41,10 @@ namespace NewRecord_Backend.ViewModels
             else
                 Application.Current.MainPage.DisplayAlert("Error", "Invalid Username/Password", "OK");
 
+        }
+        public void ShowSignupPressed()
+        {
+            ShowSignUp = !ShowSignUp;
         }
         public async void SignupButtonPressed()
         {
@@ -92,6 +97,44 @@ namespace NewRecord_Backend.ViewModels
             {
                 password = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("Password"));
+            }
+        }
+        private bool showsignup;
+        public bool ShowSignUp
+        {
+            get { return showsignup; }
+            set
+            {
+                showsignup = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("ShowSignUp"));
+            }
+        }
+
+        private string signupusername;
+        public string SignUpUsername
+        {
+            get
+            {
+                return signupusername;
+            }
+            set
+            {
+                signupusername = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("SignUpUsername"));
+            }
+        }
+
+        private string signuppassword;
+        public string SignUpPassword
+        {
+            get
+            {
+                return signuppassword;
+            }
+            set
+            {
+                signuppassword = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("SignUpPassword"));
             }
         }
         #region PropertyChangedImplementation
