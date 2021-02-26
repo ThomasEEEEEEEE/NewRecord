@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewRecord_Backend.OfficialViews.RecordPage"
+             Background="#222222">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1">
+                <Label Text="Records" HorizontalOptions="Center" FontSize="58" TextColor="Red"/>
+                
+                <ListView x:Name="RListView" ItemsSource="{Binding Records.ListView}" SeparatorVisibility="None" HasUnevenRows="False" RowHeight="100" ItemTapped="RListView_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Padding="4" BorderColor="Black" BackgroundColor="#3a3a3a" HorizontalOptions="FillAndExpand" Margin="20,3,20,3" CornerRadius="2">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="{Binding SelectedImage}" Aspect="AspectFill" BackgroundColor="#3a3a3a"/>
+                                        <Label Text="{Binding Name}" FontSize="30" TextColor="#e20604" VerticalOptions="Center"/>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <Button Text="+" FontSize="30" CornerRadius="100" BackgroundColor="Red" TextColor="GhostWhite" Clicked="AddButton_Clicked" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.9,0.95,60,60"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using NewRecord_Backend.Interfaces;
 using NewRecord_Backend.Database;
 using NewRecord_Backend.Models;
-using NewRecord_Backend.Views;
+using NewRecord_Backend.OfficialViews;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 

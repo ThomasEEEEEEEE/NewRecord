@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using NewRecord_Backend.Models;
 using NewRecord_Backend.Interfaces;
 using NewRecord_Backend.Database;
-using NewRecord_Backend.Views;
+using NewRecord_Backend.OfficialViews;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -28,8 +28,6 @@ namespace NewRecord_Backend.ViewModels
             DBAccess = new AzureDBAccess();
             FileAccess = new JsonFileAccess();
             Records = new ListViewModel<Record>();
-
-            
         }
 
         private List<Record> GetRecords()

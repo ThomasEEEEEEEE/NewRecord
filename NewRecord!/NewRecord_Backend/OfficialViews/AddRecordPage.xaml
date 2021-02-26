@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewRecord_Backend.OfficialViews.AddRecordPage"
+             BackgroundColor="#222222">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout>
+                <Label Text="Add Record!" FontSize="55" TextColor="Red" HorizontalOptions="Center"/>
+                
+                <CarouselView ItemsSource="{Binding Images.ListView}" x:Name="ImageCarousel" HeightRequest="70" IndicatorView="indView">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding .}" Aspect="AspectFit" HeightRequest="48" WidthRequest="48"/>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <IndicatorView x:Name="indView" IndicatorColor="LightGray" SelectedIndicatorColor="DarkGray" HorizontalOptions="Center"/>
+                
+                <Label Text="Name" FontSize="15" Margin="0,10,0,-15"/>
+                <Entry Text="{Binding RecordName}" Placeholder="Record Name"/>
+
+                <Label Text="Success Measurement" FontSize="15" Margin="0,17,0,0"/>
+                <StackLayout Orientation="Horizontal">
+                    <Frame BackgroundColor="#444444" BorderColor="Black" Padding="9">
+                        <StackLayout Orientation="Horizontal">
+                            <RadioButton IsChecked="{Binding LargerChecked}" GroupName="Success"/>
+                            <Label Text="Larger" VerticalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame BackgroundColor="#444444" BorderColor="Black" Padding="9" Margin="-6.75,0,0,0">
+                        <StackLayout Orientation="Horizontal">
+                            <RadioButton IsChecked="{Binding SmallerChecked}" GroupName="Success"/>
+                            <Label Text="Smaller" VerticalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+                <Label Text="Best Score" FontSize="15" Margin="0,17,0,-15"/>
+                <Entry Text="{Binding BestScore}" Placeholder="Best Score"/>
+
+                <Label Text="Privacy" FontSize="15" Margin="0,17,0,0"/>
+                <StackLayout Orientation="Horizontal">
+                    <Frame BackgroundColor="#444444" BorderColor="Black" Padding="9">
+                        <StackLayout Orientation="Horizontal">
+                            <RadioButton IsChecked="{Binding PublicChecked}" GroupName="Privacy"/>
+                            <Label Text="Public" VerticalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame BackgroundColor="#444444" BorderColor="Black" Padding="9" Margin="-6.75,0,0,0">
+                        <StackLayout Orientation="Horizontal">
+                            <RadioButton IsChecked="{Binding PrivateChecked}" GroupName="Privacy"/>
+                            <Label Text="Private" VerticalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame BackgroundColor="#444444" BorderColor="Black" Padding="9" Margin="-6.75,0,0,0">
+                        <StackLayout Orientation="Horizontal">
+                            <RadioButton IsChecked="{Binding FriendsonlyChecked}" GroupName="Privacy"/>
+                            <Label Text="Friends Only" VerticalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+                <Label Text="Goals" HorizontalOptions="Center" FontSize="30" TextColor="Red"/>
+                <Button Text="+" Clicked="AddGoal_Clicked"/>
+                <ListView x:Name="GListView"
+              ItemsSource="{Binding Goals}"
+              RowHeight="120"
+              VerticalOptions="Start"
+              HeightRequest="120"
+              WidthRequest="120"
+              SeparatorVisibility="None"
+              Rotation="270"
+              HorizontalOptions="Center">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ContentView Rotation="90" Padding="12">
+                                    <StackLayout>
+                                        <Label Text="{Binding GoalScore}"/>
+                                        <Label Text="{Binding EndDate}"/>
+                                    </StackLayout>
+                                </ContentView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Text="Add" Clicked="Add_Clicked"/>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

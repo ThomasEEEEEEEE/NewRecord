@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:NewRecord_Backend.OfficialViews"
+             x:Class="NewRecord_Backend.OfficialViews.MainTabbedPage"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             android:TabbedPage.ToolbarPlacement="Bottom">
+    <TabbedPage.Children>
+        <NavigationPage Title="Record Page">
+            <x:Arguments>
+                <views:RecordPage/>
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Title="Social Page">
+            <x:Arguments>
+                <views:SocialPage/>
+            </x:Arguments>
+        </NavigationPage>
+    </TabbedPage.Children>
+</TabbedPage>
