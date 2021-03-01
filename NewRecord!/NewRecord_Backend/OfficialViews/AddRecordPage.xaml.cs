@@ -21,6 +21,11 @@ namespace NewRecord_Backend.OfficialViews
             BindingContext = vm;
         }
 
+        private void PlusGoal_Clicked(object sender, EventArgs e)
+        {
+            vm.PlusGoalPressed();
+        }
+
         private void AddGoal_Clicked(object sender, EventArgs e)
         {
             vm.AddGoalButtonPressed();

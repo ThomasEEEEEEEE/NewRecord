@@ -38,6 +38,11 @@ namespace NewRecord_Backend.ViewModels
             //Insert more images
         }
 
+        public void PlusGoalPressed()
+        {
+            AddGoalScreenVisible = !AddGoalScreenVisible;
+        }
+
         public void AddButtonPressed()
         {
             Record record = new Record() { Name = RecordName, SelectedImage = SelectedImage };
@@ -55,6 +60,10 @@ namespace NewRecord_Backend.ViewModels
         {
             Goal goal = new Goal(GoalScore, EndDate);
             Goals.ListView.Add(goal);
+
+            AddGoalScreenVisible = false;
+            GoalScore = 0;
+            EndDate = DateTime.Now;
         }
 
         #region Properties
@@ -70,6 +79,7 @@ namespace NewRecord_Backend.ViewModels
         private bool friendsonlychecked;
         private bool largerchecked;
         private bool smallerchecked;
+        private bool addgoalscreenvisible;
         public ListViewModel<string> Images
         {
             get
@@ -194,6 +204,16 @@ namespace NewRecord_Backend.ViewModels
             {
                 smallerchecked = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("SmallerChecked"));
+            }
+        }
+
+        public bool AddGoalScreenVisible
+        {
+            get { return addgoalscreenvisible; }
+            set
+            {
+                addgoalscreenvisible = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("AddGoalScreenVisible"));
             }
         }
 #endregion

@@ -23,14 +23,14 @@ namespace NewRecord_Backend.OfficialViews {
         private global::Xamarin.Forms.IndicatorView indView;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.ListView GListView;
+        private global::Xamarin.Forms.CollectionView GListView;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(AddRecordPage));
             ImageCarousel = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.CarouselView>(this, "ImageCarousel");
             indView = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.IndicatorView>(this, "indView");
-            GListView = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ListView>(this, "GListView");
+            GListView = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.CollectionView>(this, "GListView");
         }
     }
 }

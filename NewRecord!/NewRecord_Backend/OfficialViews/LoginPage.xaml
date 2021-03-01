@@ -8,15 +8,15 @@
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1">
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,45,0,25">
-                    <Label Text="New" FontSize="60" TextColor="Red"/>
+                    <Label Text="New" FontSize="60" TextColor="#cf0000"/>
                     <Label Text="Record!" FontSize="60" TextColor="DarkGray"/>
                 </StackLayout>
 
                 <Frame HorizontalOptions="FillAndExpand" BackgroundColor="Black" BorderColor="Black" Margin="20,30,20,0" CornerRadius="10">
-                    <Entry Placeholder="Username" PlaceholderColor="Red" Text="{Binding Username}" TextColor="Red" Keyboard="Plain" FontSize="20"/>
+                    <Entry Placeholder="Username" PlaceholderColor="#cf0000" Text="{Binding Username}" TextColor="#cf0000" Keyboard="Plain" FontSize="20"/>
                 </Frame>
                 <Frame HorizontalOptions="FillAndExpand" BackgroundColor="Black" BorderColor="Black" Margin="20,0" CornerRadius="10">
-                    <Entry Placeholder="Password" IsPassword="True" PlaceholderColor="Red" Text="{Binding Password}" TextColor="Red" Keyboard="Plain" FontSize="20"/>
+                    <Entry Placeholder="Password" IsPassword="True" PlaceholderColor="#cf0000" Text="{Binding Password}" TextColor="#cf0000" Keyboard="Plain" FontSize="20"/>
                 </Frame>
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,2,0,0">
@@ -27,25 +27,25 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </StackLayout>
-                <Button Text="Log In" FontSize="29" CornerRadius="10" BackgroundColor="Black" TextColor="Red" Margin="50,20,50,0" Clicked="Login_Clicked"/>
-                <Button Text="Continue Without Account" Clicked="ContinueButton_Clicked" FontSize="22" CornerRadius="10" BackgroundColor="Black" TextColor="Red" VerticalOptions="EndAndExpand" Margin="5,0,5,20"/>
+                <Button Text="Log In" FontSize="29" CornerRadius="10" BackgroundColor="Black" TextColor="#cf0000" Margin="50,20,50,0" Clicked="Login_Clicked"/>
+                <Button Text="Continue Without Account" Clicked="ContinueButton_Clicked" FontSize="22" CornerRadius="10" BackgroundColor="Black" TextColor="#cf0000" VerticalOptions="EndAndExpand" Margin="5,0,5,20"/>
             </StackLayout>
 
             <Frame BackgroundColor="#2c2c2c" IsVisible="{Binding ShowSignUp}" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="25,35,0.86,0.8" HasShadow="True" CornerRadius="4" BorderColor="#333333">
                 <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <StackLayout HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1">
                         <StackLayout Orientation="Horizontal" Margin="0,70,0,20">
-                            <Label Text="Create" FontSize="38" HorizontalOptions="CenterAndExpand" TextColor="Red"/>
+                            <Label Text="Create" FontSize="38" HorizontalOptions="CenterAndExpand" TextColor="#cf0000"/>
                             <Label Text="Account!" FontSize="38" TextColor="DarkGray"/>
                         </StackLayout>
                         
                         <Frame HorizontalOptions="FillAndExpand" BackgroundColor="Black" BorderColor="Black" CornerRadius="10">
-                            <Entry Placeholder="Username" PlaceholderColor="Red" Text="{Binding SignUpUsername}" TextColor="Red" Keyboard="Plain" FontSize="17"/>
+                            <Entry Placeholder="Username" PlaceholderColor="#cf0000" Text="{Binding SignUpUsername}" TextColor="#cf0000" Keyboard="Plain" FontSize="17"/>
                         </Frame>
                         <Frame HorizontalOptions="FillAndExpand" BackgroundColor="Black" BorderColor="Black" CornerRadius="10">
-                            <Entry Placeholder="Password" IsPassword="True" PlaceholderColor="Red" Text="{Binding SignUpPassword}" TextColor="Red" Keyboard="Plain" FontSize="17"/>
+                            <Entry Placeholder="Password" IsPassword="True" PlaceholderColor="#cf0000" Text="{Binding SignUpPassword}" TextColor="#cf0000" Keyboard="Plain" FontSize="17"/>
                         </Frame>
-                        <Button Text="Sign Up" Clicked="Signup_Clicked" HorizontalOptions="CenterAndExpand" FontSize="30" BackgroundColor="Black" TextColor="Red" CornerRadius="2" Margin="5,20,5,0"/>
+                        <Button Text="Sign Up" Clicked="Signup_Clicked" HorizontalOptions="CenterAndExpand" FontSize="30" BackgroundColor="Black" TextColor="#cf0000" CornerRadius="2" Margin="5,20,5,0"/>
                     </StackLayout>
                 </AbsoluteLayout>
             </Frame>

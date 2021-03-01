@@ -73,3 +73,4 @@ C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debu
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\NewRecord_Backend.csproj.CopyComplete
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\NewRecord_Backend.dll
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\NewRecord_Backend.pdb
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\NewRecord_Backend.csprojAssemblyReference.cache

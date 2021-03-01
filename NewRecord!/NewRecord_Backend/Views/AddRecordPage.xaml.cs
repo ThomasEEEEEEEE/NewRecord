@@ -44,14 +44,14 @@ namespace NewRecord_Backend.Views
                 newrecord.Privacy = PrivacySettings.FRIENDSONLY;*/
             newrecord.Privacy = (PrivacySettings)PrivacyPicker.SelectedIndex;
 
-            vm.AddButtonPressed(newrecord);
+            //vm.AddButtonPressed(newrecord);
             Navigation.PopModalAsync();
         }
 
         private void AddGoalButton_Clicked(object sender, EventArgs e)
         {
             Goal goal = new Goal(Convert.ToDouble(GoalScoreEntry.Text), EndDatePicker.Date);
-            vm.AddGoalButtonPressed(goal);
+            //vm.AddGoalButtonPressed(goal);
         }
     }
 }

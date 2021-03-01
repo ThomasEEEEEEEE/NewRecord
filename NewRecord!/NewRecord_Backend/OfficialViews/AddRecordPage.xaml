@@ -6,9 +6,9 @@
     <ContentPage.Content>
         <AbsoluteLayout>
             <StackLayout>
-                <Label Text="Add Record!" FontSize="55" TextColor="Red" HorizontalOptions="Center"/>
+                <Label Text="Add Record!" FontSize="45" TextColor="#cf0000" HorizontalOptions="Center"/>
                 
-                <CarouselView ItemsSource="{Binding Images.ListView}" x:Name="ImageCarousel" HeightRequest="70" IndicatorView="indView">
+                <CarouselView ItemsSource="{Binding Images.ListView}" x:Name="ImageCarousel" HeightRequest="60" IndicatorView="indView">
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
                             <Image Source="{Binding .}" Aspect="AspectFit" HeightRequest="48" WidthRequest="48"/>
@@ -37,7 +37,7 @@
                 </StackLayout>
 
                 <Label Text="Best Score" FontSize="15" Margin="0,17,0,-15"/>
-                <Entry Text="{Binding BestScore}" Placeholder="Best Score"/>
+                <Entry Text="{Binding BestScore}" Placeholder="Best Score" Keyboard="Numeric"/>
 
                 <Label Text="Privacy" FontSize="15" Margin="0,17,0,0"/>
                 <StackLayout Orientation="Horizontal">
@@ -61,32 +61,40 @@
                     </Frame>
                 </StackLayout>
 
-                <Label Text="Goals" HorizontalOptions="Center" FontSize="30" TextColor="Red"/>
-                <Button Text="+" Clicked="AddGoal_Clicked"/>
-                <ListView x:Name="GListView"
-              ItemsSource="{Binding Goals}"
-              RowHeight="120"
-              VerticalOptions="Start"
-              HeightRequest="120"
-              WidthRequest="120"
-              SeparatorVisibility="None"
-              Rotation="270"
-              HorizontalOptions="Center">
-                    <ListView.ItemTemplate>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Label Text="Goals" HorizontalOptions="CenterAndExpand" FontSize="30" TextColor="#cf0000"/>
+                    <Button Text="+" Clicked="PlusGoal_Clicked"  FontSize="20" BackgroundColor="#cf0000"/>
+                </StackLayout>
+
+                <CollectionView x:Name="GListView" ItemsSource="{Binding Goals.ListView}" HeightRequest="80">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="6"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <ContentView Rotation="90" Padding="12">
-                                    <StackLayout>
-                                        <Label Text="{Binding GoalScore}"/>
-                                        <Label Text="{Binding EndDate}"/>
-                                    </StackLayout>
-                                </ContentView>
-                            </ViewCell>
+                            <Frame BackgroundColor="#333333" BorderColor="Black">
+                                <StackLayout>
+                                    <Label Text="{Binding GoalScore}" TextColor="GhostWhite"/>
+                                    <Label Text="{Binding EndDate, StringFormat='{0:MMMM d, yyyy}'}" TextColor="GhostWhite"/>
+                                </StackLayout>
+                            </Frame>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
                 <Button Text="Add" Clicked="Add_Clicked"/>
             </StackLayout>
+            
+            <Frame CornerRadius="4" BorderColor="#333333" HasShadow="True" BackgroundColor="#2c2c2c" IsVisible="{Binding AddGoalScreenVisible}" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="30,160,0.8,0.4">
+                <StackLayout>
+                    <Label Text="Add Goal" TextColor="#cf0000" FontSize="40" HorizontalTextAlignment="Center"/>
+                    <Entry Placeholder="Score" Margin="80,0,80,0" HorizontalTextAlignment="Center" Keyboard="Numeric" Text="{Binding GoalScore}"/>
+                    <Label Text="by" HorizontalOptions="Center"/>
+                    <DatePicker HorizontalOptions="CenterAndExpand" Margin="30,0" Date="{Binding EndDate}"/>
+                    <Button Text="Add" Clicked="AddGoal_Clicked"/>
+                </StackLayout>
+            </Frame>
+            <Button Text="X" TextColor="GhostWhite" Clicked="PlusGoal_Clicked" IsVisible="{Binding AddGoalScreenVisible}" BackgroundColor="#2c2c2c" FontSize="28" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.85,0.265,0.13,0.08"/>
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
