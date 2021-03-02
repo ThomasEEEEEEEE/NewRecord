@@ -25,6 +25,8 @@ namespace NewRecord_Backend.ViewModels
             DBAccess = new AzureDBAccess();
             FileAccess = new JsonFileAccess();
 
+            Record ViewRecord;
+
             if (AzureDBAccess.ID == -1)
                 ViewRecord = FileAccess.GetRecord(recordname);
             else
@@ -34,6 +36,8 @@ namespace NewRecord_Backend.ViewModels
 
             EndDate = DateTime.Now;
 
+            RecordName = ViewRecord.Name;
+            Privacy = ViewRecord.Privacy.ToString();
             //CheckForExpiredGoals();
             PopulateChart();
         }
@@ -42,12 +46,12 @@ namespace NewRecord_Backend.ViewModels
         {
             List<Goal> ExpiredGoals = new List<Goal>();
             string alert = "";
-            for (int i = 0; i < ViewRecord.Goals.Count; ++i)
+            for (int i = 0; i < Goals.ListView.Count; ++i)
             {
                 if (Goals.ListView[i].EndDate < DateTime.Now)
                 {
                     ExpiredGoals.Add(Goals.ListView[i]);
-                    alert += ViewRecord.Goals[i].GoalScore.ToString() + " before " + ViewRecord.Goals[i].EndDate.ToString() + "\n";
+                    alert += Goals.ListView[i].GoalScore.ToString() + " before " + Goals.ListView[i].EndDate.ToString() + "\n";
                 }
             }
 
@@ -58,9 +62,9 @@ namespace NewRecord_Backend.ViewModels
             ExpiredGoals.ForEach(x => Goals.ListView.Remove(x));
 
             if (AzureDBAccess.ID == -1)
-                FileAccess.RemoveGoalsFromRecord(ViewRecord.Name, ExpiredGoals);
+                FileAccess.RemoveGoalsFromRecord(RecordName, ExpiredGoals);
             else
-                DBAccess.RemoveMultipleGoalsFromRecord(AzureDBAccess.ID, ViewRecord.Name, ExpiredGoals);
+                DBAccess.RemoveMultipleGoalsFromRecord(AzureDBAccess.ID, RecordName, ExpiredGoals);
         }
 
         async void CheckForAchievedGoals(double newscore)
@@ -71,12 +75,12 @@ namespace NewRecord_Backend.ViewModels
             for (int i = 0; i < Goals.ListView.Count; ++i)
             {
                 Goal goal = Goals.ListView[i];
-                if (ViewRecord.Success == SuccessInfo.LARGER && goal.GoalScore <= newscore)
+                if (Success == SuccessInfo.LARGER && goal.GoalScore <= newscore)
                 {
                     AchievedGoals.Add(goal);
                     alert += goal.GoalScore.ToString() + " by " + goal.EndDate + "\n";
                 }
-                else if (ViewRecord.Success == SuccessInfo.SMALLER && goal.GoalScore >= newscore)
+                else if (Success == SuccessInfo.SMALLER && goal.GoalScore >= newscore)
                 {
                     alert += goal.GoalScore.ToString() + " by " + goal.EndDate + "\n";
                     AchievedGoals.Add(goal);
@@ -88,30 +92,30 @@ namespace NewRecord_Backend.ViewModels
             await Application.Current.MainPage.DisplayAlert("You've achieved the following goals!", alert, "OK");
 
             if (AzureDBAccess.ID == -1)
-                FileAccess.RemoveGoalsFromRecord(ViewRecord.Name, AchievedGoals);
+                FileAccess.RemoveGoalsFromRecord(RecordName, AchievedGoals);
             else
-                DBAccess.RemoveMultipleGoalsFromRecord(AzureDBAccess.ID, ViewRecord.Name, AchievedGoals);
+                DBAccess.RemoveMultipleGoalsFromRecord(AzureDBAccess.ID, RecordName, AchievedGoals);
         }
 
         public LineChart PopulateChart()
         {
             List<ChartEntry> entries = new List<ChartEntry>();
 
-            for (int i = 0; i < ViewRecord.RecordHistory.Count; ++i)
+            for (int i = 0; i < History.ListView.Count; ++i)
             {
-                if (i == 0 || i == ViewRecord.RecordHistory.Count - 1)
+                if (i == 0 || i == History.ListView.Count - 1)
                 {
-                    entries.Add(new ChartEntry((float)(ViewRecord.RecordHistory[i].Score))
+                    entries.Add(new ChartEntry((float)(History.ListView[i].Score))
                     {
-                        Label = ViewRecord.RecordHistory[i].DateAchieved.ToShortDateString(),
-                        ValueLabel = ViewRecord.RecordHistory[i].Score.ToString(),
+                        Label = History.ListView[i].DateAchieved.ToShortDateString(),
+                        ValueLabel = History.ListView[i].Score.ToString(),
                         TextColor = SKColor.Parse("#000000"),
                         Color = SKColor.Parse("#FF0000"),
                     });
                 }
                 else
                 {
-                    entries.Add(new ChartEntry((float)(ViewRecord.RecordHistory[i].Score))
+                    entries.Add(new ChartEntry((float)(History.ListView[i].Score))
                     {
                         Color = SKColor.Parse("#FF0000")
                     });
@@ -132,11 +136,17 @@ namespace NewRecord_Backend.ViewModels
             return RecordChart;
         }
 
-        public void UpdateButtonClicked(string recordname, double newscore)
+        public void UpdateButtonClicked(double newscore)
         {
-            if (ViewRecord.Success == SuccessInfo.LARGER && ViewRecord.BestScore >= newscore)
+            double BestScore;
+            if (Success == SuccessInfo.LARGER)
+                BestScore = History.ListView.Max().Score;
+            else
+                BestScore = History.ListView.Min().Score;
+
+            if (Success == SuccessInfo.LARGER && BestScore >= newscore)
                 return;
-            if (ViewRecord.Success == SuccessInfo.SMALLER && ViewRecord.BestScore <= newscore)
+            if (Success == SuccessInfo.SMALLER && BestScore <= newscore)
                 return;
 
             if (AzureDBAccess.ID == -1)
@@ -149,14 +159,14 @@ namespace NewRecord_Backend.ViewModels
             PopulateChart();
 
             //Check to see if the user won any challenges
-            List<Challenge> chals = DBAccess.GetUserChallengesForRecord(AzureDBAccess.ID, ViewRecord.Name);
+            List<Challenge> chals = DBAccess.GetUserChallengesForRecord(AzureDBAccess.ID, RecordName);
             foreach (Challenge chal in chals)
             {
-                if (ViewRecord.Success == SuccessInfo.LARGER && newscore >= chal.GoalScore)
+                if (Success == SuccessInfo.LARGER && newscore >= chal.GoalScore)
                 {
                     DBAccess.WinChallenge(AzureDBAccess.ID, chal);
                 }
-                else if (ViewRecord.Success == SuccessInfo.SMALLER && newscore <= chal.GoalScore)
+                else if (Success == SuccessInfo.SMALLER && newscore <= chal.GoalScore)
                 {
                     DBAccess.WinChallenge(AzureDBAccess.ID, chal);
                 }
@@ -168,39 +178,49 @@ namespace NewRecord_Backend.ViewModels
         public void EditNameButtonClicked(string newname)
         {
             if (AzureDBAccess.ID == -1)
-                FileAccess.EditRecordName(ViewRecord.Name, newname);
+                FileAccess.EditRecordName(RecordName, newname);
             else
-                DBAccess.EditRecordName(AzureDBAccess.ID, ViewRecord.Name, newname);
+                DBAccess.EditRecordName(AzureDBAccess.ID, RecordName, newname);
 
-            ViewRecord.Name = newname;
+            RecordName = newname;
         }
 
         public void EditPrivacyButtonClicked(PrivacySettings privacy)
         {
             if (AzureDBAccess.ID == -1)
-                FileAccess.EditRecordPrivacy(ViewRecord.Name, privacy);
+                FileAccess.EditRecordPrivacy(RecordName, privacy);
             else
-                DBAccess.EditRecordPrivacy(AzureDBAccess.ID, ViewRecord.Name, privacy);
+                DBAccess.EditRecordPrivacy(AzureDBAccess.ID, RecordName, privacy);
 
-            ViewRecord.Privacy = privacy;
+            Privacy = privacy.ToString();
         }
 
-        public void AddGoalButtonClicked(double goalscore)
+        public void AddGoalButtonClicked()
         {
-            Goal goal = new Goal(goalscore, EndDate);
+            Goal goal = new Goal(GoalScore, EndDate);
             if (AzureDBAccess.ID == -1)
-                FileAccess.AddGoalToRecord(ViewRecord.Name, goal);
+                FileAccess.AddGoalToRecord(RecordName, goal);
             else
-                DBAccess.AddGoalToRecord(AzureDBAccess.ID, ViewRecord.Name, goal);
+                DBAccess.AddGoalToRecord(AzureDBAccess.ID, RecordName, goal);
 
             Goals.ListView.Add(goal);
         }
 
+        public void PlusGoalPressed()
+        {
+            AddGoalScreenVisible = !AddGoalScreenVisible;
+        }
+
+#region Properties
         private ListViewModel<RecordItem> history;
         private ListViewModel<Goal> goals;
         private LineChart recordchart;
-        private Record viewrecord;
+        private string recordname;
+        private string privacy;
+        private bool addgoalscreenvisible;
+        private double goalscore;
         private DateTime enddate;
+        private SuccessInfo Success; //No property
 
         public ListViewModel<RecordItem> History
         {
@@ -241,19 +261,44 @@ namespace NewRecord_Backend.ViewModels
             }
         }
 
-        public Record ViewRecord 
+        public string RecordName
         {
-            get
-            {
-                return viewrecord;
-            }
+            get { return recordname; }
             set
             {
-                viewrecord = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("ViewRecord"));
+                recordname = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("RecordName"));
+            }
+        }
+        public string Privacy
+        {
+            get { return privacy; }
+            set
+            {
+                privacy = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Privacy"));
             }
         }
 
+        public bool AddGoalScreenVisible
+        {
+            get { return addgoalscreenvisible; }
+            set
+            {
+                addgoalscreenvisible = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("AddGoalScreenVisible"));
+            }
+        }
+
+        public double GoalScore
+        {
+            get { return goalscore; }
+            set
+            {
+                goalscore = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("GoalScore"));
+            }
+        }
         public DateTime EndDate
         {
             get
@@ -266,7 +311,7 @@ namespace NewRecord_Backend.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs("EndDate"));
             }
         }
-
+#endregion
         #region PropertyChangedImplementation
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         void OnPropertyChanged([CallerMemberName] string propertyname = "")

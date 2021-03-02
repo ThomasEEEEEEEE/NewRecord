@@ -74,3 +74,6 @@ C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debu
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\NewRecord_Backend.dll
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\NewRecord_Backend.pdb
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\NewRecord_Backend.csprojAssemblyReference.cache
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\Plugin.myToolTip.dll
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\Plugin.myToolTip.pdb
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\Plugin.myToolTip.xml

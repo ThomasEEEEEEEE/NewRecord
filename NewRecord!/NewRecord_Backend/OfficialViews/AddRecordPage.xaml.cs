@@ -35,5 +35,10 @@ namespace NewRecord_Backend.OfficialViews
         {
             vm.AddButtonPressed();
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -53,7 +53,7 @@ namespace NewRecord_Backend.Views
             if (score == null)
                 return;
 
-            vm.UpdateButtonClicked(RecordName.Text, Convert.ToDouble(score));
+            //vm.UpdateButtonClicked(RecordName.Text, Convert.ToDouble(score));
         }
 
         async private void EditNameButton_Clicked(object sender, EventArgs e)

@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Plugin.myToolTip</name>
+    </assembly>
+    <members>
+        <member name="T:Plugin.myToolTip.ToolTipEffect">
+            <summary>
+            Cross myToolTip
+            </summary>
+        </member>
+        <member name="F:Plugin.myToolTip.ToolTipEffect.PaddingProperty">
+            <summary>
+            Android Only
+            </summary>
+        </member>
+        <member name="F:Plugin.myToolTip.ToolTipEffect.ArrowHeightProperty">
+            <summary>
+            Android, IOS
+            </summary>
+        </member>
+        <member name="F:Plugin.myToolTip.ToolTipEffect.ArrowWidthProperty">
+            <summary>
+            Android, IOS
+            </summary>
+        </member>
+        <member name="F:Plugin.myToolTip.ToolTipEffect.TextSizeProperty">
+            <summary>
+            Android Only
+            </summary>
+        </member>
+        <member name="F:Plugin.myToolTip.ToolTipEffect.CornerRadiusProperty">
+            <summary>
+            Android Only
+            </summary>
+        </member>
+        <member name="F:Plugin.myToolTip.ToolTipEffect.MarginProperty">
+            <summary>
+            Android Only
+            </summary>
+        </member>
+        <member name="F:Plugin.myToolTip.ToolTipEffect.ContentProperty">
+            <summary>
+            Overrides TextProperty when it is set. UWP only, IOS and Android not implemented yet
+            </summary>
+        </member>
+        <member name="F:Plugin.myToolTip.ToolTipEffect.HeightProperty">
+            <summary>
+            Sets the Height of the toolTip. UWP only, IOS and Android not implemented yet
+            </summary>
+        </member>
+        <member name="F:Plugin.myToolTip.ToolTipEffect.WidthProperty">
+            <summary>
+            Sets the Width of the toolTip. UWP only, IOS and Android not implemented yet
+            </summary>
+        </member>
+        <member name="M:Plugin.myToolTip.ToolTipEffect.GetContent(Xamarin.Forms.BindableObject)">
+            <summary>
+            Gets or sets the value of the Content. This property can be used to change the content in a tab header.
+            </summary>
+        </member>
+        <member name="T:Plugin.myToolTip.myToolTipImplementation">
+            <summary>
+            Interface for myToolTip
+            </summary> 
+        </member>
+    </members>
+</doc>

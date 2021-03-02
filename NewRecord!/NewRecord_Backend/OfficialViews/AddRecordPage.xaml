@@ -2,96 +2,121 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewRecord_Backend.OfficialViews.AddRecordPage"
+             xmlns:effects="clr-namespace:Plugin.myToolTip;assembly=Plugin.myToolTip"
              BackgroundColor="#222222">
     <ContentPage.Content>
         <AbsoluteLayout>
-            <StackLayout>
-                <Label Text="Add Record!" FontSize="45" TextColor="#cf0000" HorizontalOptions="Center"/>
-                
-                <CarouselView ItemsSource="{Binding Images.ListView}" x:Name="ImageCarousel" HeightRequest="60" IndicatorView="indView">
-                    <CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding .}" Aspect="AspectFit" HeightRequest="48" WidthRequest="48"/>
-                        </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
-                <IndicatorView x:Name="indView" IndicatorColor="LightGray" SelectedIndicatorColor="DarkGray" HorizontalOptions="Center"/>
-                
-                <Label Text="Name" FontSize="15" Margin="0,10,0,-15"/>
-                <Entry Text="{Binding RecordName}" Placeholder="Record Name"/>
+            <ScrollView>
+                <StackLayout>
+                    <Label Text="Add Record!" FontSize="45" TextColor="#cf0000" HorizontalOptions="Center"/>
 
-                <Label Text="Success Measurement" FontSize="15" Margin="0,17,0,0"/>
-                <StackLayout Orientation="Horizontal">
-                    <Frame BackgroundColor="#444444" BorderColor="Black" Padding="9">
-                        <StackLayout Orientation="Horizontal">
-                            <RadioButton IsChecked="{Binding LargerChecked}" GroupName="Success"/>
-                            <Label Text="Larger" VerticalOptions="Center"/>
-                        </StackLayout>
-                    </Frame>
-                    <Frame BackgroundColor="#444444" BorderColor="Black" Padding="9" Margin="-6.75,0,0,0">
-                        <StackLayout Orientation="Horizontal">
-                            <RadioButton IsChecked="{Binding SmallerChecked}" GroupName="Success"/>
-                            <Label Text="Smaller" VerticalOptions="Center"/>
-                        </StackLayout>
-                    </Frame>
-                </StackLayout>
+                    <CarouselView ItemsSource="{Binding Images.ListView}" x:Name="ImageCarousel" HeightRequest="80" IndicatorView="indView">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding .}" Aspect="AspectFit" HeightRequest="48" WidthRequest="48"/>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <IndicatorView x:Name="indView" IndicatorColor="LightGray" SelectedIndicatorColor="DarkGray" HorizontalOptions="Center"/>
 
-                <Label Text="Best Score" FontSize="15" Margin="0,17,0,-15"/>
-                <Entry Text="{Binding BestScore}" Placeholder="Best Score" Keyboard="Numeric"/>
+                    <Label Text="Record Name" FontSize="15" TextColor="DarkGray" Margin="2,8,0,-15"/>
+                    <Entry Text="{Binding RecordName}" Placeholder="Record Name" Margin="2,0,120,0"/>
 
-                <Label Text="Privacy" FontSize="15" Margin="0,17,0,0"/>
-                <StackLayout Orientation="Horizontal">
-                    <Frame BackgroundColor="#444444" BorderColor="Black" Padding="9">
-                        <StackLayout Orientation="Horizontal">
-                            <RadioButton IsChecked="{Binding PublicChecked}" GroupName="Privacy"/>
-                            <Label Text="Public" VerticalOptions="Center"/>
-                        </StackLayout>
-                    </Frame>
-                    <Frame BackgroundColor="#444444" BorderColor="Black" Padding="9" Margin="-6.75,0,0,0">
-                        <StackLayout Orientation="Horizontal">
-                            <RadioButton IsChecked="{Binding PrivateChecked}" GroupName="Privacy"/>
-                            <Label Text="Private" VerticalOptions="Center"/>
-                        </StackLayout>
-                    </Frame>
-                    <Frame BackgroundColor="#444444" BorderColor="Black" Padding="9" Margin="-6.75,0,0,0">
-                        <StackLayout Orientation="Horizontal">
-                            <RadioButton IsChecked="{Binding FriendsonlyChecked}" GroupName="Privacy"/>
-                            <Label Text="Friends Only" VerticalOptions="Center"/>
-                        </StackLayout>
-                    </Frame>
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                    <Label Text="Goals" HorizontalOptions="CenterAndExpand" FontSize="30" TextColor="#cf0000"/>
-                    <Button Text="+" Clicked="PlusGoal_Clicked"  FontSize="20" BackgroundColor="#cf0000"/>
-                </StackLayout>
-
-                <CollectionView x:Name="GListView" ItemsSource="{Binding Goals.ListView}" HeightRequest="80">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="6"/>
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Frame BackgroundColor="#333333" BorderColor="Black">
-                                <StackLayout>
-                                    <Label Text="{Binding GoalScore}" TextColor="GhostWhite"/>
-                                    <Label Text="{Binding EndDate, StringFormat='{0:MMMM d, yyyy}'}" TextColor="GhostWhite"/>
-                                </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Success Measurement" FontSize="15" Margin="0,9,0,0"/>
+                        <!--<Button 
+                        x:Name="btn"
+                        Text="i"
+                        CornerRadius="6"
+                        effects:ToolTipEffect.Padding="3" 
+                        effects:ToolTipEffect.BackgroundColor="AliceBlue"
+                        effects:ToolTipEffect.TextColor="GhostWhite" 
+                        effects:ToolTipEffect.IsVisible="True" 
+                        effects:ToolTipEffect.Position="Bottom" 
+                        effects:ToolTipEffect.TextSize="16"
+                        effects:ToolTipEffect.Text="Are you aiming to get a larger or smaller score?">
+                        <effects:ToolTipEffect.Content>
+                            <Frame>
+                                <Label Text="Are you aiming to get a larger or smaller score?" TextColor="GhostWhite"/>
                             </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                        </effects:ToolTipEffect.Content>
+                    </Button>-->
+                    </StackLayout>
 
-                <Button Text="Add" Clicked="Add_Clicked"/>
-            </StackLayout>
-            
-            <Frame CornerRadius="4" BorderColor="#333333" HasShadow="True" BackgroundColor="#2c2c2c" IsVisible="{Binding AddGoalScreenVisible}" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="30,160,0.8,0.4">
+                    <StackLayout Orientation="Horizontal">
+                        <Frame BackgroundColor="#444444" BorderColor="Black" Padding="9">
+                            <StackLayout Orientation="Horizontal">
+                                <RadioButton IsChecked="{Binding LargerChecked}" GroupName="Success"/>
+                                <Label Text="Larger" VerticalOptions="Center" TextColor="GhostWhite"/>
+                            </StackLayout>
+                        </Frame>
+                        <Frame BackgroundColor="#444444" BorderColor="Black" Padding="9" Margin="-6.75,0,0,0">
+                            <StackLayout Orientation="Horizontal">
+                                <RadioButton IsChecked="{Binding SmallerChecked}" GroupName="Success"/>
+                                <Label Text="Smaller" VerticalOptions="Center" TextColor="GhostWhite"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+
+                    <Label Text="Best Score" FontSize="15" Margin="2,9,0,-15"/>
+                    <Entry Text="{Binding BestScore}" Placeholder="Best Score" Keyboard="Numeric" Margin="2,0,230,0"/>
+
+                    <Label Text="Privacy" FontSize="15" Margin="0,9,0,0"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Frame BackgroundColor="#444444" BorderColor="Black" Padding="9">
+                            <StackLayout Orientation="Horizontal">
+                                <RadioButton IsChecked="{Binding PublicChecked}" GroupName="Privacy"/>
+                                <Label Text="Public" VerticalOptions="Center" TextColor="GhostWhite"/>
+                            </StackLayout>
+                        </Frame>
+                        <Frame BackgroundColor="#444444" BorderColor="Black" Padding="9" Margin="-6.75,0,0,0">
+                            <StackLayout Orientation="Horizontal">
+                                <RadioButton IsChecked="{Binding PrivateChecked}" GroupName="Privacy"/>
+                                <Label Text="Private" VerticalOptions="Center" TextColor="GhostWhite"/>
+                            </StackLayout>
+                        </Frame>
+                        <Frame BackgroundColor="#444444" BorderColor="Black" Padding="9" Margin="-6.75,0,0,0">
+                            <StackLayout Orientation="Horizontal">
+                                <RadioButton IsChecked="{Binding FriendsonlyChecked}" GroupName="Privacy"/>
+                                <Label Text="Friends Only" VerticalOptions="Center" TextColor="GhostWhite"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Label Text="Goals" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" FontSize="25" TextColor="#cf0000"/>
+                        <Button Text="+" Clicked="PlusGoal_Clicked" HeightRequest="40" WidthRequest="40"  BackgroundColor="#ef1010" CornerRadius="100"/>
+                    </StackLayout>
+
+                    <CollectionView x:Name="GListView" ItemsSource="{Binding Goals.ListView}" HeightRequest="70">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BackgroundColor="#383838" BorderColor="Black" Padding="12">
+                                    <StackLayout>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                            <Label Text="Score: " TextColor="GhostWhite" HorizontalTextAlignment="Center"/>
+                                            <Label Text="{Binding GoalScore}" TextColor="GhostWhite" HorizontalTextAlignment="Center"/>
+                                        </StackLayout>
+                                        <Label Text="{Binding EndDate, StringFormat='{0:MMMM d, yyyy}'}" TextColor="GhostWhite"/>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <Button Text="Add" Clicked="Add_Clicked" BackgroundColor="Black" TextColor="#cf0000" FontSize="27" Margin="30,-2"/>
+                </StackLayout>
+            </ScrollView>
+            <Frame Padding="10" CornerRadius="4" BorderColor="#333333" HasShadow="True" BackgroundColor="#2c2c2c" IsVisible="{Binding AddGoalScreenVisible}" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="30,160,0.8,0.4">
                 <StackLayout>
                     <Label Text="Add Goal" TextColor="#cf0000" FontSize="40" HorizontalTextAlignment="Center"/>
                     <Entry Placeholder="Score" Margin="80,0,80,0" HorizontalTextAlignment="Center" Keyboard="Numeric" Text="{Binding GoalScore}"/>
-                    <Label Text="by" HorizontalOptions="Center"/>
+                    <Label Text="by" HorizontalOptions="Center" TextColor="LightGray"/>
                     <DatePicker HorizontalOptions="CenterAndExpand" Margin="30,0" Date="{Binding EndDate}"/>
-                    <Button Text="Add" Clicked="AddGoal_Clicked"/>
+                    <Button Text="Add Goal" Clicked="AddGoal_Clicked" BackgroundColor="Black" TextColor="#cf0000" FontSize="25" Margin="40,0"/>
                 </StackLayout>
             </Frame>
             <Button Text="X" TextColor="GhostWhite" Clicked="PlusGoal_Clicked" IsVisible="{Binding AddGoalScreenVisible}" BackgroundColor="#2c2c2c" FontSize="28" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.85,0.265,0.13,0.08"/>

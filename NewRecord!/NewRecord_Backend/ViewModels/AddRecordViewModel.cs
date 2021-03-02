@@ -8,11 +8,8 @@ using System.Threading.Tasks;
 using NewRecord_Backend.Models;
 using NewRecord_Backend.Interfaces;
 using NewRecord_Backend.Database;
+using Xamarin.Forms;
 
-//TODO for this page: Add a absolute menu for adding goals
-//Display goals
-//Limit to 5 goals
-//Edit record creation to use values from the radio buttons
 namespace NewRecord_Backend.ViewModels
 {
     public class AddRecordViewModel : INotifyPropertyChanged
@@ -34,27 +31,27 @@ namespace NewRecord_Backend.ViewModels
         void AddImages()
         {
             Images.ListView.Add("nr_logo.png");
+            Images.ListView.Add("basketball.png");
+            Images.ListView.Add("volleyball.png");
+            Images.ListView.Add("soccer.png");
+            Images.ListView.Add("football.png");
+            Images.ListView.Add("golf.png");
+            Images.ListView.Add("cycling.png");
+            Images.ListView.Add("canoe.png");
+            Images.ListView.Add("computer.png");
+            Images.ListView.Add("dumbbell.png");
             Images.ListView.Add("bench_press.png");
             Images.ListView.Add("swimming.png");
-            Images.ListView.Add("basketball.png");
             Images.ListView.Add("book.png");
             Images.ListView.Add("bowling.png");
             Images.ListView.Add("camera.png");
-            Images.ListView.Add("canoe.png");
             Images.ListView.Add("car.png");
-            Images.ListView.Add("computer.png");
             Images.ListView.Add("cup.png");
-            Images.ListView.Add("cycling.png");
-            Images.ListView.Add("dumbbell.png");
-            Images.ListView.Add("football.png");
-            Images.ListView.Add("golf.png");
             Images.ListView.Add("medal.png");
             Images.ListView.Add("money.png");
             Images.ListView.Add("pencil.png");
             Images.ListView.Add("running.png");
-            Images.ListView.Add("soccer.png");
             Images.ListView.Add("top3.png");
-            Images.ListView.Add("volleyball.png");
         }
 
         public void PlusGoalPressed()
@@ -64,10 +61,37 @@ namespace NewRecord_Backend.ViewModels
 
         public void AddButtonPressed()
         {
+            if (String.IsNullOrWhiteSpace(RecordName))
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "Please enter a valid Record name", "OK");
+                return;
+            }
+            if (!LargerChecked && !SmallerChecked)
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "Please select a success measurement", "OK");
+                return;
+            }
+            if (!PublicChecked && !PrivateChecked && !FriendsonlyChecked)
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "Please select a privacy setting", "OK");
+                return;
+            }
+
             Record record = new Record() { Name = RecordName, SelectedImage = SelectedImage };
             record.RecordHistory.Add(new RecordItem(BestScore, DateTime.Now));
             record.Goals = Goals.ListView.ToList();
-            //Need to get privacy and success
+
+            if (LargerChecked)
+                record.Success = SuccessInfo.LARGER;
+            else
+                record.Success = SuccessInfo.SMALLER;
+
+            if (PublicChecked)
+                record.Privacy = PrivacySettings.PUBLIC;
+            else if (PrivateChecked)
+                record.Privacy = PrivacySettings.PRIVATE;
+            else
+                record.Privacy = PrivacySettings.FRIENDSONLY;
 
             if (AzureDBAccess.ID == -1)
                 FileAccess.AddRecord(record);
@@ -77,7 +101,18 @@ namespace NewRecord_Backend.ViewModels
 
         public void AddGoalButtonPressed()
         {
+            if (Goals.ListView.Count >= 5)
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "You can only have up to 5 goals for a record", "OK");
+                return;
+            }
+            
             Goal goal = new Goal(GoalScore, EndDate);
+            if (Goals.ListView.Contains(goal))
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "You already have that goal", "OK");
+                return;
+            }
             Goals.ListView.Add(goal);
 
             AddGoalScreenVisible = false;

@@ -1,12 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NewRecord_Backend.OfficialViews.ViewRecordPage">
+             x:Class="NewRecord_Backend.OfficialViews.ViewRecordPage"
+             xmlns:tabview="clr-namespace:Xam.Plugin.TabView;assembly=Xam.Plugin.TabView"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <AbsoluteLayout>
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1">
+                <Label Text="{Binding RecordName}" HorizontalOptions="Center"/>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding Privacy}"/>
+                    <ImageButton Source="edit.png" Aspect="AspectFill" Clicked="EditPrivacyButton_Clicked"/>
+                </StackLayout>
+
+                <Button Text="New Record?" Clicked="UpdateButton_Clicked"/>
+                <tabview:TabViewControl x:Name="RecTabView" HeaderBackgroundColor="Blue" HorizontalOptions="FillAndExpand" IsSwipeEnabled="True">
+                    <tabview:TabViewControl.ItemSource>
+                        
+                        <tabview:TabItem HeaderText="Graph">
+                            <microcharts:ChartView Chart="{Binding RecordChart}" VerticalOptions="FillAndExpand"/>
+                        </tabview:TabItem>
+                        
+                        <tabview:TabItem HeaderText="List">
+                            <ListView x:Name="RListView" ItemsSource="{Binding History.ListView}" SeparatorVisibility="None" SelectionMode="None" HasUnevenRows="False">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Score}" HorizontalOptions="Start" TextColor="GhostWhite" FontSize="16"/>
+                                                <Label Text="{Binding DateAchieved, StringFormat='{0:MMMM d, yyyy}'}" HorizontalOptions="End" TextColor="GhostWhite" FontSize="16"/>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </tabview:TabItem>
+                        
+                    </tabview:TabViewControl.ItemSource>
+                </tabview:TabViewControl>
+            </StackLayout>
+            
+            <Frame Padding="10" CornerRadius="4" BorderColor="#333333" HasShadow="True" BackgroundColor="#2c2c2c" IsVisible="{Binding AddGoalScreenVisible}" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="30,160,0.8,0.4">
+                <StackLayout>
+                    <Label Text="Add Goal" TextColor="#cf0000" FontSize="40" HorizontalTextAlignment="Center"/>
+                    <Entry Placeholder="Score" Margin="80,0,80,0" HorizontalTextAlignment="Center" Keyboard="Numeric" Text="{Binding GoalScore}"/>
+                    <Label Text="by" HorizontalOptions="Center" TextColor="LightGray"/>
+                    <DatePicker HorizontalOptions="CenterAndExpand" Margin="30,0" Date="{Binding EndDate}"/>
+                    <Button Text="Add Goal" Clicked="AddGoal_Clicked" BackgroundColor="Black" TextColor="#cf0000" FontSize="25" Margin="40,0"/>
+                </StackLayout>
+            </Frame>
+            <Button Text="X" TextColor="GhostWhite" Clicked="PlusGoal_Clicked" IsVisible="{Binding AddGoalScreenVisible}" BackgroundColor="#2c2c2c" FontSize="28" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.85,0.265,0.13,0.08"/>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
