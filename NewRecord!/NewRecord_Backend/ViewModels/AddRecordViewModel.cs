@@ -10,7 +10,7 @@ using NewRecord_Backend.Interfaces;
 using NewRecord_Backend.Database;
 
 //TODO for this page: Add a absolute menu for adding goals
-//Add goals and display them
+//Display goals
 //Limit to 5 goals
 //Edit record creation to use values from the radio buttons
 namespace NewRecord_Backend.ViewModels
@@ -33,9 +33,28 @@ namespace NewRecord_Backend.ViewModels
 
         void AddImages()
         {
+            Images.ListView.Add("nr_logo.png");
             Images.ListView.Add("bench_press.png");
             Images.ListView.Add("swimming.png");
-            //Insert more images
+            Images.ListView.Add("basketball.png");
+            Images.ListView.Add("book.png");
+            Images.ListView.Add("bowling.png");
+            Images.ListView.Add("camera.png");
+            Images.ListView.Add("canoe.png");
+            Images.ListView.Add("car.png");
+            Images.ListView.Add("computer.png");
+            Images.ListView.Add("cup.png");
+            Images.ListView.Add("cycling.png");
+            Images.ListView.Add("dumbbell.png");
+            Images.ListView.Add("football.png");
+            Images.ListView.Add("golf.png");
+            Images.ListView.Add("medal.png");
+            Images.ListView.Add("money.png");
+            Images.ListView.Add("pencil.png");
+            Images.ListView.Add("running.png");
+            Images.ListView.Add("soccer.png");
+            Images.ListView.Add("top3.png");
+            Images.ListView.Add("volleyball.png");
         }
 
         public void PlusGoalPressed()
