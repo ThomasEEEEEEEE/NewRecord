@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NewRecord_Backend.Views.SocialPage">
+             x:Class="NewRecord_Backend.Views.SocialPage"
+             >
     <NavigationPage.TitleView>
         <Button x:Name="SearchButton" Text="Search" FontSize="20" Clicked="SearchButton_Clicked"/>
     </NavigationPage.TitleView>
@@ -55,7 +56,7 @@
                     </StackLayout>
                 </Frame>
                 
-                <Button Text="E" CornerRadius="100" HeightRequest="60" WidthRequest="60" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize" x:Name="FLbutton" Clicked="FLbutton_Clicked" Margin="0,0,25,10"/>
+                <ImageButton Source="group.png" CornerRadius="100" HeightRequest="60" WidthRequest="60" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize" x:Name="FLbutton" Clicked="FLbutton_Clicked" Margin="0,0,25,10"/>
             </AbsoluteLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -1,12 +1,71 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NewRecord_Backend.OfficialViews.SocialPage">
+             x:Class="NewRecord_Backend.OfficialViews.SocialPage"
+             BackgroundColor="#222222">
+    
+    <NavigationPage.TitleView>
+        <ImageButton Source="search.png" Aspect="AspectFit" HeightRequest="45" WidthRequest="45" HorizontalOptions="End" Margin="0,0,10,0"/>
+    </NavigationPage.TitleView>
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <AbsoluteLayout>
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1">
+                <Label Text="Challenges" FontSize="58" TextColor="#cf0000" HorizontalOptions="Center"/>
+
+                <ListView x:Name="CListView" ItemsSource="{Binding Challenges.ListView}" SeparatorVisibility="None" HasUnevenRows="False" Margin="0" RowHeight="100" ItemTapped="CListView_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame BackgroundColor="#3f3f3f" BorderColor="#111111" Padding="6" CornerRadius="20" Margin="40,3">
+                                    <StackLayout HorizontalOptions="Center">
+                                        <Label Text="{Binding RecordName}" FontSize="35" TextColor="#f30000"/>
+                                        <StackLayout Orientation="Horizontal" Margin="0,-5,0,0" HorizontalOptions="Center">
+                                            <Label Text="Race to " FontSize="26" TextColor="#f30000"/>
+                                            <Label Text="{Binding GoalScore}" FontSize="26" TextColor="#f30000" Margin="-3,0,0,0"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackLayout>
+            
+            <Frame
+            x:Name="Flist"
+            HasShadow="False"
+            IsVisible="{Binding FriendsListVisible}"
+            BackgroundColor="#250000"
+            BorderColor="#350000"
+            AnchorX="0.5"
+            AnchorY="0.5"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="1.0,0,0.7,1"
+>
+                <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+                    <Button x:Name="AddFriendButton" Text="+" Font="25" WidthRequest="55" BackgroundColor="#cf0000" CornerRadius="50" Clicked="AddFriendButton_Clicked" HorizontalOptions="Center"/>
+                    <Label Text="Friends" FontSize="48" HorizontalOptions="Center" TextColor="#cf0000"/>
+                    
+                    <ListView x:Name="FListView" ItemsSource="{Binding Friends.ListView}" SeparatorVisibility="Default" HasUnevenRows="False" Margin="0,0,0,0" ItemTapped="FListView_ItemTapped">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame BorderColor="#450000" BackgroundColor="#8e2424" Padding="10,0,0,0" HasShadow="True" CornerRadius="5">
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                                            <Label Text="{Binding Username}" FontSize="30" HorizontalTextAlignment="Start" TextColor="#f0d4d4"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </Frame>
+            
+            <ImageButton Source="group.png" CornerRadius="100" HeightRequest="60" WidthRequest="60" BackgroundColor="LightGray" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize" x:Name="FLbutton" Clicked="FLbutton_Clicked" Margin="0,0,25,10"/>
+            <Button Text="+" FontSize="30" CornerRadius="100" HeightRequest="60" WidthRequest="60" BackgroundColor="#cf0000" TextColor="GhostWhite" Clicked="AddButton_Clicked" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.1,1,AutoSize,AutoSize" Margin="0,0,0,10"/>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

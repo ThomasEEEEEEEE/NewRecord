@@ -148,6 +148,16 @@ namespace NewRecord_Backend.ViewModels
             _ = Navigation.PushModalAsync(new ViewChallengePage(Challenges.ListView[index].ChallengeID));
         }
 
+        async public void FriendsItemTapped(int index)
+        {
+            bool conf = await Application.Current.MainPage.DisplayAlert("Confirmation", "Are you sure that you want to delete this friend?", "Yes", "No");
+
+            if (conf)
+            {
+                Friends.ListView.RemoveAt(index);
+            }
+        }
+
         private ListViewModel<Challenge> challenges;
         public ListViewModel<Challenge> Challenges
         {
