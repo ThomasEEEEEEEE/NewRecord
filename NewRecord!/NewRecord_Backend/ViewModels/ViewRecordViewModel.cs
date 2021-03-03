@@ -37,7 +37,27 @@ namespace NewRecord_Backend.ViewModels
             EndDate = DateTime.Now;
 
             RecordName = ViewRecord.Name;
-            Privacy = ViewRecord.Privacy.ToString();
+            //Privacy = ViewRecord.Privacy.ToString();
+            AddGoalScreenVisible = false;
+            Success = ViewRecord.Success;
+            SelectedImage = ViewRecord.SelectedImage;
+
+            switch (ViewRecord.Privacy)
+            {
+                case PrivacySettings.PUBLIC:
+                    Privacy = "Public";
+                    break;
+                case PrivacySettings.PRIVATE:
+                    Privacy = "Private";
+                    break;
+                case PrivacySettings.FRIENDSONLY:
+                    Privacy = "Friends Only";
+                    break;
+                default:
+                    Privacy = "Error";
+                    break;
+            }
+
             //CheckForExpiredGoals();
             PopulateChart();
         }
@@ -109,8 +129,9 @@ namespace NewRecord_Backend.ViewModels
                     {
                         Label = History.ListView[i].DateAchieved.ToShortDateString(),
                         ValueLabel = History.ListView[i].Score.ToString(),
-                        TextColor = SKColor.Parse("#000000"),
+                        TextColor = SKColor.Parse("#FFFFFF"),
                         Color = SKColor.Parse("#FF0000"),
+                        ValueLabelColor = SKColor.Parse("#FFFFFF")
                     });
                 }
                 else
@@ -125,7 +146,7 @@ namespace NewRecord_Backend.ViewModels
             {
                 Entries = entries,
                 LineMode = LineMode.Straight,
-                BackgroundColor = SKColor.Parse("#EEEEEE"),
+                BackgroundColor = SKColor.Parse("#2e0000"),
                 PointMode = PointMode.Circle,
                 LabelTextSize = 30,
                 LineSize = 15,
@@ -204,6 +225,7 @@ namespace NewRecord_Backend.ViewModels
                 DBAccess.AddGoalToRecord(AzureDBAccess.ID, RecordName, goal);
 
             Goals.ListView.Add(goal);
+            AddGoalScreenVisible = false;
         }
 
         public void PlusGoalPressed()
@@ -216,6 +238,7 @@ namespace NewRecord_Backend.ViewModels
         private ListViewModel<Goal> goals;
         private LineChart recordchart;
         private string recordname;
+        private string selectedimage;
         private string privacy;
         private bool addgoalscreenvisible;
         private double goalscore;
@@ -268,6 +291,15 @@ namespace NewRecord_Backend.ViewModels
             {
                 recordname = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("RecordName"));
+            }
+        }
+        public string SelectedImage
+        {
+            get { return selectedimage; }
+            set
+            {
+                selectedimage = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("SelectedImage"));
             }
         }
         public string Privacy

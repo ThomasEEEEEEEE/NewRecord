@@ -23,10 +23,14 @@ namespace NewRecord_Backend.OfficialViews {
         private global::Xamarin.Forms.ListView RListView;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.CollectionView GListView;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(ViewRecordPage));
             RecTabView = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xam.Plugin.TabView.TabViewControl>(this, "RecTabView");
             RListView = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ListView>(this, "RListView");
+            GListView = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.CollectionView>(this, "GListView");
         }
     }
 }

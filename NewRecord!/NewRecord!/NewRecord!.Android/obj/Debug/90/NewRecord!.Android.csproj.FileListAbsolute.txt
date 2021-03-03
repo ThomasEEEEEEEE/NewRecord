@@ -573,3 +573,9 @@ C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Andr
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\drawable\volleyball.png
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\Plugin.myToolTip.dll
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\Plugin.myToolTip.pdb
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\drawable\edit_white.png
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\mipmap-hdpi\nrlogo.png
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\mipmap-mdpi\nrlogo.png
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\mipmap-xhdpi\nrlogo.png
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\mipmap-xxhdpi\nrlogo.png
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\mipmap-xxxhdpi\nrlogo.png

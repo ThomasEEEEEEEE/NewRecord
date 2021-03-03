@@ -94,7 +94,7 @@ namespace NewRecord_Backend.Views
 
         private void AddGoalButton_Clicked(object sender, EventArgs e)
         {
-            vm.AddGoalButtonClicked(Convert.ToDouble(GoalScoreEntry.Text));
+            vm.AddGoalButtonClicked();
         }
     }
 }

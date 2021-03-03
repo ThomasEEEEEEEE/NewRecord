@@ -20,6 +20,7 @@ namespace NewRecord_Backend.OfficialViews
             InitializeComponent();
 
             vm = new ViewRecordViewModel(recordname);
+            BindingContext = vm;
         }
         async private void UpdateButton_Clicked(object sender, EventArgs e)
         {
