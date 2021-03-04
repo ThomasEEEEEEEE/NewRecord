@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewRecord_Backend.OfficialViews.AboutPage"
+             BackgroundColor="#222222">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="About!" FontSize="55" HorizontalOptions="Center" TextColor="#f30000"/>
+
+            <Image Source="nr_logo.png" Aspect="AspectFit"/>
+
+            <Frame BackgroundColor="Black" CornerRadius="8" Margin="10,0">
+                <Label TextColor="#f30000" HorizontalTextAlignment="Center" FontSize="18">
+                    <Label.FormattedText>
+                        NewRecord! was created by Thomas Eberhart for his senior project at Oregon Institute of Technology. &#10;&#10;If you have any feedback or concerns, please email him at thomaseberhartbusiness@gmail.com.
+                    </Label.FormattedText>
+                </Label>
+            </Frame>
+            <Label Text="All icons used in this application are property of icons8" VerticalOptions="EndAndExpand" TextColor="GhostWhite" Margin="7,0,0,0"/>
+            <Label Text="https://icons8.com" TextColor="DeepSkyBlue" TextDecorations="Underline" Margin="12,-3,0,10"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

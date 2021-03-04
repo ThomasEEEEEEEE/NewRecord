@@ -4,16 +4,18 @@
              xmlns:views="clr-namespace:NewRecord_Backend.OfficialViews"
              x:Class="NewRecord_Backend.OfficialViews.UnregisteredTabbedPage"
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-             android:TabbedPage.ToolbarPlacement="Bottom">
-  <!--Pages can be added as references or inline-->
+             android:TabbedPage.ToolbarPlacement="Bottom"
+            BarBackgroundColor="#333333"
+            SelectedTabColor="#c20000"
+            UnselectedTabColor="LightGray">
     <TabbedPage.Children>
-        <NavigationPage Title="Record Page">
+        <NavigationPage Title="Records" IconImageSource="trophy.png">
             <x:Arguments>
                 <views:RecordPage/>
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Title="Social Page">
+        <NavigationPage Title="Social" IconImageSource="big_group.png">
             <x:Arguments>
                 <views:UnregisteredSocialPage/>
             </x:Arguments>

@@ -16,8 +16,11 @@ namespace NewRecord_Backend.ViewModels
     {
         iDBAccess DBAccess;
         iFileAccess FileAccess;
-        public AddRecordViewModel()
+        INavigation Navigation;
+        public AddRecordViewModel(INavigation nav)
         {
+            Navigation = nav;
+
             Images = new ListViewModel<string>();
             Goals = new ListViewModel<Goal>();
             EndDate = DateTime.Now;
@@ -97,6 +100,8 @@ namespace NewRecord_Backend.ViewModels
                 FileAccess.AddRecord(record);
             else
                 DBAccess.AddRecordToUser(AzureDBAccess.ID, record);
+
+            Navigation.PopModalAsync();
         }
 
         public void AddGoalButtonPressed()

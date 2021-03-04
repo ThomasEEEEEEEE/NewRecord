@@ -21,5 +21,10 @@ namespace NewRecord_Backend.OfficialViews
 
             BindingContext = vm;
         }
+
+        private void Forfeit_Clicked(object sender, EventArgs e)
+        {
+            vm.ForfeitPressed();
+        }
     }
 }

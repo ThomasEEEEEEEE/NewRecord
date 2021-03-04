@@ -34,5 +34,15 @@ namespace NewRecord_Backend.OfficialViews
         {
             vm.ItemTapped(e.ItemIndex);
         }
+
+        private void NavigateToSettings(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new SettingsPage());
+        }
+
+        private void NavigateToAbout(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new AboutPage());
+        }
     }
 }

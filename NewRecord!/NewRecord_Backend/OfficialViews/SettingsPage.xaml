@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewRecord_Backend.OfficialViews.SettingsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Settings!" FontSize="55" HorizontalOptions="Center" TextColor="#f30000"/>
+
+            <Label Text="Automatically Accept:" TextColor="#f30000" FontSize="25" Margin="0,25,0,0"/>
+            <StackLayout Orientation="Horizontal">
+            <StackLayout>
+                <Label Text="   Friend Requests" FontSize="20" TextColor="#f30000"/>
+                <Label Text="   Challenge Requests" FontSize="20" TextColor="#f30000"/>
+            </StackLayout>
+
+            <StackLayout HorizontalOptions="EndAndExpand" Margin="0,0,10,0">
+                <Switch IsToggled="{Binding FRToggled}" Toggled="FRSwitch_Toggled"/>
+                <Switch IsToggled="{Binding CHToggled}" Toggled="CHSwitch_Toggled"/>
+            </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

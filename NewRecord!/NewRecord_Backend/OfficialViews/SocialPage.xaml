@@ -5,7 +5,7 @@
              BackgroundColor="#222222">
     
     <NavigationPage.TitleView>
-        <ImageButton Source="search.png" Aspect="AspectFit" HeightRequest="45" WidthRequest="45" HorizontalOptions="End" Margin="0,0,10,0" Clicked="SearchButton_Clicked"/>
+        <ImageButton Source="search.png" Aspect="AspectFit" HeightRequest="45" WidthRequest="45" HorizontalOptions="Start" Margin="10,0,0,0" BackgroundColor="#333333" Clicked="SearchButton_Clicked"/>
     </NavigationPage.TitleView>
     
     <ContentPage.Content>
@@ -68,4 +68,8 @@
             <Button Text="+" FontSize="30" CornerRadius="100" HeightRequest="60" WidthRequest="60" BackgroundColor="#cf0000" TextColor="GhostWhite" Clicked="AddButton_Clicked" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.1,1,AutoSize,AutoSize" Margin="0,0,0,10"/>
         </AbsoluteLayout>
     </ContentPage.Content>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Settings" Order="Secondary" Clicked="NavigateToSettings"/>
+        <ToolbarItem Text="About" Order="Secondary" Clicked="NavigateToAbout"/>
+    </ContentPage.ToolbarItems>
 </ContentPage>

@@ -139,6 +139,9 @@
     <Compile Include="Models\Record.cs" />
     <Compile Include="Models\RecordItem.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="OfficialViews\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OfficialViews\AddChallengePage.xaml.cs">
       <DependentUpon>AddChallengePage.xaml</DependentUpon>
     </Compile>
@@ -159,6 +162,9 @@
     </Compile>
     <Compile Include="OfficialViews\RecordPage.xaml.cs">
       <DependentUpon>RecordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OfficialViews\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="OfficialViews\SocialPage.xaml.cs">
       <DependentUpon>SocialPage.xaml</DependentUpon>
@@ -183,6 +189,7 @@
     <Compile Include="ViewModels\PublicRecordsViewModel.cs" />
     <Compile Include="ViewModels\PublicViewRecordViewModel.cs" />
     <Compile Include="ViewModels\RecordViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\SocialViewModel.cs" />
     <Compile Include="ViewModels\ViewChallengeViewModel.cs" />
     <Compile Include="ViewModels\ViewRecordViewModel.cs" />
@@ -322,6 +329,16 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="OfficialViews\UnregisteredTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="OfficialViews\SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="OfficialViews\AboutPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

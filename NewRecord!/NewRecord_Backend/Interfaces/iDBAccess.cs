@@ -32,6 +32,7 @@ namespace NewRecord_Backend.Interfaces
         List<User> GetUserFriendRequests(int userid);
         int CreateChallenge(Challenge challenge);
         void WinChallenge(int userid, Challenge challenge);
+        void ForfeitChallenge(int userid, Challenge challenge);
         void SendFriendRequest(int userid, int friendid);
         void AcceptFriendRequest(int userid, int friendid);
         void DeclineFriendRequest(DBNotification notification);

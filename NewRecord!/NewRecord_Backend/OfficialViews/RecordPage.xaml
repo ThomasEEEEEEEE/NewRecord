@@ -26,4 +26,8 @@
             <Button Text="+" FontSize="30" CornerRadius="100" BackgroundColor="#cf0000" TextColor="GhostWhite" Clicked="AddButton_Clicked" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.9,0.95,60,60"/>
         </AbsoluteLayout>
     </ContentPage.Content>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Settings" Order="Secondary" Clicked="NavigateToSettings"/>
+        <ToolbarItem Text="About" Order="Secondary" Clicked="NavigateToAbout"/>
+    </ContentPage.ToolbarItems>
 </ContentPage>

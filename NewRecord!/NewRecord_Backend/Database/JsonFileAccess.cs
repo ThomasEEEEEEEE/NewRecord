@@ -13,11 +13,6 @@ namespace NewRecord_Backend.Database
     public class JsonFileAccess : iFileAccess
     {
         private const string FileName = "LocalRecords.json";
-        public JsonFileAccess()
-        {
-            if (!File.Exists(FilePath))
-                File.Create(FilePath);
-        }
         private string FilePath
         {
             get
@@ -25,10 +20,20 @@ namespace NewRecord_Backend.Database
                 return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), FileName);
             }
         }
+
+        public JsonFileAccess()
+        {
+            if (!File.Exists(FilePath))
+                File.Create(FilePath);
+        }
         public List<Record> GetRecords()
         {
             string contents = File.ReadAllText(FilePath);
             List<Record> records = JsonConvert.DeserializeObject<List<Record>>(contents);
+
+            if (records == null)
+                return new List<Record>();
+
             return records;
         }
         public void WriteRecords(List<Record> records)

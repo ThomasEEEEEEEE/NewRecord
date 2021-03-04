@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 using NewRecord_Backend.Database;
 using NewRecord_Backend.Interfaces;
 using NewRecord_Backend.Models;
@@ -26,7 +27,7 @@ namespace NewRecord_Backend.ViewModels
 
             //System.Threading.Tasks.Task.Run(() =>
             //{
-                //A timer that will elapse every ten seconds and check for new notifications
+                //A timer that will elapse every fifteen seconds and check for new notifications
                 Timer timer = new Timer(15000);
                 timer.Elapsed += async (object source, ElapsedEventArgs e) =>
                 {
@@ -35,16 +36,20 @@ namespace NewRecord_Backend.ViewModels
                     foreach (DBNotification notif in notifs)
                     {
                         bool acc;
+                        bool autoacc;
                         switch (notif.NotificationType)
                         {
                             case NotificationType.FRIEND_REQUEST:
                                 acc = false;
-                                await Device.InvokeOnMainThreadAsync(async () =>
+                                autoacc = Preferences.Get("FRToggled", false);
+                                if (!autoacc)
                                 {
-                                    acc = await Application.Current.MainPage.DisplayAlert("Friend Request Received", "From " + notif.SenderID, "Accept", "Decline");
-                                });
-
-                                if (acc)
+                                    await Device.InvokeOnMainThreadAsync(async () =>
+                                    {
+                                        acc = await Application.Current.MainPage.DisplayAlert("Friend Request Received", "From " + notif.SenderID, "Accept", "Decline");
+                                    });
+                                }
+                                if (acc || autoacc)
                                 {
                                     DBAccess.AcceptFriendRequest(AzureDBAccess.ID, notif.SenderID);
                                     Friends.ListView.Add(DBAccess.GetUser(notif.SenderID));
@@ -57,15 +62,26 @@ namespace NewRecord_Backend.ViewModels
 
                             case NotificationType.CHALLENGE_REQUEST:
                                 acc = false;
-                                await Device.InvokeOnMainThreadAsync(async () =>
-                                {
-                                    acc = await Application.Current.MainPage.DisplayAlert("Challenge Request Received", "From " + notif.SenderID, "Accept", "Decline");
-                                });
+                                autoacc = Preferences.Get("CHToggled", false);
 
-                                if (acc)
+                                User sender = DBAccess.GetUser(notif.SenderID);
+                                Challenge chal = DBAccess.GetChallenge(notif.ChallengeID.Value);
+
+                                if (!autoacc)
+                                {
+                                    await Device.InvokeOnMainThreadAsync(async () =>
+                                    {
+                                        //acc = await Application.Current.MainPage.DisplayAlert("Challenge Request Received", "From " + notif.SenderID, "Accept", "Decline");
+                                        acc = await Application.Current.MainPage.DisplayAlert(
+                                            String.Format("Challenge Request Received From {0} for record \"{1}\"", sender.Username, chal.RecordName), 
+                                            String.Format("They challenge you to reach {0} by {1}", chal.GoalScore, chal.EndDate.ToShortDateString()), 
+                                            "Accept", "Decline");
+                                    });
+                                }
+                                if (acc || autoacc)
                                 {
                                     DBAccess.AcceptChallengeRequest(notif);
-                                    //Challenges.ListView.Add(DBAccess.GetChallenge());
+                                    Challenges.ListView.Add(DBAccess.GetChallenge(notif.ChallengeID.Value));
                                 }
                                 else
                                     DBAccess.DeclineChallengeRequest(notif);

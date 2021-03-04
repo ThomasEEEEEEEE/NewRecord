@@ -1,11 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NewRecord_Backend.OfficialViews.UnregisteredSocialPage">
+             x:Class="NewRecord_Backend.OfficialViews.UnregisteredSocialPage"
+             BackgroundColor="#222222">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="The Social Page is not available to users without an account"/>
-            <Label Text="Please create an account get access to the Social Page"/>
+            <StackLayout VerticalOptions="CenterAndExpand" Margin="0,-20,0,0">
+                <Label Text="The Social Page is not available to users without an account" TextColor="#f30000" FontSize="25" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                <Label Text="&#10;Please create an account to get access to the Social Page" TextColor="#f30000" FontSize="25" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

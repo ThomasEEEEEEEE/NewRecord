@@ -17,7 +17,7 @@ namespace NewRecord_Backend.OfficialViews
         public AddRecordPage()
         {
             InitializeComponent();
-            vm = new AddRecordViewModel();
+            vm = new AddRecordViewModel(Navigation);
             BindingContext = vm;
         }
 

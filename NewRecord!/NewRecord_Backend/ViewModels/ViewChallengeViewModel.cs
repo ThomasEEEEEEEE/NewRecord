@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using NewRecord_Backend.Interfaces;
 using NewRecord_Backend.Database;
 using NewRecord_Backend.Models;
+using Xamarin.Forms;
 
 namespace NewRecord_Backend.ViewModels
 {
@@ -51,21 +52,32 @@ namespace NewRecord_Backend.ViewModels
         {
             DBAccess = new AzureDBAccess();
 
+            
             Challenge challenge = DBAccess.GetChallenge(ChallengeID);
             RecordName = challenge.RecordName;
             GoalScore = challenge.GoalScore;
             EndDate = challenge.EndDate;
 
-            //Participants = new ListViewModel<User>(challenge.Participants);
+            ViewChallenge = challenge;
+
             Participants = new ListViewModel<ScoreUser>();
             foreach (User user in challenge.Participants)
             {
-                //Should be optimized
                 Record rec = DBAccess.GetRecordFromUser(user.ID, RecordName);
                 ScoreUser su = new ScoreUser() { Username = user.Username, BestScore = rec.BestScore };
                 Participants.ListView.Add(su);
             }
         }
+
+        public async void ForfeitPressed()
+        {
+            bool conf = await Application.Current.MainPage.DisplayAlert("Confirmation", "Are you sure you want to forfeit this challenge?", "Yes", "No");
+            
+            if (conf)
+                DBAccess.ForfeitChallenge(AzureDBAccess.ID, ViewChallenge);
+        }
+
+        private Challenge ViewChallenge;
 
         private string recordname;
         public string RecordName

@@ -41,9 +41,8 @@ namespace NewRecord_Backend.ViewModels
         public void OnAppearing()
         {
             Records.ListView.Clear();
-            //Records.ListView = new ObservableCollection<Record>(GetRecords());
             GetRecords().ForEach(x => Records.ListView.Add(x));
-            
+            //Records.ListView = new ObservableCollection<Record>(GetRecords());
         }
 
         public void AddButtonPressed()

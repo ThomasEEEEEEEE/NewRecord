@@ -42,7 +42,7 @@ namespace NewRecord_Backend.Database
             }
         }
 
-        //For now this does not return goals or record history
+        //This does not return goals or record history
         Record DoQuery_OneRecord(string query)
         {
             Record record = null;
@@ -572,6 +572,18 @@ namespace NewRecord_Backend.Database
 
             query = String.Format("DELETE FROM CHALLENGE_PARTICIPANTS WHERE ChallengeID={0};", challenge.ChallengeID);
             DoQuery_NoReturn(query);
+        }
+        public void ForfeitChallenge(int userid, Challenge challenge)
+        {
+            //Remove user from CHALLENGE_PARTICIPANTS and get the remaining participants
+            string query = String.Format("DELETE FROM CHALLENGE_PARTICIPANTS WHERE ChallengeID={0} AND ParticipantID={1}; SELECT ParticipantID, ParticipantName FROM CHALLENGE_PARTICIPANTS WHERE ChallengeID={0}", challenge.ChallengeID, userid);
+            List<User> parts = DoQuery_MultipleUsers(query);
+
+            //If CHALLENGE_PARTICIPANTS now only has one user for this record then end the challenge
+            if (parts.Count == 1)
+            {
+                WinChallenge(parts.First().ID, challenge);
+            }
         }
         public void SendFriendRequest(int userid, int friendid)
         {

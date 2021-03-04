@@ -50,5 +50,15 @@ namespace NewRecord_Backend.OfficialViews
         {
             vm.SearchButtonClicked();
         }
+
+        private void NavigateToSettings(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new SettingsPage());
+        }
+
+        private void NavigateToAbout(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new AboutPage());
+        }
     }
 }
