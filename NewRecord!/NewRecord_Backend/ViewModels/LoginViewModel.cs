@@ -23,6 +23,7 @@ namespace NewRecord_Backend.ViewModels
             DBAccess = new AzureDBAccess();
             Navigation = navigation;
 
+            //Populate Username and Password with last login values
             Username = Preferences.Get("LastLoginUsername", "");
             Password = Preferences.Get("LastLoginPassword", "");
             ShowSignUp = false;
@@ -39,7 +40,7 @@ namespace NewRecord_Backend.ViewModels
                 Navigation.PushModalAsync(new MainTabbedPage());
             }
             else
-                Application.Current.MainPage.DisplayAlert("Error", "Invalid Username/Password", "OK");
+                Application.Current.MainPage.DisplayAlert("Error", "Invalid Username or Password", "OK");
 
         }
         public void ShowSignupPressed()
@@ -48,29 +49,22 @@ namespace NewRecord_Backend.ViewModels
         }
         public async void SignupButtonPressed()
         {
-            if (DBAccess.GetUser(Username) != null)
+            if (DBAccess.GetUser(SignUpUsername) != null)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "An account with that username already exists", "OK");
                 return;
             }
             User user = new User();
             user.Username = Username;
-            user.PasswordHash = Hashing.HashPassword(Password);
+            user.PasswordHash = Hashing.HashPassword(SignUpPassword);
             DBAccess.AddUser(user);
             await Application.Current.MainPage.DisplayAlert("Success", "Account Successfully Created!", "OK");
         }
 
         public async void ContinueButtonPressed()
         {
-            bool conf = await Application.Current.MainPage.DisplayAlert("Confirmation", "Are you sure you want to continue without an account?\nYou won't be able use the full functionality of the app", "Yes", "No");
-            if (!conf)
-                return;
-
             AzureDBAccess.ID = -1;
-            MainTabbedPage page = new MainTabbedPage();
-            //page.Children.RemoveAt(1);
-            //page.Children.Add(new UnregisteredSocialPage());
-            await Navigation.PushModalAsync(page);
+            await Navigation.PushModalAsync(new UnregisteredTabbedPage());
 
         }
         private string username;

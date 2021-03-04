@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewRecord_Backend.OfficialViews.UnregisteredSocialPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="The Social Page is not available to users without an account"/>
+            <Label Text="Please create an account get access to the Social Page"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

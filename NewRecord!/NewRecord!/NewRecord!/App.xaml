@@ -5,7 +5,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <!-- Pallete -->
-            <Color x:Key="primary-back-title-color">#200000</Color>
+            <Color x:Key="primary-back-title-color">#333333</Color>
             <Color x:Key="primary-title-color">#f0d4d4</Color>
             <!-- Pallete-end -->
             <Style ApplyToDerivedTypes="true" TargetType="NavigationPage">
