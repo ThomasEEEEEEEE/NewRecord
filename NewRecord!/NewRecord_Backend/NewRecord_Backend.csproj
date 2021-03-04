@@ -151,6 +151,12 @@
     <Compile Include="OfficialViews\MainTabbedPage.xaml.cs">
       <DependentUpon>MainTabbedPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OfficialViews\PublicRecordsPage.xaml.cs">
+      <DependentUpon>PublicRecordsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OfficialViews\PublicViewRecordPage.xaml.cs">
+      <DependentUpon>PublicViewRecordPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OfficialViews\RecordPage.xaml.cs">
       <DependentUpon>RecordPage.xaml</DependentUpon>
     </Compile>
@@ -169,6 +175,7 @@
     <Compile Include="ViewModels\ListViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PublicRecordsViewModel.cs" />
+    <Compile Include="ViewModels\PublicViewRecordViewModel.cs" />
     <Compile Include="ViewModels\RecordViewModel.cs" />
     <Compile Include="ViewModels\SocialViewModel.cs" />
     <Compile Include="ViewModels\ViewChallengeViewModel.cs" />
@@ -289,6 +296,16 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="OfficialViews\ViewChallengePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="OfficialViews\PublicRecordsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="OfficialViews\PublicViewRecordPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

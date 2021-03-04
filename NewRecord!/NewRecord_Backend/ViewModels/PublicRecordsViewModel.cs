@@ -8,14 +8,19 @@ using System.Runtime.CompilerServices;
 using NewRecord_Backend.Models;
 using NewRecord_Backend.Interfaces;
 using NewRecord_Backend.Database;
+using NewRecord_Backend.OfficialViews;
+using Xamarin.Forms;
 
 namespace NewRecord_Backend.ViewModels
 {
     public class PublicRecordsViewModel : INotifyPropertyChanged
     {
         iDBAccess DBAccess;
-        public PublicRecordsViewModel(int userid)
+        INavigation Navigation;
+        public PublicRecordsViewModel(int userid, INavigation nav)
         {
+            ID = userid;
+            Navigation = nav;
             DBAccess = new AzureDBAccess();
 
             List<Record> AvailableRecords;
@@ -27,11 +32,12 @@ namespace NewRecord_Backend.ViewModels
             ShowRecords = new ListViewModel<Record>(AvailableRecords);
         }
 
-        public void ItemTapped()
+        public void ItemTapped(int index)
         {
-            //Unimplemented for now
+            _ = Navigation.PushModalAsync(new PublicViewRecordPage(ID, ShowRecords.ListView[index].Name));
         }
 
+        private int ID;
         private ListViewModel<Record> showrecords;
         public ListViewModel<Record> ShowRecords
         {

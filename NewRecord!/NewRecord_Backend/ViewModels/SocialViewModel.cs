@@ -135,12 +135,12 @@ namespace NewRecord_Backend.ViewModels
                 return;
             }
 
-            //_ = Navigation.PushModalAsync(new PublicRecordsPage(user.ID));
+            _ = Navigation.PushModalAsync(new PublicRecordsPage(user.ID));
         }
 
         public void AddChallengeButtonClicked()
         {
-            _ = Navigation.PushModalAsync(new OfficialViews.AddChallengePage());
+            _ = Navigation.PushModalAsync(new AddChallengePage());
         }
 
         public void ChallengeItemTapped(int index)

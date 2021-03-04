@@ -5,7 +5,7 @@
              BackgroundColor="#222222">
     
     <NavigationPage.TitleView>
-        <ImageButton Source="search.png" Aspect="AspectFit" HeightRequest="45" WidthRequest="45" HorizontalOptions="End" Margin="0,0,10,0"/>
+        <ImageButton Source="search.png" Aspect="AspectFit" HeightRequest="45" WidthRequest="45" HorizontalOptions="End" Margin="0,0,10,0" Clicked="SearchButton_Clicked"/>
     </NavigationPage.TitleView>
     
     <ContentPage.Content>

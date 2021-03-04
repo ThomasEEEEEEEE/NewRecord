@@ -45,5 +45,10 @@ namespace NewRecord_Backend.OfficialViews
         {
             vm.AddChallengeButtonClicked();
         }
+
+        private void SearchButton_Clicked(object sender, EventArgs e)
+        {
+            vm.SearchButtonClicked();
+        }
     }
 }

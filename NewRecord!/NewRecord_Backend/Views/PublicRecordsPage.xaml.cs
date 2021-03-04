@@ -17,14 +17,14 @@ namespace NewRecord_Backend.Views
         public PublicRecordsPage(int userid)
         {
             InitializeComponent();
-            vm = new PublicRecordsViewModel(userid);
+            vm = new PublicRecordsViewModel(userid, Navigation);
 
             BindingContext = vm;
         }
 
         private void RListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            vm.ItemTapped();
+            vm.ItemTapped(e.ItemIndex);
         }
     }
 }

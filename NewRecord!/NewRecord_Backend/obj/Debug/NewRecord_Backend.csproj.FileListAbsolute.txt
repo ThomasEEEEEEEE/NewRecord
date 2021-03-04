@@ -79,3 +79,5 @@ C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\bin\Debu
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\Plugin.myToolTip.xml
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\OfficialViews\AddChallengePage.xaml.g.cs
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\OfficialViews\ViewChallengePage.xaml.g.cs
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\OfficialViews\PublicRecordsPage.xaml.g.cs
+C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\OfficialViews\PublicViewRecordPage.xaml.g.cs
