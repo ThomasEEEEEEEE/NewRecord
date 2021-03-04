@@ -72,6 +72,7 @@ namespace NewRecord_Backend.ViewModels
             Navigation.PopModalAsync();
         }
 
+        #region Properties
         private DateTime enddate;
         public DateTime EndDate
         {
@@ -125,6 +126,7 @@ namespace NewRecord_Backend.ViewModels
             }
         }
         public List<User> SelectedFriends { get; set; }
+#endregion
         #region PropertyChangedImplementation
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         void OnPropertyChanged([CallerMemberName] string propertyname = "")

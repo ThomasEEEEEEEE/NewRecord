@@ -10,7 +10,7 @@ using Xamarin.Forms;
 using NewRecord_Backend.Database;
 using NewRecord_Backend.Interfaces;
 using NewRecord_Backend.Models;
-using NewRecord_Backend.Views;
+using NewRecord_Backend.OfficialViews;
 using Timer = System.Timers.Timer;
 
 namespace NewRecord_Backend.ViewModels
@@ -135,12 +135,12 @@ namespace NewRecord_Backend.ViewModels
                 return;
             }
 
-            _ = Navigation.PushModalAsync(new PublicRecordsPage(user.ID));
+            //_ = Navigation.PushModalAsync(new PublicRecordsPage(user.ID));
         }
 
         public void AddChallengeButtonClicked()
         {
-            _ = Navigation.PushModalAsync(new AddChallengePage());
+            _ = Navigation.PushModalAsync(new OfficialViews.AddChallengePage());
         }
 
         public void ChallengeItemTapped(int index)

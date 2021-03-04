@@ -30,6 +30,11 @@ color;C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord
 color;obj\Debug\90\res\values\colors.xml
 Com.ViewPagerIndicator.CirclePageIndicator;C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\lp\0\jl\res\layout\horizontal_viewpager.xml
 Com.ViewPagerIndicator.CirclePageIndicator;C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\lp\0\jl\res\layout\vertical_viewpager.xml
+crc6443725871784b4041.HorizontalViewPager;C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\lp\0\jl\res\layout\horizontal_viewpager.xml
+crc6443725871784b4041.VerticalViewPager;C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\lp\0\jl\res\layout\vertical_viewpager.xml
+crc646c47a7af3a53b8ab.CirclePageIndicator;C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\lp\0\jl\res\layout\horizontal_viewpager.xml
+crc646c47a7af3a53b8ab.CirclePageIndicator;C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\lp\0\jl\res\layout\vertical_viewpager.xml
+crc64720bb2db43a66fe9.FormsViewPager;C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\lp\46\jl\res\layout\rootlayout.xml
 declare-styleable;C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\lp\2\jl\res\values\vpi__attrs.xml
 declare-styleable;C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\lp\46\jl\res\values\attrs.xml
 dimen;C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\lp\2\jl\res\values\vpi__defaults.xml

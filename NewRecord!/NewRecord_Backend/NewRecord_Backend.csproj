@@ -157,6 +157,9 @@
     <Compile Include="OfficialViews\SocialPage.xaml.cs">
       <DependentUpon>SocialPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OfficialViews\ViewChallengePage.xaml.cs">
+      <DependentUpon>ViewChallengePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OfficialViews\ViewRecordPage.xaml.cs">
       <DependentUpon>ViewRecordPage.xaml</DependentUpon>
     </Compile>
@@ -281,6 +284,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="OfficialViews\AddChallengePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="OfficialViews\ViewChallengePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

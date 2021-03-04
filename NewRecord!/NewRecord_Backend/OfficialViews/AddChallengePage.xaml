@@ -1,29 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NewRecord_Backend.OfficialViews.AddChallengePage">
+             x:Class="NewRecord_Backend.OfficialViews.AddChallengePage"
+             BackgroundColor="#222222">
     <ContentPage.Content>
         <AbsoluteLayout>
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1">
-                <Label Text="Create Challenge!" TextColor="#f30000" FontSize="45"/>
+                <Label Text="Create Challenge!" TextColor="#f30000" HorizontalOptions="Center" FontSize="40"/>
 
-                <Label Text="Record Name"/>
-                <Entry Placeholder="Record Name"/>
+                <Label Text="Record Name" Margin="2,6,0,-13" TextColor="#f30000"/>
+                <Entry Placeholder="Record Name" Margin="2,0,170,0"/>
+                
+                <Label Text="Goal Score" Margin="2,12,0,-13" TextColor="#f30000"/>
+                <Entry Placeholder="Goal Score" Keyboard="Numeric" Margin="2,0,220,0"/>
 
-                <Label Text="Goal Score"/>
-                <Entry Placeholder="Goal Score"/>
+                <Label Text="Ending Date" Margin="2,12,0,-13" TextColor="#f30000"/>
+                <DatePicker Date="{Binding EndDate}" Margin="2,0,250,0"/>
 
-                <DatePicker Date="{Binding EndDate}"/>
-
-                <Label Text="Participants" TextColor="#f30000"/>
-                <ListView x:Name="FListView" ItemsSource="{Binding Friends.ListView}" SeparatorVisibility="None" HasUnevenRows="False" Margin="0,-7,0,0" ItemTapped="FListView_ItemTapped">
+                <Label Text="Participants" TextColor="#f30000" Margin="2,12,0,0"/>
+                <ListView x:Name="FListView" ItemsSource="{Binding Friends.ListView}" SeparatorVisibility="None" HasUnevenRows="False" Margin="10,-3,10,0">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Frame BorderColor="Black" BackgroundColor="Transparent" Padding="10,0,0,0" CornerRadius="20" HasShadow="True">
+                                <Frame BorderColor="#730000" BackgroundColor="#8e2424" Padding="10,0,0,0" HasShadow="True">
                                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                        <CheckBox BindingContext="{Binding .}" CheckedChanged="CheckBox_CheckedChanged" HorizontalOptions="Start" Color="DarkRed"/>
-                                        <Label Text="{Binding Username}" FontSize="30" HorizontalTextAlignment="End" TextColor="#C91422"/>
+                                        <CheckBox BindingContext="{Binding .}" CheckedChanged="CheckBox_CheckedChanged" HorizontalOptions="Start" Color="#290000"/>
+                                        <Label Text="{Binding Username}" FontSize="30" HorizontalTextAlignment="End" TextColor="#f0d4d4"/>
                                     </StackLayout>
                                 </Frame>
                             </ViewCell>
@@ -31,7 +33,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <Button Text="Create Challenge" HorizontalOptions="Center" FontSize="40" x:Name="CreateButton" Clicked="CreateButton_Clicked"/>
+                <Button Text="Create" HorizontalOptions="Center" FontSize="40" BackgroundColor="Black" TextColor="#f30000" x:Name="CreateButton" Clicked="CreateButton_Clicked"/>
             </StackLayout>
         </AbsoluteLayout>
     </ContentPage.Content>
