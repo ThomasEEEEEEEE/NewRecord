@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewRecord_Backend.OfficialViews.AddChallengePage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1">
+                <Label Text="Create Challenge!" TextColor="#f30000" FontSize="45"/>
+
+                <Label Text="Record Name"/>
+                <Entry Placeholder="Record Name"/>
+
+                <Label Text="Goal Score"/>
+                <Entry Placeholder="Goal Score"/>
+
+                <DatePicker Date="{Binding EndDate}"/>
+
+                <Label Text="Participants" TextColor="#f30000"/>
+                <ListView x:Name="FListView" ItemsSource="{Binding Friends.ListView}" SeparatorVisibility="None" HasUnevenRows="False" Margin="0,-7,0,0" ItemTapped="FListView_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame BorderColor="Black" BackgroundColor="Transparent" Padding="10,0,0,0" CornerRadius="20" HasShadow="True">
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <CheckBox BindingContext="{Binding .}" CheckedChanged="CheckBox_CheckedChanged" HorizontalOptions="Start" Color="DarkRed"/>
+                                        <Label Text="{Binding Username}" FontSize="30" HorizontalTextAlignment="End" TextColor="#C91422"/>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Button Text="Create Challenge" HorizontalOptions="Center" FontSize="40" x:Name="CreateButton" Clicked="CreateButton_Clicked"/>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
