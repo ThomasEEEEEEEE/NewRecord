@@ -85,7 +85,7 @@
                     <Label Text="Add Goal" TextColor="#cf0000" FontSize="40" HorizontalTextAlignment="Center"/>
                     <Entry Placeholder="Score" Margin="80,0,80,0" HorizontalTextAlignment="Center" Keyboard="Numeric" Text="{Binding GoalScore}"/>
                     <Label Text="by" HorizontalOptions="Center" TextColor="LightGray"/>
-                    <DatePicker HorizontalOptions="CenterAndExpand" Margin="30,0" Date="{Binding EndDate}"/>
+                    <DatePicker HorizontalOptions="CenterAndExpand" Margin="30,0" Date="{Binding EndDate}" MinimumDate="{Binding Today}"/>
                     <Button Text="Add Goal" Clicked="AddGoal_Clicked" BackgroundColor="Black" TextColor="#cf0000" FontSize="25" Margin="40,0"/>
                 </StackLayout>
             </Frame>

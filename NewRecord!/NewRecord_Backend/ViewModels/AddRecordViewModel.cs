@@ -79,6 +79,16 @@ namespace NewRecord_Backend.ViewModels
                 Application.Current.MainPage.DisplayAlert("Error", "Please select a privacy setting", "OK");
                 return;
             }
+            if (AzureDBAccess.ID == -1 && FileAccess.GetRecord(RecordName) != null)
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "You already have a record with that name", "OK");
+                return;
+            }
+            else if (AzureDBAccess.ID != -1 && DBAccess.GetRecordFromUser(AzureDBAccess.ID, RecordName) != null)
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "You already have a record with that name", "OK");
+                return;
+            }
 
             Record record = new Record() { Name = RecordName, SelectedImage = SelectedImage };
             record.RecordHistory.Add(new RecordItem(BestScore, DateTime.Now));
@@ -139,6 +149,7 @@ namespace NewRecord_Backend.ViewModels
         private bool largerchecked;
         private bool smallerchecked;
         private bool addgoalscreenvisible;
+        public DateTime Today; //For Minimum Date
         public ListViewModel<string> Images
         {
             get

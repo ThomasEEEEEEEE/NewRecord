@@ -31,13 +31,13 @@ namespace NewRecord_Backend.ViewModels
                 ViewRecord = FileAccess.GetRecord(recordname);
             else
                 ViewRecord = DBAccess.GetRecordFromUser(AzureDBAccess.ID, recordname);
+
             History = new ListViewModel<RecordItem>(ViewRecord.RecordHistory);
             Goals = new ListViewModel<Goal>(ViewRecord.Goals);
 
             EndDate = DateTime.Now;
 
             RecordName = ViewRecord.Name;
-            //Privacy = ViewRecord.Privacy.ToString();
             AddGoalScreenVisible = false;
             Success = ViewRecord.Success;
             SelectedImage = ViewRecord.SelectedImage;
@@ -166,9 +166,15 @@ namespace NewRecord_Backend.ViewModels
                 BestScore = History.ListView.Min().Score;
 
             if (Success == SuccessInfo.LARGER && BestScore >= newscore)
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "This score is not better than your current best", "OK");
                 return;
+            }
             if (Success == SuccessInfo.SMALLER && BestScore <= newscore)
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "This score is not better than your current best", "OK");
                 return;
+            }
 
             if (AzureDBAccess.ID == -1)
                 FileAccess.UpdateRecord(recordname, newscore);
@@ -198,6 +204,17 @@ namespace NewRecord_Backend.ViewModels
 
         public void EditNameButtonClicked(string newname)
         {
+            if (AzureDBAccess.ID == -1 && FileAccess.GetRecord(newname) != null)
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "You already have a record with that name", "OK");
+                return;
+            }
+            else if (AzureDBAccess.ID != -1 && DBAccess.GetRecordFromUser(AzureDBAccess.ID, newname) != null)
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "You already have a record with that name", "OK");
+                return;
+            }
+
             if (AzureDBAccess.ID == -1)
                 FileAccess.EditRecordName(RecordName, newname);
             else
@@ -213,7 +230,21 @@ namespace NewRecord_Backend.ViewModels
             else
                 DBAccess.EditRecordPrivacy(AzureDBAccess.ID, RecordName, privacy);
 
-            Privacy = privacy.ToString();
+            switch (privacy)
+            {
+                case PrivacySettings.PUBLIC:
+                    Privacy = "Public";
+                    break;
+                case PrivacySettings.PRIVATE:
+                    Privacy = "Private";
+                    break;
+                case PrivacySettings.FRIENDSONLY:
+                    Privacy = "Friends Only";
+                    break;
+                default:
+                    Privacy = "Error";
+                    break;
+            }
         }
 
         public void AddGoalButtonClicked()
@@ -243,6 +274,7 @@ namespace NewRecord_Backend.ViewModels
         private bool addgoalscreenvisible;
         private double goalscore;
         private DateTime enddate;
+        public DateTime Today; //For Minimum Date
         private SuccessInfo Success; //No property
 
         public ListViewModel<RecordItem> History
