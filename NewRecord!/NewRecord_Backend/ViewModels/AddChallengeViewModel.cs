@@ -35,21 +35,52 @@ namespace NewRecord_Backend.ViewModels
 
         public void CreateButtonClicked()
         {
-            //No more than 5 participants
-            if (SelectedFriends.Count >= 5 || SelectedFriends.Count == 0)
+            //Non null record name
+            if (String.IsNullOrWhiteSpace(RecordName))
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "Please enter a record name", "OK");
                 return;
+            }
+            
+            //At least two participants
+            if (SelectedFriends.Count == 0)
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "A challenge must have at least two participants", "OK");
+                return;
+            }
+
+            //No more than 5 participants
+            if (SelectedFriends.Count >= 5)
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "There can only be 5 participants per challenge", "OK");
+                return;
+            }
 
             //Record must exist and must not be private
             Record chalrec = DBAccess.GetRecordFromUser(AzureDBAccess.ID, RecordName);
             if (chalrec == null || chalrec.Privacy == PrivacySettings.PRIVATE)
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "You do not have a record by this name", "OK");
                 return;
+            }
 
+            //All participants must have record and have it not be private
             foreach (User participant in SelectedFriends)
             {
                 Record partrec = DBAccess.GetRecordFromUser(participant.ID, RecordName);
-                if (partrec == null || partrec.Privacy == PrivacySettings.PRIVATE || partrec.Success != chalrec.Success) //Also need to check if any participants have beat goal already
+                if (partrec == null || partrec.Privacy == PrivacySettings.PRIVATE || partrec.Success != chalrec.Success)
+                {
+                    Application.Current.MainPage.DisplayAlert("Error", "Not all participants own this record", "OK");
                     return;
+                }
+
+                if (partrec.BestScore >= GoalScore)
+                {
+                    Application.Current.MainPage.DisplayAlert("Error", "One or more participants already have a score better than " + GoalScore.ToString(), "OK");
+                    return;
+                }
             }
+
             //Add self to participants
             List<User> participants = new List<User>(SelectedFriends);
             participants.Add(DBAccess.GetUser(AzureDBAccess.ID));

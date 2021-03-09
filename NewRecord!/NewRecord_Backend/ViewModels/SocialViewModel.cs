@@ -20,7 +20,7 @@ namespace NewRecord_Backend.ViewModels
     {
         iDBAccess DBAccess;
         INavigation Navigation;
-        //TODO: Add an onappearing that refreshes challenges
+
         public SocialViewModel(INavigation navigation)
         {
             Navigation = navigation;
@@ -37,6 +37,7 @@ namespace NewRecord_Backend.ViewModels
                     {
                         bool acc;
                         bool autoacc;
+                        User sender = DBAccess.GetUser(notif.SenderID);
                         switch (notif.NotificationType)
                         {
                             case NotificationType.FRIEND_REQUEST:
@@ -46,13 +47,13 @@ namespace NewRecord_Backend.ViewModels
                                 {
                                     await Device.InvokeOnMainThreadAsync(async () =>
                                     {
-                                        acc = await Application.Current.MainPage.DisplayAlert("Friend Request Received", "From " + notif.SenderID, "Accept", "Decline");
+                                        acc = await Application.Current.MainPage.DisplayAlert("Friend Request Received", "From " + sender.Username, "Accept", "Decline");
                                     });
                                 }
                                 if (acc || autoacc)
                                 {
                                     DBAccess.AcceptFriendRequest(AzureDBAccess.ID, notif.SenderID);
-                                    Friends.ListView.Add(DBAccess.GetUser(notif.SenderID));
+                                    Friends.ListView.Add(sender);
                                 }
                                 else
                                     DBAccess.DeclineFriendRequest(notif);
@@ -64,7 +65,6 @@ namespace NewRecord_Backend.ViewModels
                                 acc = false;
                                 autoacc = Preferences.Get("CHToggled", false);
 
-                                User sender = DBAccess.GetUser(notif.SenderID);
                                 Challenge chal = DBAccess.GetChallenge(notif.ChallengeID.Value);
 
                                 if (!autoacc)
@@ -103,6 +103,12 @@ namespace NewRecord_Backend.ViewModels
             //FriendRequests = new ListViewModel<User>(DBAccess.GetUserFriendRequests(AzureDBAccess.ID));
         }
 
+        public void OnAppearing()
+        {
+            Challenges = new ListViewModel<Challenge>(DBAccess.GetUserChallenges(AzureDBAccess.ID));
+            Friends = new ListViewModel<User>(DBAccess.GetUserFriends(AzureDBAccess.ID));
+        }
+
         public void FriendsButtonPressed()
         {
             FriendsListVisible = !FriendsListVisible;
@@ -111,7 +117,7 @@ namespace NewRecord_Backend.ViewModels
         public async void AddFriendButtonPressed()
         {
             string name = await Application.Current.MainPage.DisplayPromptAsync("Send Friend Request", "Enter Their Username", "Add", "Cancel", "Username");
-            if (name == null || name == "Cancel")
+            if (String.IsNullOrWhiteSpace(name) || name == "Cancel")
                 return;
 
             User user = DBAccess.GetUser(name);
@@ -130,7 +136,12 @@ namespace NewRecord_Backend.ViewModels
                 return;
             }
 
-            //Also need to check for dup requests
+            //If a request has already been sent
+            if (DBAccess.GetNotifications(user.ID).Find(x => x.NotificationType == NotificationType.FRIEND_REQUEST && x.SenderID == AzureDBAccess.ID) != null)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "You have already sent that user a friend request", "OK");
+                return;
+            }
 
             DBAccess.SendFriendRequest(AzureDBAccess.ID, user.ID);
         }
@@ -139,7 +150,7 @@ namespace NewRecord_Backend.ViewModels
         {
             string name = await Application.Current.MainPage.DisplayPromptAsync("Search Public Records", "Enter Their Username", "Search", "Cancel", "Username");
 
-            if (name == null || name == "Cancel")
+            if (String.IsNullOrWhiteSpace(name) || name == "Cancel")
                 return;
 
             User user = DBAccess.GetUser(name);
@@ -170,10 +181,12 @@ namespace NewRecord_Backend.ViewModels
 
             if (conf)
             {
+                DBAccess.RemoveFriend(AzureDBAccess.ID, Friends.ListView[index].ID);
                 Friends.ListView.RemoveAt(index);
             }
         }
 
+        #region Properties
         private ListViewModel<Challenge> challenges;
         public ListViewModel<Challenge> Challenges
         {
@@ -229,6 +242,7 @@ namespace NewRecord_Backend.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs("FriendsListVisible"));
             }
         }
+        #endregion
         #region PropertyChangedImplementation
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         void OnPropertyChanged([CallerMemberName] string propertyname = "")

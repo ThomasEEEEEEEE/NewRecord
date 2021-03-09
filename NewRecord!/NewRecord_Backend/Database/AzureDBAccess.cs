@@ -611,6 +611,11 @@ namespace NewRecord_Backend.Database
             string query = String.Format("DELETE FROM FRIENDS WHERE (UserID={0} AND FriendID={1}) OR (UserID={1} AND FriendID={0});", notification.SenderID, notification.ReceiverID);
             DoQuery_NoReturn(query);
         }
+        public void RemoveFriend(int user1, int user2)
+        {
+            string query = String.Format("DELETE FROM FRIENDS WHERE (UserID={0} AND FriendID={1}) OR (UserID={1} AND FriendID={0});", user1, user2);
+            DoQuery_NoReturn(query);
+        }
         public void AcceptChallengeRequest(DBNotification notification)
         {
             string query = String.Format("UPDATE CHALLENGE_PARTICIPANTS SET Pending=0 WHERE ChallengeID={0} AND ParticipantID={1};", notification.ChallengeID, notification.ReceiverID);

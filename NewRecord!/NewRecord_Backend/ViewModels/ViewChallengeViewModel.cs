@@ -14,6 +14,37 @@ namespace NewRecord_Backend.ViewModels
 {
     public class ViewChallengeViewModel : INotifyPropertyChanged
     {
+        iDBAccess DBAccess;
+        public ViewChallengeViewModel(int ChallengeID)
+        {
+            DBAccess = new AzureDBAccess();
+            
+            Challenge challenge = DBAccess.GetChallenge(ChallengeID);
+            RecordName = challenge.RecordName;
+            GoalScore = challenge.GoalScore;
+            EndDate = challenge.EndDate;
+
+            ViewChallenge = challenge;
+
+            Participants = new ListViewModel<ScoreUser>();
+            foreach (User user in challenge.Participants)
+            {
+                Record rec = DBAccess.GetRecordFromUser(user.ID, RecordName);
+                ScoreUser su = new ScoreUser() { Username = user.Username, BestScore = rec.BestScore };
+                Participants.ListView.Add(su);
+            }
+        }
+
+        public async void ForfeitPressed()
+        {
+            bool conf = await Application.Current.MainPage.DisplayAlert("Confirmation", "Are you sure you want to forfeit this challenge?", "Yes", "No");
+            
+            if (conf)
+                DBAccess.ForfeitChallenge(AzureDBAccess.ID, ViewChallenge);
+        }
+
+        #region Properties
+        private Challenge ViewChallenge;
         public class ScoreUser : INotifyPropertyChanged
         {
             private string username;
@@ -46,38 +77,6 @@ namespace NewRecord_Backend.ViewModels
             }
             #endregion
         }
-
-        iDBAccess DBAccess;
-        public ViewChallengeViewModel(int ChallengeID)
-        {
-            DBAccess = new AzureDBAccess();
-
-            
-            Challenge challenge = DBAccess.GetChallenge(ChallengeID);
-            RecordName = challenge.RecordName;
-            GoalScore = challenge.GoalScore;
-            EndDate = challenge.EndDate;
-
-            ViewChallenge = challenge;
-
-            Participants = new ListViewModel<ScoreUser>();
-            foreach (User user in challenge.Participants)
-            {
-                Record rec = DBAccess.GetRecordFromUser(user.ID, RecordName);
-                ScoreUser su = new ScoreUser() { Username = user.Username, BestScore = rec.BestScore };
-                Participants.ListView.Add(su);
-            }
-        }
-
-        public async void ForfeitPressed()
-        {
-            bool conf = await Application.Current.MainPage.DisplayAlert("Confirmation", "Are you sure you want to forfeit this challenge?", "Yes", "No");
-            
-            if (conf)
-                DBAccess.ForfeitChallenge(AzureDBAccess.ID, ViewChallenge);
-        }
-
-        private Challenge ViewChallenge;
 
         private string recordname;
         public string RecordName
@@ -134,6 +133,7 @@ namespace NewRecord_Backend.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs("Participants"));
             }
         }
+        #endregion
         #region PropertyChangedImplementation
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         void OnPropertyChanged([CallerMemberName] string propertyname = "")

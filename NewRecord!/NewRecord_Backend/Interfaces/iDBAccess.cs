@@ -36,6 +36,7 @@ namespace NewRecord_Backend.Interfaces
         void SendFriendRequest(int userid, int friendid);
         void AcceptFriendRequest(int userid, int friendid);
         void DeclineFriendRequest(DBNotification notification);
+        void RemoveFriend(int user1, int user2);
         void AcceptChallengeRequest(DBNotification notification);
         void DeclineChallengeRequest(DBNotification notification);
         void AddUser(User user);
