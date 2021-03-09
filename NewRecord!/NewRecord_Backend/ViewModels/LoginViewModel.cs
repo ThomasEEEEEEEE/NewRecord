@@ -28,6 +28,10 @@ namespace NewRecord_Backend.ViewModels
             Password = Preferences.Get("LastLoginPassword", "");
             ShowSignUp = false;
         }
+        public void OnAppearing()
+        {
+            ShowLoading = false;
+        }
         public void LoginButtonPressed()
         {
             if (String.IsNullOrWhiteSpace(Username))
@@ -53,7 +57,6 @@ namespace NewRecord_Backend.ViewModels
             }
             else
                 Application.Current.MainPage.DisplayAlert("Error", "Invalid Username or Password", "OK");
-
         }
         public void ShowSignupPressed()
         {
@@ -153,6 +156,20 @@ namespace NewRecord_Backend.ViewModels
             {
                 signuppassword = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("SignUpPassword"));
+            }
+        }
+
+        private bool showloading;
+        public bool ShowLoading
+        {
+            get
+            {
+                return showloading;
+            }
+            set
+            {
+                showloading = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("ShowLoading"));
             }
         }
         #region PropertyChangedImplementation

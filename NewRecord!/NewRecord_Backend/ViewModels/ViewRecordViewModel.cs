@@ -158,7 +158,7 @@ namespace NewRecord_Backend.ViewModels
             return RecordChart;
         }
 
-        public void UpdateButtonClicked(double newscore)
+        public async void UpdateButtonClicked(double newscore)
         {
             double BestScore;
             if (Success == SuccessInfo.LARGER)
@@ -168,12 +168,12 @@ namespace NewRecord_Backend.ViewModels
 
             if (Success == SuccessInfo.LARGER && BestScore >= newscore)
             {
-                Application.Current.MainPage.DisplayAlert("Error", "This score is not better than your current best", "OK");
+                _ = Application.Current.MainPage.DisplayAlert("Error", "This score is not better than your current best", "OK");
                 return;
             }
             if (Success == SuccessInfo.SMALLER && BestScore <= newscore)
             {
-                Application.Current.MainPage.DisplayAlert("Error", "This score is not better than your current best", "OK");
+                _ = Application.Current.MainPage.DisplayAlert("Error", "This score is not better than your current best", "OK");
                 return;
             }
 
@@ -195,10 +195,12 @@ namespace NewRecord_Backend.ViewModels
                     if (Success == SuccessInfo.LARGER && newscore >= chal.GoalScore)
                     {
                         DBAccess.WinChallenge(AzureDBAccess.ID, chal);
+                        await Application.Current.MainPage.DisplayAlert("Challenge Won!", "You won a challenge!", "OK");
                     }
                     else if (Success == SuccessInfo.SMALLER && newscore <= chal.GoalScore)
                     {
                         DBAccess.WinChallenge(AzureDBAccess.ID, chal);
+                        await Application.Current.MainPage.DisplayAlert("Challenge Won!", "You won a challenge!", "OK");
                     }
                 }
             }

@@ -35,10 +35,14 @@ namespace NewRecord_Backend.OfficialViews
         {
             vm.SignupButtonPressed();
         }
-
         private void ContinueButton_Clicked(object sender, EventArgs e)
         {
             vm.ContinueButtonPressed();
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            vm.OnAppearing();
         }
     }
 }

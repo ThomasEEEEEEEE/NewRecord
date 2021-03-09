@@ -20,10 +20,10 @@
                     <IndicatorView x:Name="indView" IndicatorColor="LightGray" SelectedIndicatorColor="DarkSlateGray" HorizontalOptions="Center"/>
 
                     <Label Text="Record Name" FontSize="15" TextColor="DarkGray" Margin="2,8,0,-15"/>
-                    <Entry Text="{Binding RecordName}" Placeholder="Record Name" Margin="2,0,120,0"/>
+                    <Entry Text="{Binding RecordName}" Placeholder="Record Name" Margin="2,0,120,0" TextColor="GhostWhite" PlaceholderColor="GhostWhite"/>
 
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Success Measurement" FontSize="15" Margin="0,9,0,0"/>
+                        <Label Text="Success Measurement" TextColor="DarkGray" FontSize="15" Margin="0,9,0,0"/>
                         <!--<Button 
                         x:Name="btn"
                         Text="i"
@@ -58,10 +58,10 @@
                         </Frame>
                     </StackLayout>
 
-                    <Label Text="Best Score" FontSize="15" Margin="2,9,0,-15"/>
-                    <Entry Text="{Binding BestScore}" Placeholder="Best Score" Keyboard="Numeric" Margin="2,0,230,0"/>
+                    <Label Text="Best Score" TextColor="DarkGray" FontSize="15" Margin="2,9,0,-15"/>
+                    <Entry Text="{Binding BestScore}" Placeholder="Best Score" TextColor="GhostWhite" Keyboard="Numeric" Margin="2,0,230,0"/>
 
-                    <Label Text="Privacy" FontSize="15" Margin="0,9,0,0"/>
+                    <Label Text="Privacy" TextColor="DarkGray" FontSize="15" Margin="0,9,0,0"/>
                     <StackLayout Orientation="Horizontal">
                         <Frame BackgroundColor="#444444" BorderColor="Black" Padding="9">
                             <StackLayout Orientation="Horizontal">
@@ -113,9 +113,9 @@
             <Frame Padding="10" CornerRadius="4" BorderColor="#333333" HasShadow="True" BackgroundColor="#2c2c2c" IsVisible="{Binding AddGoalScreenVisible}" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="30,160,0.8,0.4">
                 <StackLayout>
                     <Label Text="Add Goal" TextColor="#cf0000" FontSize="40" HorizontalTextAlignment="Center"/>
-                    <Entry Placeholder="Score" Margin="80,0,80,0" HorizontalTextAlignment="Center" Keyboard="Numeric" Text="{Binding GoalScore}"/>
+                    <Entry Placeholder="Score" Margin="80,0,80,0" HorizontalTextAlignment="Center" TextColor="GhostWhite" Keyboard="Numeric" Text="{Binding GoalScore}"/>
                     <Label Text="by" HorizontalOptions="Center" TextColor="LightGray"/>
-                    <DatePicker HorizontalOptions="CenterAndExpand" Margin="30,0" Date="{Binding EndDate}" MinimumDate="{Binding Today}"/>
+                    <DatePicker HorizontalOptions="CenterAndExpand" Margin="30,0" TextColor="GhostWhite" Date="{Binding EndDate}" MinimumDate="{Binding Today}"/>
                     <Button Text="Add Goal" Clicked="AddGoal_Clicked" BackgroundColor="Black" TextColor="#cf0000" FontSize="25" Margin="40,0"/>
                 </StackLayout>
             </Frame>
