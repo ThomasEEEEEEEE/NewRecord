@@ -17,7 +17,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Frame BackgroundColor="#3f3f3f" BorderColor="#111111" Padding="6" CornerRadius="20" Margin="40,3">
+                                <Frame BackgroundColor="#3f3f3f" BorderColor="#111111" Padding="6" CornerRadius="2" Margin="40,3">
                                     <StackLayout HorizontalOptions="Center">
                                         <Label Text="{Binding RecordName}" FontSize="35" TextColor="#f30000"/>
                                         <StackLayout Orientation="Horizontal" Margin="0,-5,0,0" HorizontalOptions="Center">
@@ -64,8 +64,8 @@
                 </StackLayout>
             </Frame>
             
-            <ImageButton Source="group.png" CornerRadius="100" HeightRequest="60" WidthRequest="60" BackgroundColor="LightGray" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize" x:Name="FLbutton" Clicked="FLbutton_Clicked" Margin="0,0,25,10"/>
-            <Button Text="+" FontSize="30" CornerRadius="100" HeightRequest="60" WidthRequest="60" BackgroundColor="#cf0000" TextColor="GhostWhite" Clicked="AddButton_Clicked" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.1,1,AutoSize,AutoSize" Margin="0,0,0,10"/>
+            <ImageButton Source="group.png" CornerRadius="100" HeightRequest="60" WidthRequest="60" BackgroundColor="LightGray" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.9,0.95,AutoSize,AutoSize" x:Name="FLbutton" Clicked="FLbutton_Clicked" Margin="0,0,0,0"/>
+            <Button Text="+" FontSize="30" CornerRadius="100" HeightRequest="60" WidthRequest="60" BackgroundColor="#cf0000" TextColor="GhostWhite" Clicked="AddButton_Clicked" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.1,0.95,AutoSize,AutoSize" Margin="0,0,0,0"/>
         </AbsoluteLayout>
     </ContentPage.Content>
     <ContentPage.ToolbarItems>

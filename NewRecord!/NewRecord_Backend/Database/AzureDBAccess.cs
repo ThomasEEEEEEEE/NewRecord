@@ -156,6 +156,8 @@ namespace NewRecord_Backend.Database
                         {
                             recorditems.Add(new RecordItem(reader.GetDouble(2), reader.GetDateTime(3)));
                         }
+                        
+                        recorditems.Sort((x, y) => x.DateAchieved.CompareTo(y.DateAchieved));
                         con.Close();
                     }
                 }
@@ -185,6 +187,7 @@ namespace NewRecord_Backend.Database
                         {
                             goals.Add(new Goal(reader.GetDouble(2), reader.GetDateTime(3)));
                         }
+                        goals.Sort((x, y) => x.EndDate.CompareTo(y.EndDate));
                         con.Close();
                     }
                 }
@@ -479,7 +482,7 @@ namespace NewRecord_Backend.Database
             string query = String.Format("DELETE FROM GOALS WHERE UserID={0} AND RecordName='{1}' AND (", userid, recordname);
             foreach (Goal g in goals)
             {
-                query += String.Format("(GoalScore={0} AND DateAchieved='{1}') OR ", g.GoalScore, g.EndDate.ToShortDateString());
+                query += String.Format("(GoalScore={0} AND EndDate='{1}') OR ", g.GoalScore, g.EndDate.ToShortDateString());
             }
             query = query.Remove(query.Length - 4); //Remove the OR and two spaces
             query += ");";

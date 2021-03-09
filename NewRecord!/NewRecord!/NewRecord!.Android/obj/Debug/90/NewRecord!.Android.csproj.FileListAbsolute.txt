@@ -1168,3 +1168,7 @@ C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewR
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\stamp\_GenerateJavaStubs.stamp
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\I18N.dll
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\I18N.pdb
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\I18N.West.dll
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\I18N.West.pdb

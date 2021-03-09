@@ -17,7 +17,7 @@
                             </DataTemplate>
                         </CarouselView.ItemTemplate>
                     </CarouselView>
-                    <IndicatorView x:Name="indView" IndicatorColor="LightGray" SelectedIndicatorColor="DarkGray" HorizontalOptions="Center"/>
+                    <IndicatorView x:Name="indView" IndicatorColor="LightGray" SelectedIndicatorColor="DarkSlateGray" HorizontalOptions="Center"/>
 
                     <Label Text="Record Name" FontSize="15" TextColor="DarkGray" Margin="2,8,0,-15"/>
                     <Entry Text="{Binding RecordName}" Placeholder="Record Name" Margin="2,0,120,0"/>

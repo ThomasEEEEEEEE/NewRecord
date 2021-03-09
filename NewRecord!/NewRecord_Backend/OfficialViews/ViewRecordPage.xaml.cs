@@ -36,7 +36,7 @@ namespace NewRecord_Backend.OfficialViews
         {
             string newname = await DisplayPromptAsync("Change Record Name", "What is the new name for this record?", "Change", keyboard: Keyboard.Text);
 
-            if (newname == null)
+            if (newname == null || String.IsNullOrWhiteSpace(newname))
                 return;
             vm.EditNameButtonClicked(newname.Trim());
         }

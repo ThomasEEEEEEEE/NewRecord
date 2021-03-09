@@ -28,7 +28,13 @@ namespace NewRecord_Backend.Database
         }
         public List<Record> GetRecords()
         {
-            string contents = File.ReadAllText(FilePath);
+            string contents = "";
+            try
+            {
+                contents = File.ReadAllText(FilePath);
+            }
+            catch (Exception)
+            { }
             List<Record> records = JsonConvert.DeserializeObject<List<Record>>(contents);
 
             if (records == null)

@@ -58,7 +58,7 @@ namespace NewRecord_Backend.ViewModels
                     break;
             }
 
-            //CheckForExpiredGoals();
+            CheckForExpiredGoals();
             PopulateChart();
         }
 
@@ -71,11 +71,11 @@ namespace NewRecord_Backend.ViewModels
                 if (Goals.ListView[i].EndDate < DateTime.Now)
                 {
                     ExpiredGoals.Add(Goals.ListView[i]);
-                    alert += Goals.ListView[i].GoalScore.ToString() + " before " + Goals.ListView[i].EndDate.ToString() + "\n";
+                    alert += Goals.ListView[i].GoalScore.ToString() + " before " + Goals.ListView[i].EndDate.ToShortDateString() + "\n";
                 }
             }
 
-            if (String.IsNullOrWhiteSpace(alert))
+            if (ExpiredGoals.Count == 0)
                 return;
 
             await Application.Current.MainPage.DisplayAlert("You have failed to reach the following goals in time", alert, "OK");
@@ -98,18 +98,19 @@ namespace NewRecord_Backend.ViewModels
                 if (Success == SuccessInfo.LARGER && goal.GoalScore <= newscore)
                 {
                     AchievedGoals.Add(goal);
-                    alert += goal.GoalScore.ToString() + " by " + goal.EndDate + "\n";
+                    alert += goal.GoalScore.ToString() + " by " + goal.EndDate.ToShortDateString() + "\n";
                 }
                 else if (Success == SuccessInfo.SMALLER && goal.GoalScore >= newscore)
                 {
-                    alert += goal.GoalScore.ToString() + " by " + goal.EndDate + "\n";
+                    alert += goal.GoalScore.ToString() + " by " + goal.EndDate.ToShortDateString() + "\n";
                     AchievedGoals.Add(goal);
                 }
             }
-            if (String.IsNullOrWhiteSpace(alert))
+            if (AchievedGoals.Count == 0)
                 return;
 
             await Application.Current.MainPage.DisplayAlert("You've achieved the following goals!", alert, "OK");
+            AchievedGoals.ForEach(x => Goals.ListView.Remove(x));
 
             if (AzureDBAccess.ID == -1)
                 FileAccess.RemoveGoalsFromRecord(RecordName, AchievedGoals);
@@ -161,9 +162,9 @@ namespace NewRecord_Backend.ViewModels
         {
             double BestScore;
             if (Success == SuccessInfo.LARGER)
-                BestScore = History.ListView.Max().Score;
+                BestScore = History.ListView.Max(x => x.Score);
             else
-                BestScore = History.ListView.Min().Score;
+                BestScore = History.ListView.Min(x => x.Score);
 
             if (Success == SuccessInfo.LARGER && BestScore >= newscore)
             {
@@ -186,20 +187,23 @@ namespace NewRecord_Backend.ViewModels
             PopulateChart();
 
             //Check to see if the user won any challenges
-            List<Challenge> chals = DBAccess.GetUserChallengesForRecord(AzureDBAccess.ID, RecordName);
-            foreach (Challenge chal in chals)
+            if (AzureDBAccess.ID != -1)
             {
-                if (Success == SuccessInfo.LARGER && newscore >= chal.GoalScore)
+                List<Challenge> chals = DBAccess.GetUserChallengesForRecord(AzureDBAccess.ID, RecordName);
+                foreach (Challenge chal in chals)
                 {
-                    DBAccess.WinChallenge(AzureDBAccess.ID, chal);
-                }
-                else if (Success == SuccessInfo.SMALLER && newscore <= chal.GoalScore)
-                {
-                    DBAccess.WinChallenge(AzureDBAccess.ID, chal);
+                    if (Success == SuccessInfo.LARGER && newscore >= chal.GoalScore)
+                    {
+                        DBAccess.WinChallenge(AzureDBAccess.ID, chal);
+                    }
+                    else if (Success == SuccessInfo.SMALLER && newscore <= chal.GoalScore)
+                    {
+                        DBAccess.WinChallenge(AzureDBAccess.ID, chal);
+                    }
                 }
             }
 
-            //CheckForAchievedGoals(newscore);
+            CheckForAchievedGoals(newscore);
         }
 
         public void EditNameButtonClicked(string newname)
