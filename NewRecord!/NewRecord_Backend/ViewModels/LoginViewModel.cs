@@ -30,6 +30,18 @@ namespace NewRecord_Backend.ViewModels
         }
         public void LoginButtonPressed()
         {
+            if (String.IsNullOrWhiteSpace(Username))
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "Please enter a username", "OK");
+                return;
+            }
+
+            if (String.IsNullOrWhiteSpace(Password))
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "Please enter a password", "OK");
+                return;
+            }
+
             User user = DBAccess.GetUser(Username);
             if (user != null && Hashing.VerifyPassword(Password, user.PasswordHash))
             {
@@ -49,6 +61,18 @@ namespace NewRecord_Backend.ViewModels
         }
         public async void SignupButtonPressed()
         {
+            if (String.IsNullOrWhiteSpace(SignUpUsername))
+            {
+                _ = Application.Current.MainPage.DisplayAlert("Error", "Please enter a username", "OK");
+                return;
+            }
+
+            if (String.IsNullOrWhiteSpace(SignUpPassword))
+            {
+                _ = Application.Current.MainPage.DisplayAlert("Error", "Please enter a password", "OK");
+                return;
+            }
+
             if (DBAccess.GetUser(SignUpUsername) != null)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "An account with that username already exists", "OK");

@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "63P9S1sMhbdOAleGlaYPrTXCN/ozIgMMsQl7w8YT6N6ps/L99E3FkZvKGyRLAVCNPDuWh9r+TJU444nIWvYF9g==",
+  "dgSpecHash": "mxucW42AhZnRBeGsZhZ35VQaNUur2+xF4dF6iPd/d6+R85HRWo3BCZwsjsBAOsXRxE4q3+gWshvuV9BXr1tr+A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord!\\NewRecord!\\NewRecord!.csproj",
+  "projectFilePath": "C:\\Users\\Thomas\\source\\repos\\ThomasEEEEEEEE\\NewRecord\\NewRecord!\\NewRecord!\\NewRecord!\\NewRecord!.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Thomas\\.nuget\\packages\\carouselview.formsplugin\\5.2.0\\carouselview.formsplugin.5.2.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Thomas\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Thomas\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
     "C:\\Users\\Thomas\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\Thomas\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\Thomas\\.nuget\\packages\\xam.plugin.tabview\\1.1.1\\xam.plugin.tabview.1.1.1.nupkg.sha512",

@@ -748,21 +748,19 @@
   },
   "packageFolders": {
     "C:\\Users\\Thomas\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord!\\NewRecord!\\NewRecord!.csproj",
+      "projectUniqueName": "C:\\Users\\Thomas\\source\\repos\\ThomasEEEEEEEE\\NewRecord\\NewRecord!\\NewRecord!\\NewRecord!\\NewRecord!.csproj",
       "projectName": "NewRecord!",
-      "projectPath": "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord!\\NewRecord!\\NewRecord!.csproj",
+      "projectPath": "C:\\Users\\Thomas\\source\\repos\\ThomasEEEEEEEE\\NewRecord\\NewRecord!\\NewRecord!\\NewRecord!\\NewRecord!.csproj",
       "packagesPath": "C:\\Users\\Thomas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord!\\NewRecord!\\obj\\",
+      "outputPath": "C:\\Users\\Thomas\\source\\repos\\ThomasEEEEEEEE\\NewRecord\\NewRecord!\\NewRecord!\\NewRecord!\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
         "C:\\Users\\Thomas\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -780,8 +778,8 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "projectReferences": {
-            "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Backend\\NewRecord_Backend.csproj": {
-              "projectPath": "C:\\Users\\Thomas\\Documents\\GitHub\\NewRecord\\NewRecord!\\NewRecord_Backend\\NewRecord_Backend.csproj"
+            "C:\\Users\\Thomas\\source\\repos\\ThomasEEEEEEEE\\NewRecord\\NewRecord!\\NewRecord_Backend\\NewRecord_Backend.csproj": {
+              "projectPath": "C:\\Users\\Thomas\\source\\repos\\ThomasEEEEEEEE\\NewRecord\\NewRecord!\\NewRecord_Backend\\NewRecord_Backend.csproj"
             }
           }
         }
@@ -833,7 +831,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
