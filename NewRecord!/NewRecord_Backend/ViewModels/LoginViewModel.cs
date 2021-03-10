@@ -46,17 +46,28 @@ namespace NewRecord_Backend.ViewModels
                 return;
             }
 
-            User user = DBAccess.GetUser(Username);
-            if (user != null && Hashing.VerifyPassword(Password, user.PasswordHash))
+            ShowLoading = true;
+            Task.Run(() =>
             {
-                AzureDBAccess.ID = user.ID;
-                Preferences.Set("LastLoginUsername", Username);
-                Preferences.Set("LastLoginPassword", Password);
+                User user = DBAccess.GetUser(Username);
+                if (user != null && Hashing.VerifyPassword(Password, user.PasswordHash))
+                {
+                    AzureDBAccess.ID = user.ID;
+                    Preferences.Set("LastLoginUsername", Username);
+                    Preferences.Set("LastLoginPassword", Password);
 
-                Navigation.PushModalAsync(new MainTabbedPage());
-            }
-            else
-                Application.Current.MainPage.DisplayAlert("Error", "Invalid Username or Password", "OK");
+                    Device.BeginInvokeOnMainThread(() => Navigation.PushModalAsync(new MainTabbedPage()));
+                }
+                else
+                {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        ShowLoading = false;
+                        Application.Current.MainPage.DisplayAlert("Error", "Invalid Username or Password", "OK");
+                    });
+
+                }
+            });
         }
         public void ShowSignupPressed()
         {
@@ -81,11 +92,19 @@ namespace NewRecord_Backend.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Error", "An account with that username already exists", "OK");
                 return;
             }
-            User user = new User();
-            user.Username = Username;
-            user.PasswordHash = Hashing.HashPassword(SignUpPassword);
-            DBAccess.AddUser(user);
-            await Application.Current.MainPage.DisplayAlert("Success", "Account Successfully Created!", "OK");
+            ShowLoading = true;
+            _ = Task.Run(() =>
+            {
+                User user = new User();
+                user.Username = Username;
+                user.PasswordHash = Hashing.HashPassword(SignUpPassword);
+                DBAccess.AddUser(user);
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    ShowLoading = false;
+                    Application.Current.MainPage.DisplayAlert("Success", "Account Successfully Created!", "OK");
+                });
+            });
         }
 
         public async void ContinueButtonPressed()

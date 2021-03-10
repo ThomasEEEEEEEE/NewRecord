@@ -106,7 +106,8 @@ namespace NewRecord_Backend.ViewModels
         public void OnAppearing()
         {
             Challenges = new ListViewModel<Challenge>(DBAccess.GetUserChallenges(AzureDBAccess.ID));
-            Friends = new ListViewModel<User>(DBAccess.GetUserFriends(AzureDBAccess.ID));
+            FinishedChallenges = new ListViewModel<Challenge>(DBAccess.GetFinishedChallenges(AzureDBAccess.ID));
+            //Friends = new ListViewModel<User>(DBAccess.GetUserFriends(AzureDBAccess.ID));
         }
 
         public void FriendsButtonPressed()
@@ -175,6 +176,11 @@ namespace NewRecord_Backend.ViewModels
             _ = Navigation.PushModalAsync(new ViewChallengePage(Challenges.ListView[index].ChallengeID));
         }
 
+        public void FChallengeItemTapped(int index)
+        {
+            _ = Navigation.PushModalAsync(new ViewFinishedChallengePage(FinishedChallenges.ListView[index].ChallengeID));
+        }
+
         async public void FriendsItemTapped(int index)
         {
             bool conf = await Application.Current.MainPage.DisplayAlert("Confirmation", "Are you sure that you want to delete this friend?", "Yes", "No");
@@ -215,17 +221,17 @@ namespace NewRecord_Backend.ViewModels
             }
         }
 
-        private ListViewModel<User> friendrequests;
-        public ListViewModel<User> FriendRequests
+        private ListViewModel<Challenge> finishedchallenges;
+        public ListViewModel<Challenge> FinishedChallenges
         {
             get
             {
-                return friendrequests;
+                return finishedchallenges;
             }
             set
             {
-                friendrequests = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("FriendRequests"));
+                finishedchallenges = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("FinishedChallenges"));
             }
         }
 

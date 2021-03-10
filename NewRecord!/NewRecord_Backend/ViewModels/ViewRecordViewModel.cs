@@ -32,6 +32,10 @@ namespace NewRecord_Backend.ViewModels
             else
                 ViewRecord = DBAccess.GetRecordFromUser(AzureDBAccess.ID, recordname);
 
+            ViewRecord.RecordHistory.Sort((x, y) => x.Score.CompareTo(y.Score));
+            if (ViewRecord.Success == SuccessInfo.SMALLER)
+                ViewRecord.RecordHistory.Reverse();
+
             History = new ListViewModel<RecordItem>(ViewRecord.RecordHistory);
             Goals = new ListViewModel<Goal>(ViewRecord.Goals);
 

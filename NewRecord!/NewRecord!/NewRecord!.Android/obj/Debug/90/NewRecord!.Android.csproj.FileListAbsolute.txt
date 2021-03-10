@@ -583,9 +583,7 @@ C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Andr
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\drawable\trophy.png
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\Resources\Fonts\Prototype.ttf
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\Resources\Fonts\gomarice_no_continue.ttf
-C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\MonoAndroid,Version=v9.0.AssemblyAttributes.cs
-C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\build.props
-C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\adb.props
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\com.companyname.newrecord_-Signed.apk
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\x86\libSkiaSharp.dll
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\x64\libSkiaSharp.dll
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\arm64\libSkiaSharp.dll
@@ -598,7 +596,6 @@ C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewR
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\com.companyname.newrecord_.apk
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\com.companyname.newrecord_.aab
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\com.companyname.newrecord_-Signed.aab
-C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\com.companyname.newrecord_-Signed.apk
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\com.companyname.newrecord_-Signed.apk.idsig
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\NewRecord!.dll
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\NewRecord_Backend.dll
@@ -607,6 +604,9 @@ C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewR
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\NewRecord_Backend.pdb
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\NewRecord_Backend.dll.config
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\NewRecord_Backend.dll.mdb
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\MonoAndroid,Version=v9.0.AssemblyAttributes.cs
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\build.props
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\adb.props
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\NewRecord!.Android.csprojAssemblyReference.cache
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\stamp\_BuildLibraryImportsCache.stamp
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res.flag
@@ -694,6 +694,10 @@ C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewR
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\DevOne.Security.Cryptography.BCrypt.dll
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\FormsViewGroup.dll
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\FormsViewGroup.pdb
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\I18N.dll
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\I18N.pdb
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\I18N.West.dll
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\I18N.West.pdb
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\Java.Interop.dll
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\Microcharts.dll
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\Microcharts.Droid.dll
@@ -1168,7 +1172,3 @@ C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewR
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\stamp\_GenerateJavaStubs.stamp
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
-C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\I18N.dll
-C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\I18N.pdb
-C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\I18N.West.dll
-C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\I18N.West.pdb

@@ -340,6 +340,74 @@ namespace NewRecord_Backend.Database
             }
             return challenges;
         }
+        Challenge DoQuery_OneFinishedChallenge(string query)
+        {
+            Challenge challenge = null;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand comm = new SqlCommand(query, con))
+                    {
+                        con.Open();
+
+                        SqlDataReader reader = comm.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            challenge = new Challenge();
+                            challenge.ChallengeID = reader.GetInt32(0);
+                            challenge.RecordName = reader.GetString(1);
+                            challenge.GoalScore = reader.GetDouble(2);
+                            //challenge.Success = (SuccessInfo)reader.GetInt32(3);
+                            challenge.EndDate = reader.GetDateTime(4);
+                        }
+
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            return challenge;
+        }
+        List<Challenge> DoQuery_MultipleFinishedChallenges(string query)
+        {
+            List<Challenge> challenges = null;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand comm = new SqlCommand(query, con))
+                    {
+                        con.Open();
+
+                        challenges = new List<Challenge>();
+                        SqlDataReader reader = comm.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            Challenge chal = new Challenge();
+                            chal.ChallengeID = reader.GetInt32(0);
+                            chal.RecordName = reader.GetString(1);
+                            chal.GoalScore = reader.GetDouble(2);
+                            //chal.Success = (SuccessInfo)reader.GetInt32(3);
+                            chal.EndDate = reader.GetDateTime(4);
+                            challenges.Add(chal);
+                        }
+
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            return challenges;
+        }
         List<User> DoQuery_MultipleFriends(string query, int id)
         {
             List<User> friendships = null;
@@ -526,7 +594,7 @@ namespace NewRecord_Backend.Database
             string query = String.Format("SELECT * FROM CHALLENGES WHERE ChallengeID={0};", chalid);
             Challenge chal = DoQuery_OneChallenge(query);
 
-            query = String.Format("SELECT ParticipantID, ParticipantName FROM CHALLENGE_PARTICIPANTS WHERE ChallengeID={0};", chalid);
+            query = String.Format("SELECT ParticipantID, ParticipantName FROM CHALLENGE_PARTICIPANTS WHERE ChallengeID={0} AND Pending=0;", chalid);
             chal.Participants = DoQuery_MultipleUsers(query);
 
             return chal;
@@ -567,7 +635,19 @@ namespace NewRecord_Backend.Database
         //Combine these into one query once you confirm they work
         public void WinChallenge(int userid, Challenge challenge)
         {
-            string query = String.Format("INSERT INTO FINISHED_CHALLENGES VALUES({0}, '{1}', {2}, {3}, '{4}');", challenge.ChallengeID, challenge.RecordName, challenge.GoalScore, userid, DateTime.Now.ToShortDateString());
+            string query = String.Format("INSERT INTO FINISHED_CHALLENGES VALUES({0}, '{1}', {2}, {3}, '{4}'); SELECT ParticipantID, ParticipantName FROM CHALLENGE_PARTICIPANTS WHERE ChallengeID={0};", challenge.ChallengeID, challenge.RecordName, challenge.GoalScore, userid, DateTime.Now.ToShortDateString());
+            //User user = DoQuery_OneUser(query);
+            List<User> Participants = DoQuery_MultipleUsers(query);
+
+            //Insert each participant into the finished participants table
+            string values = "";
+            foreach (User part in Participants)
+            {
+                values += String.Format("({0}, {1}, '{2}'), ", challenge.ChallengeID, part.ID, part.Username);
+            }
+
+            values = values.Remove(values.Length - 2);
+            query = String.Format("INSERT INTO FINISHED_CHALLENGE_PARTICIPANTS VALUES {0};", values);
             DoQuery_NoReturn(query);
 
             query = String.Format("DELETE FROM CHALLENGES WHERE ChallengeID={0};", challenge.ChallengeID);
@@ -669,6 +749,21 @@ namespace NewRecord_Backend.Database
         {
             string query = String.Format("SELECT * FROM USERS WHERE Username='{0}';", username);
             return DoQuery_OneUser(query);
+        }
+        public List<Challenge> GetFinishedChallenges(int userid)
+        {
+            string query = String.Format("SELECT * FROM FINISHED_CHALLENGES WHERE {0} IN (SELECT ParticipantID FROM FINISHED_CHALLENGE_PARTICIPANTS WHERE ChallengeID=FINISHED_CHALLENGES.ChallengeID);", userid);
+            return DoQuery_MultipleFinishedChallenges(query);
+        }
+        public Challenge GetFinishedChallenge(int challid)
+        {
+            string query = String.Format("SELECT * FROM FINISHED_CHALLENGES WHERE ChallengeID={0};", challid);
+            Challenge chal = DoQuery_OneFinishedChallenge(query);
+
+            query = String.Format("SELECT ParticipantID, ParticipantName FROM FINISHED_CHALLENGE_PARTICIPANTS WHERE ChallengeID={0};", challid);
+            chal.Participants = DoQuery_MultipleUsers(query);
+
+            return chal;
         }
     }
 }

@@ -65,5 +65,10 @@ namespace NewRecord_Backend.OfficialViews
         {
             Navigation.PushModalAsync(new AboutPage());
         }
+
+        private void FCListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            vm.FChallengeItemTapped(e.ItemIndex);
+        }
     }
 }

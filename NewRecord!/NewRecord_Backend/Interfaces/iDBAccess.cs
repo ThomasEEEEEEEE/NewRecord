@@ -42,5 +42,7 @@ namespace NewRecord_Backend.Interfaces
         void AddUser(User user);
         User GetUser(int userid);
         User GetUser(string username);
+        List<Challenge> GetFinishedChallenges(int userid);
+        Challenge GetFinishedChallenge(int challid);
     }
 }

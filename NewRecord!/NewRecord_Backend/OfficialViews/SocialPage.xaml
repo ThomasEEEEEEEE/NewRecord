@@ -2,37 +2,67 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewRecord_Backend.OfficialViews.SocialPage"
+             xmlns:tabview="clr-namespace:Xam.Plugin.TabView;assembly=Xam.Plugin.TabView"
              BackgroundColor="#222222">
-    
+
     <NavigationPage.TitleView>
         <ImageButton Source="search.png" Aspect="AspectFit" HeightRequest="45" WidthRequest="45" HorizontalOptions="Start" Margin="10,0,0,0" BackgroundColor="#333333" Clicked="SearchButton_Clicked"/>
     </NavigationPage.TitleView>
-    
+
     <ContentPage.Content>
         <AbsoluteLayout>
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1">
                 <Label Text="Challenges" FontSize="58" TextColor="#cf0000" HorizontalOptions="Center"/>
 
-                <ListView x:Name="CListView" ItemsSource="{Binding Challenges.ListView}" SeparatorVisibility="None" HasUnevenRows="False" Margin="0" RowHeight="100" ItemTapped="CListView_ItemTapped">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Frame BackgroundColor="#3f3f3f" BorderColor="#111111" Padding="6" CornerRadius="2" Margin="40,3">
-                                    <StackLayout HorizontalOptions="Center">
-                                        <Label Text="{Binding RecordName}" FontSize="35" TextColor="#f30000" HorizontalOptions="Center"/>
-                                        <StackLayout Orientation="Horizontal" Margin="0,-5,0,0" HorizontalOptions="Center">
-                                            <Label Text="Race to " FontSize="26" TextColor="#f30000"/>
-                                            <Label Text="{Binding GoalScore}" FontSize="26" TextColor="#f30000" Margin="-3,0,0,0"/>
-                                        </StackLayout>
-                                    </StackLayout>
-                                </Frame>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <tabview:TabViewControl x:Name="RecTabView" HeaderBackgroundColor="#650a0a" HeaderTabTextColor="#f5dada" HorizontalOptions="FillAndExpand" IsSwipeEnabled="True" HeaderSelectionUnderlineColor="#c12727">
+                    <tabview:TabViewControl.ItemSource>
+                        <tabview:TabItem HeaderText="Ongoing">
+                            
+                            <ListView x:Name="CListView" ItemsSource="{Binding Challenges.ListView}" SeparatorVisibility="None" HasUnevenRows="False" Margin="0" RowHeight="100" ItemTapped="CListView_ItemTapped">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Frame BackgroundColor="#3f3f3f" BorderColor="#111111" Padding="6" CornerRadius="2" Margin="40,3">
+                                                <StackLayout HorizontalOptions="Center">
+                                                    <Label Text="{Binding RecordName}" FontSize="35" TextColor="#f30000" HorizontalOptions="Center"/>
+                                                    <StackLayout Orientation="Horizontal" Margin="0,-5,0,0" HorizontalOptions="Center">
+                                                        <Label Text="Race to " FontSize="26" TextColor="#f30000"/>
+                                                        <Label Text="{Binding GoalScore}" FontSize="26" TextColor="#f30000" Margin="-3,0,0,0"/>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </Frame>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            
+                        </tabview:TabItem>
+                        <tabview:TabItem HeaderText="Finished">
+
+                            <ListView x:Name="FCListView" ItemsSource="{Binding FinishedChallenges.ListView}" SeparatorVisibility="None" HasUnevenRows="False" Margin="0" RowHeight="100" ItemTapped="FCListView_ItemTapped">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Frame BackgroundColor="#3f3f3f" BorderColor="#111111" Padding="6" CornerRadius="2" Margin="40,3">
+                                                <StackLayout HorizontalOptions="Center">
+                                                    <Label Text="{Binding RecordName}" FontSize="35" TextColor="#f30000" HorizontalOptions="Center"/>
+                                                    <StackLayout Orientation="Horizontal" Margin="0,-5,0,0" HorizontalOptions="Center">
+                                                        <Label Text="Race to " FontSize="26" TextColor="#f30000"/>
+                                                        <Label Text="{Binding GoalScore}" FontSize="26" TextColor="#f30000" Margin="-3,0,0,0"/>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </Frame>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+                        </tabview:TabItem>
+                    </tabview:TabViewControl.ItemSource>
+                </tabview:TabViewControl>
 
             </StackLayout>
-            
+
             <Frame
             x:Name="Flist"
             HasShadow="False"
@@ -47,7 +77,7 @@
                 <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
                     <Button x:Name="AddFriendButton" Text="+" Font="25" WidthRequest="55" BackgroundColor="#cf0000" CornerRadius="50" Clicked="AddFriendButton_Clicked" HorizontalOptions="Center"/>
                     <Label Text="Friends" FontSize="48" HorizontalOptions="Center" TextColor="#cf0000"/>
-                    
+
                     <ListView x:Name="FListView" ItemsSource="{Binding Friends.ListView}" SeparatorVisibility="Default" HasUnevenRows="False" Margin="0,0,0,0" ItemTapped="FListView_ItemTapped">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -63,7 +93,7 @@
                     </ListView>
                 </StackLayout>
             </Frame>
-            
+
             <ImageButton Source="group.png" CornerRadius="100" HeightRequest="60" WidthRequest="60" BackgroundColor="LightGray" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.9,0.95,AutoSize,AutoSize" x:Name="FLbutton" Clicked="FLbutton_Clicked" Margin="0,0,0,0"/>
             <Button Text="+" FontSize="30" CornerRadius="100" HeightRequest="60" WidthRequest="60" BackgroundColor="#cf0000" TextColor="GhostWhite" Clicked="AddButton_Clicked" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.1,0.95,AutoSize,AutoSize" Margin="0,0,0,0"/>
         </AbsoluteLayout>

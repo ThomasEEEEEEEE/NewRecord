@@ -17,7 +17,7 @@ namespace NewRecord_Backend.OfficialViews
         public ViewChallengePage(int challengeid)
         {
             InitializeComponent();
-            vm = new ViewChallengeViewModel(challengeid);
+            vm = new ViewChallengeViewModel(challengeid, Navigation);
 
             BindingContext = vm;
         }

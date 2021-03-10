@@ -74,7 +74,12 @@ namespace NewRecord_Backend.ViewModels
                     return;
                 }
 
-                if (partrec.BestScore >= GoalScore)
+                if (chalrec.Success == SuccessInfo.LARGER && partrec.BestScore >= GoalScore)
+                {
+                    Application.Current.MainPage.DisplayAlert("Error", "One or more participants already have a score better than " + GoalScore.ToString(), "OK");
+                    return;
+                }
+                if (chalrec.Success == SuccessInfo.SMALLER && partrec.BestScore <= GoalScore)
                 {
                     Application.Current.MainPage.DisplayAlert("Error", "One or more participants already have a score better than " + GoalScore.ToString(), "OK");
                     return;

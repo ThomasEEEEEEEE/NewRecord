@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewRecord_Backend.OfficialViews.ViewFinishedChallengePage"
+             BackgroundColor="#222222">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1">
+                <Label Text="{Binding RecordName}" FontSize="50" TextColor="#f30000" HorizontalOptions="Center"/>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,10,0,0">
+                    <Label Text="Race To " FontSize="25" TextColor="GhostWhite"/>
+                    <Label Text="{Binding GoalScore}" Margin="-3,0,0,0" FontSize="25" TextColor="GhostWhite"/>
+                </StackLayout>
+                <Label Text="finished on" HorizontalOptions="Center" Margin="0,-10,0,0" TextColor="GhostWhite" FontSize="25"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,-10,0,0">
+
+                    <Label Text="{Binding EndDate, StringFormat='{0:MMMM d, yyyy}'}" Margin="-3,0,0,0" TextColor="GhostWhite" FontSize="25"/>
+                </StackLayout>
+
+                <Label Text="Participants" FontSize="35" TextColor="#f30000" HorizontalOptions="Center" Margin="0,25,0,0"/>
+                <ListView x:Name="PListView" ItemsSource="{Binding Participants.ListView}" SeparatorVisibility="None" HasUnevenRows="False" Margin="0,-7,0,0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame BorderColor="#730000" BackgroundColor="#8e2424" Margin="15,2" Padding="10,0,0,0" CornerRadius="4" HasShadow="True">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Username}" FontSize="30" HorizontalOptions="Start" TextColor="#f0d4d4"/>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
