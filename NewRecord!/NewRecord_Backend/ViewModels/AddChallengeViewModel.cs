@@ -63,6 +63,16 @@ namespace NewRecord_Backend.ViewModels
                 Application.Current.MainPage.DisplayAlert("Error", "You do not have a record by this name", "OK");
                 return;
             }
+            if (chalrec.Success == SuccessInfo.LARGER && chalrec.BestScore >= GoalScore)
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "You already have a score better than " + GoalScore.ToString(), "OK");
+                return;
+            }
+            if (chalrec.Success == SuccessInfo.SMALLER && chalrec.BestScore <= GoalScore)
+            {
+                Application.Current.MainPage.DisplayAlert("Error", "You already have a score better than " + GoalScore.ToString(), "OK");
+                return;
+            }
 
             //All participants must have record and have it not be private
             foreach (User participant in SelectedFriends)
