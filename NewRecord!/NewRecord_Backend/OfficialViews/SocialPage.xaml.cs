@@ -22,6 +22,11 @@ namespace NewRecord_Backend.OfficialViews
             BindingContext = vm;
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            vm.OnAppearing();
+        }
         private void CListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             vm.ChallengeItemTapped(e.ItemIndex);

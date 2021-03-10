@@ -15,8 +15,10 @@ namespace NewRecord_Backend.ViewModels
     public class ViewChallengeViewModel : INotifyPropertyChanged
     {
         iDBAccess DBAccess;
-        public ViewChallengeViewModel(int ChallengeID)
+        INavigation Navigation;
+        public ViewChallengeViewModel(int ChallengeID, INavigation nav)
         {
+            Navigation = nav;
             DBAccess = new AzureDBAccess();
             
             Challenge challenge = DBAccess.GetChallenge(ChallengeID);
@@ -38,9 +40,12 @@ namespace NewRecord_Backend.ViewModels
         public async void ForfeitPressed()
         {
             bool conf = await Application.Current.MainPage.DisplayAlert("Confirmation", "Are you sure you want to forfeit this challenge?", "Yes", "No");
-            
+
             if (conf)
+            {
                 DBAccess.ForfeitChallenge(AzureDBAccess.ID, ViewChallenge);
+                _ = Navigation.PopModalAsync();
+            }
         }
 
         #region Properties

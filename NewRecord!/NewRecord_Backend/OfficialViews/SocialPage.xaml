@@ -19,7 +19,7 @@
                             <ViewCell>
                                 <Frame BackgroundColor="#3f3f3f" BorderColor="#111111" Padding="6" CornerRadius="2" Margin="40,3">
                                     <StackLayout HorizontalOptions="Center">
-                                        <Label Text="{Binding RecordName}" FontSize="35" TextColor="#f30000"/>
+                                        <Label Text="{Binding RecordName}" FontSize="35" TextColor="#f30000" HorizontalOptions="Center"/>
                                         <StackLayout Orientation="Horizontal" Margin="0,-5,0,0" HorizontalOptions="Center">
                                             <Label Text="Race to " FontSize="26" TextColor="#f30000"/>
                                             <Label Text="{Binding GoalScore}" FontSize="26" TextColor="#f30000" Margin="-3,0,0,0"/>
