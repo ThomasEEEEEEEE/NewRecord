@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewRecord_Backend.OfficialViews.RecordPage"
-             Background="#222222">
+             BackgroundColor="#181818">
     <ContentPage.Content>
         <AbsoluteLayout>
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1">
@@ -12,10 +12,10 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Frame Padding="4" BorderColor="Black" BackgroundColor="#3f3f3f" HorizontalOptions="FillAndExpand" Margin="20,3,20,3" CornerRadius="2">
+                                <Frame Padding="4" BorderColor="Black" BackgroundColor="#2f2f2f" HorizontalOptions="FillAndExpand" Margin="20,3,20,3" CornerRadius="2">
                                     <StackLayout Orientation="Horizontal">
-                                        <Image Source="{Binding SelectedImage}" Aspect="AspectFill" BackgroundColor="#3f3f3f"/>
-                                        <Label Text="{Binding Name}" FontSize="30" TextColor="#ef0000" VerticalOptions="Center"/>
+                                        <Image Source="{Binding SelectedImage}" Aspect="AspectFill" BackgroundColor="#2f2f2f"/>
+                                        <Label Text="{Binding Name}" FontSize="30" TextColor="#E0E0E0" VerticalOptions="Center"/>
                                     </StackLayout>
                                 </Frame>
                             </ViewCell>

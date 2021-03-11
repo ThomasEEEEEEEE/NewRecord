@@ -16,7 +16,7 @@
                 <Image Source="{Binding SelectedImage}" Aspect="AspectFill" HeightRequest="80" HorizontalOptions="Center"/>
 
                 <StackLayout Orientation="Horizontal" Margin="0,-5,0,10">
-                    <Label Text="{Binding Privacy}" TextColor="#cf0000" FontSize="26"/>
+                    <Label Text="{Binding Privacy}" TextColor="GhostWhite" FontSize="26"/>
                     <ImageButton Source="edit_white.png" Aspect="AspectFit" BackgroundColor="#222222" Clicked="EditPrivacyButton_Clicked" HeightRequest="16" Margin="-4,-16,0,0"/>
                 </StackLayout>
 
@@ -39,8 +39,8 @@
                                                         <ColumnDefinition Width="2*"/>
                                                         <ColumnDefinition Width="3*"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <Label Text="{Binding Score}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="#f0d4d4" FontSize="16" Grid.Column="0"/>
-                                                    <Label Text="{Binding DateAchieved, StringFormat='{0:MMMM d, yyyy}'}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#f0d4d4" FontSize="16" Grid.Column="1"/>
+                                                    <Label Text="{Binding Score}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="GhostWhite" FontSize="16" Grid.Column="0"/>
+                                                    <Label Text="{Binding DateAchieved, StringFormat='{0:MMMM d, yyyy}'}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="GhostWhite" FontSize="16" Grid.Column="1"/>
 
                                                     <BoxView BackgroundColor="Black" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
                                                 </Grid>
@@ -54,11 +54,11 @@
                     </tabview:TabViewControl.ItemSource>
                 </tabview:TabViewControl>
                 </Frame>
-                
-                <Button Text="Update Record!" FontSize="20" BackgroundColor="Black" TextColor="#cf0000" Clicked="UpdateButton_Clicked" Margin="60,0,60,20"/>
+
+                <Button Text="Update Record!" FontSize="20" BackgroundColor="#a60808" TextColor="GhostWhite" Clicked="UpdateButton_Clicked" Margin="60,0,60,20"/>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                     <Label Text="Goals" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" FontSize="25" TextColor="#cf0000"/>
-                    <Button Text="+" Clicked="PlusGoal_Clicked" HeightRequest="40" WidthRequest="40"  BackgroundColor="#ef1010" CornerRadius="100"/>
+                    <Button Text="+" Clicked="PlusGoal_Clicked" HeightRequest="40" WidthRequest="40" TextColor="GhostWhite" BackgroundColor="#ef1010" CornerRadius="100"/>
                 </StackLayout>
                 <CollectionView x:Name="GListView" ItemsSource="{Binding Goals.ListView}" HeightRequest="70">
                     <CollectionView.ItemsLayout>
@@ -80,16 +80,16 @@
                 </CollectionView>
             </StackLayout>
             
-            <Frame Padding="10" CornerRadius="4" BorderColor="#333333" HasShadow="True" BackgroundColor="#2c2c2c" IsVisible="{Binding AddGoalScreenVisible}" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="30,160,0.8,0.4">
-                <StackLayout>
+            <Frame Padding="10" CornerRadius="4" BorderColor="#333333" HasShadow="True" BackgroundColor="#2c2c2c" IsVisible="{Binding AddGoalScreenVisible}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.5,0.8,0.6">
+                <StackLayout Margin="0,50,0,0">
                     <Label Text="Add Goal" TextColor="#cf0000" FontSize="40" HorizontalTextAlignment="Center"/>
                     <Entry Placeholder="Score" Margin="80,0,80,0" HorizontalTextAlignment="Center" Keyboard="Numeric" TextColor="GhostWhite" Text="{Binding GoalScore}"/>
                     <Label Text="by" HorizontalOptions="Center" TextColor="LightGray"/>
                     <DatePicker HorizontalOptions="CenterAndExpand" Margin="30,0" Date="{Binding EndDate}" TextColor="GhostWhite" MinimumDate="{Binding Today}"/>
-                    <Button Text="Add Goal" Clicked="AddGoal_Clicked" BackgroundColor="Black" TextColor="#cf0000" FontSize="25" Margin="40,0"/>
+                    <Button Text="Add Goal" Clicked="AddGoal_Clicked" BackgroundColor="#a60808" TextColor="GhostWhite" FontSize="25" Margin="40,0"/>
                 </StackLayout>
             </Frame>
-            <Button Text="X" TextColor="GhostWhite" Clicked="PlusGoal_Clicked" IsVisible="{Binding AddGoalScreenVisible}" BackgroundColor="#2c2c2c" FontSize="28" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.85,0.265,0.13,0.08"/>
+            <Button Text="X" TextColor="GhostWhite" Clicked="PlusGoal_Clicked" IsVisible="{Binding AddGoalScreenVisible}" BackgroundColor="#2c2c2c" FontSize="28" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.85,0.23,0.13,0.08"/>
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

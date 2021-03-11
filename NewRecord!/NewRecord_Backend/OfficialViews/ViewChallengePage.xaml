@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewRecord_Backend.OfficialViews.ViewChallengePage"
-             BackgroundColor="#222222">
+             BackgroundColor="#181818">
     <ContentPage.Content>
         <AbsoluteLayout>
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1">
@@ -18,7 +18,7 @@
                     <Label Text="{Binding EndDate, StringFormat='{0:MMMM d, yyyy}'}" Margin="-3,0,0,0" TextColor="GhostWhite" FontSize="25"/>
                 </StackLayout>
 
-                <Label Text="Participants" FontSize="35" TextColor="#f30000" HorizontalOptions="Center" Margin="0,25,0,0"/>
+                <Label Text="Participants" FontSize="35" TextColor="#f30000" HorizontalOptions="Center" Margin="0,35,0,0"/>
                 <ListView x:Name="PListView" ItemsSource="{Binding Participants.ListView}" SeparatorVisibility="None" HasUnevenRows="False" Margin="0,-7,0,0">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -33,7 +33,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <Button Text="Forfeit" BackgroundColor="Black" TextColor="#f30000" FontSize="28" Margin="20,0,20,5" Clicked="Forfeit_Clicked"/>
+                <Button Text="Forfeit" BackgroundColor="#a60808" TextColor="GhostWhite" FontSize="28" Margin="25,0,25,10" Clicked="Forfeit_Clicked"/>
             </StackLayout>
         </AbsoluteLayout>
     </ContentPage.Content>

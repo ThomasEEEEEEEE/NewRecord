@@ -107,7 +107,7 @@ namespace NewRecord_Backend.ViewModels
         {
             Challenges = new ListViewModel<Challenge>(DBAccess.GetUserChallenges(AzureDBAccess.ID));
             FinishedChallenges = new ListViewModel<Challenge>(DBAccess.GetFinishedChallenges(AzureDBAccess.ID));
-            //Friends = new ListViewModel<User>(DBAccess.GetUserFriends(AzureDBAccess.ID));
+            Friends = new ListViewModel<User>(DBAccess.GetUserFriends(AzureDBAccess.ID));
         }
 
         public void FriendsButtonPressed()

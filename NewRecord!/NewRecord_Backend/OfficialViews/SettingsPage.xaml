@@ -2,21 +2,21 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewRecord_Backend.OfficialViews.SettingsPage"
-             BackgroundColor="#222222">
+             BackgroundColor="#181818">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Settings!" FontSize="55" HorizontalOptions="Center" TextColor="#f30000"/>
 
-            <Label Text="Automatically Accept:" TextColor="#f30000" FontSize="25" Margin="0,25,0,0"/>
+            <Label Text="Automatically Accept:" TextColor="GhostWhite" FontSize="25" Margin="0,25,0,0"/>
             <StackLayout Orientation="Horizontal">
             <StackLayout>
-                <Label Text="   Friend Requests" FontSize="20" TextColor="#f30000"/>
-                <Label Text="   Challenge Requests" FontSize="20" TextColor="#f30000"/>
+                <Label Text="   Friend Requests" FontSize="20" TextColor="GhostWhite"/>
+                <Label Text="   Challenge Requests" FontSize="20" TextColor="GhostWhite"/>
             </StackLayout>
 
             <StackLayout HorizontalOptions="EndAndExpand" Margin="0,0,10,0">
-                <Switch IsToggled="{Binding FRToggled}" Toggled="FRSwitch_Toggled"/>
-                <Switch IsToggled="{Binding CHToggled}" Toggled="CHSwitch_Toggled"/>
+                <Switch IsToggled="{Binding FRToggled}" Toggled="FRSwitch_Toggled" OnColor="#f30000"/>
+                <Switch IsToggled="{Binding CHToggled}" Toggled="CHSwitch_Toggled" OnColor="#f30000"/>
             </StackLayout>
             </StackLayout>
         </StackLayout>

@@ -85,7 +85,6 @@ C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debu
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\OfficialViews\SettingsPage.xaml.g.cs
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\OfficialViews\AboutPage.xaml.g.cs
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\NewRecord_Backend.csprojAssemblyReference.cache
-C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\OpenTK.xml
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\x86\libSkiaSharp.dll
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\x64\libSkiaSharp.dll
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\arm64\libSkiaSharp.dll
@@ -120,6 +119,7 @@ C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backe
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\Xamarin.Forms.Xaml.dll
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\OpenTK.pdb
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\OpenTK.xml
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\OpenTK.GLControl.pdb
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\OpenTK.GLControl.xml
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\Plugin.myToolTip.pdb

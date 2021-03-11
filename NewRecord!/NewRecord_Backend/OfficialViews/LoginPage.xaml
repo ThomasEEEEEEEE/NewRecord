@@ -2,21 +2,21 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewRecord_Backend.OfficialViews.LoginPage"
-             BackgroundColor="#222222">
+             BackgroundColor="#181818">
     <ContentPage.Content>
         <AbsoluteLayout>
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1">
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,45,0,25">
                     <Label Text="New" FontSize="60" TextColor="#cf0000"/>
-                    <Label Text="Record!" FontSize="60" TextColor="DarkGray"/>
+                    <Label Text="Record!" FontSize="60" TextColor="LightGray"/>
                 </StackLayout>
 
-                <Frame HorizontalOptions="FillAndExpand" BackgroundColor="Black" BorderColor="Black" Margin="20,30,20,0" CornerRadius="10">
-                    <Entry Placeholder="Username" PlaceholderColor="#cf0000" Text="{Binding Username}" TextColor="#cf0000" Keyboard="Plain" FontSize="20"/>
+                <Frame HorizontalOptions="FillAndExpand" BackgroundColor="#282828" BorderColor="Black" Margin="20,30,20,0" CornerRadius="10">
+                    <Entry Placeholder="Username" PlaceholderColor="#E0E0E0" Text="{Binding Username}" TextColor="#E0E0E0" Keyboard="Plain" FontSize="20"/>
                 </Frame>
-                <Frame HorizontalOptions="FillAndExpand" BackgroundColor="Black" BorderColor="Black" Margin="20,0" CornerRadius="10">
-                    <Entry Placeholder="Password" IsPassword="True" PlaceholderColor="#cf0000" Text="{Binding Password}" TextColor="#cf0000" Keyboard="Plain" FontSize="20"/>
+                <Frame HorizontalOptions="FillAndExpand" BackgroundColor="#282828" BorderColor="Black" Margin="20,0" CornerRadius="10">
+                    <Entry Placeholder="Password" IsPassword="True" PlaceholderColor="#E0E0E0" Text="{Binding Password}" TextColor="#E0E0E0" Keyboard="Plain" FontSize="20"/>
                 </Frame>
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,2,0,0">
@@ -27,29 +27,29 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </StackLayout>
-                <Button Text="Log In" FontSize="29" CornerRadius="10" BackgroundColor="Black" TextColor="#cf0000" Margin="50,20,50,0" Clicked="Login_Clicked"/>
-                <Button Text="Continue Without Account" Clicked="ContinueButton_Clicked" FontSize="22" CornerRadius="10" BackgroundColor="Black" TextColor="#cf0000" VerticalOptions="EndAndExpand" Margin="5,0,5,20"/>
+                <Button Text="Log In" FontSize="29" CornerRadius="10" BackgroundColor="#a60808" BorderColor="Black" TextColor="GhostWhite" Margin="50,20,50,0" Clicked="Login_Clicked"/>
+                <Button Text="Continue Without Account" Clicked="ContinueButton_Clicked" FontSize="22" CornerRadius="10" BackgroundColor="#a60808" TextColor="GhostWhite" VerticalOptions="EndAndExpand" Margin="35,0,35,20"/>
             </StackLayout>
 
-            <Frame BackgroundColor="#2c2c2c" IsVisible="{Binding ShowSignUp}" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="25,35,0.86,0.8" HasShadow="True" CornerRadius="4" BorderColor="#333333">
+            <Frame BackgroundColor="#2c2c2c" IsVisible="{Binding ShowSignUp}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.5,0.8,0.8" HasShadow="True" CornerRadius="4" BorderColor="#333333">
                 <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <StackLayout HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1">
                         <StackLayout Orientation="Horizontal" Margin="0,70,0,20" HorizontalOptions="Center">
-                            <Label Text="Create" FontSize="38" HorizontalOptions="Center" TextColor="#cf0000"/>
-                            <Label Text="Account!" FontSize="38" TextColor="DarkGray" HorizontalOptions="Center"/>
+                            <Label Text="Create" FontSize="34" HorizontalOptions="Center" TextColor="#cf0000"/>
+                            <Label Text="Account!" FontSize="34" TextColor="LightGray" HorizontalOptions="Center"/>
                         </StackLayout>
-                        
-                        <Frame HorizontalOptions="FillAndExpand" BackgroundColor="Black" BorderColor="Black" CornerRadius="10">
-                            <Entry Placeholder="Username" PlaceholderColor="#cf0000" Text="{Binding SignUpUsername}" TextColor="#cf0000" Keyboard="Plain" FontSize="17"/>
+
+                        <Frame HorizontalOptions="FillAndExpand" BackgroundColor="#282828" BorderColor="Black" CornerRadius="10">
+                            <Entry Placeholder="Username" PlaceholderColor="GhostWhite" Text="{Binding SignUpUsername}" TextColor="GhostWhite" Keyboard="Plain" FontSize="17"/>
                         </Frame>
-                        <Frame HorizontalOptions="FillAndExpand" BackgroundColor="Black" BorderColor="Black" CornerRadius="10">
-                            <Entry Placeholder="Password" IsPassword="True" PlaceholderColor="#cf0000" Text="{Binding SignUpPassword}" TextColor="#cf0000" Keyboard="Plain" FontSize="17"/>
+                        <Frame HorizontalOptions="FillAndExpand" BackgroundColor="#282828" BorderColor="Black" CornerRadius="10">
+                            <Entry Placeholder="Password" IsPassword="True" PlaceholderColor="GhostWhite" Text="{Binding SignUpPassword}" TextColor="GhostWhite" Keyboard="Plain" FontSize="17"/>
                         </Frame>
-                        <Button Text="Sign Up" Clicked="Signup_Clicked" HorizontalOptions="CenterAndExpand" FontSize="30" BackgroundColor="Black" TextColor="#cf0000" CornerRadius="10" Margin="5,20,5,0"/>
+                        <Button Text="Sign Up" Clicked="Signup_Clicked" HorizontalOptions="CenterAndExpand" FontSize="30" BackgroundColor="#a60808" TextColor="GhostWhite" CornerRadius="10" Margin="-20,20,-20,0"/>
                     </StackLayout>
                 </AbsoluteLayout>
             </Frame>
-            <Button Text="X" IsVisible="{Binding ShowSignUp}" TextColor="GhostWhite" FontSize="35" BackgroundColor="#2c2c2c" CornerRadius="2" Clicked="ShowSignup" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.9,0.07,0.15,0.1"/>
+            <Button Text="X" IsVisible="{Binding ShowSignUp}" TextColor="GhostWhite" FontSize="35" BackgroundColor="#2c2c2c" CornerRadius="2" Clicked="ShowSignup" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.85,0.13,0.15,0.1"/>
             <ActivityIndicator Color="DarkRed" IsRunning="{Binding ShowLoading}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.5,0.2,0.2"/>
         </AbsoluteLayout>
     </ContentPage.Content>

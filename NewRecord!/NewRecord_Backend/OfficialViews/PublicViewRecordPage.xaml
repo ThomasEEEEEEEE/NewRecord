@@ -13,7 +13,7 @@
                 <Image Source="{Binding SelectedImage}" Aspect="AspectFill" HeightRequest="80" HorizontalOptions="Center"/>
 
                 
-                <Label Text="{Binding Privacy}" TextColor="#cf0000" FontSize="26"/>
+                <Label Text="{Binding Privacy}" TextColor="GhostWhite" FontSize="26"/>
 
                 <Frame Padding="0.5" BorderColor="#250000" BackgroundColor="#250000" HasShadow="True">
                     <tabview:TabViewControl x:Name="RecTabView" HeaderBackgroundColor="#650a0a" HeaderTabTextColor="#f5dada" HorizontalOptions="FillAndExpand" IsSwipeEnabled="True" HeaderSelectionUnderlineColor="#c12727">

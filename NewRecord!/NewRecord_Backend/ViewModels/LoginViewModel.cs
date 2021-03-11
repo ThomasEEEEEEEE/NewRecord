@@ -73,7 +73,7 @@ namespace NewRecord_Backend.ViewModels
         {
             ShowSignUp = !ShowSignUp;
         }
-        public async void SignupButtonPressed()
+        public void SignupButtonPressed()
         {
             if (String.IsNullOrWhiteSpace(SignUpUsername))
             {
@@ -89,14 +89,14 @@ namespace NewRecord_Backend.ViewModels
 
             if (DBAccess.GetUser(SignUpUsername) != null)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "An account with that username already exists", "OK");
+                _ = Application.Current.MainPage.DisplayAlert("Error", "An account with that username already exists", "OK");
                 return;
             }
             ShowLoading = true;
-            _ = Task.Run(() =>
+            Task.Run(() =>
             {
                 User user = new User();
-                user.Username = Username;
+                user.Username = SignUpUsername;
                 user.PasswordHash = Hashing.HashPassword(SignUpPassword);
                 DBAccess.AddUser(user);
                 Device.BeginInvokeOnMainThread(() =>

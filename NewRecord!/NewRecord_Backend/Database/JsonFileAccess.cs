@@ -105,7 +105,9 @@ namespace NewRecord_Backend.Database
         public void RemoveGoalsFromRecord(string recordname, List<Goal> goals)
         {
             List<Record> records = GetRecords();
-            records.Find(x => x.Name.ToLower() == recordname.ToLower()).Goals.RemoveAll(x => goals.Contains(x));
+            List<Goal> gols = records.Find(x => x.Name.ToLower() == recordname.ToLower()).Goals;
+            gols.RemoveAll(x => goals.Contains(x));
+            records.Find(x => x.Name.ToLower() == recordname.ToLower()).Goals = gols;
             WriteRecords(records);
         }
     }
