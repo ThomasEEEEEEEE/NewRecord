@@ -113,6 +113,7 @@ namespace NewRecord_Backend.ViewModels
             await Navigation.PushModalAsync(new UnregisteredTabbedPage());
 
         }
+
         private string username;
         public string Username
         {

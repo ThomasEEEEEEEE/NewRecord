@@ -142,6 +142,7 @@ C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backe
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\Xamarin.Forms.Core.xml
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\Xamarin.Forms.Xaml.pdb
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\bin\Debug\Xamarin.Forms.Xaml.xml
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\NewRecord_Backend.csprojAssemblyReference.cache
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\Views\AddRecordPage.xaml.g.cs
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\Views\LoginPage.xaml.g.cs
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\Views\MainTabbedPage.xaml.g.cs
@@ -172,4 +173,3 @@ C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backe
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\NewRecord_Backend.csproj.CopyComplete
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\NewRecord_Backend.dll
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\NewRecord_Backend.pdb
-C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord_Backend\obj\Debug\NewRecord_Backend.csprojAssemblyReference.cache

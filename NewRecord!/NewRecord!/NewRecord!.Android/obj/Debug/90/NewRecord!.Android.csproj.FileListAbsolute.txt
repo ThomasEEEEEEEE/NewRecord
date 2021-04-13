@@ -583,7 +583,6 @@ C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Andr
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\drawable\trophy.png
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\Resources\Fonts\Prototype.ttf
 C:\Users\Thomas\Documents\GitHub\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\Resources\Fonts\gomarice_no_continue.ttf
-C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\com.companyname.newrecord_-Signed.apk
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\x86\libSkiaSharp.dll
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\x64\libSkiaSharp.dll
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\arm64\libSkiaSharp.dll
@@ -596,6 +595,7 @@ C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewR
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\com.companyname.newrecord_.apk
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\com.companyname.newrecord_.aab
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\com.companyname.newrecord_-Signed.aab
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\com.companyname.newrecord_-Signed.apk
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\com.companyname.newrecord_-Signed.apk.idsig
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\NewRecord!.dll
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\bin\Debug\NewRecord_Backend.dll
@@ -685,6 +685,11 @@ C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewR
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\drawable\group.png
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\drawable\search.png
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\drawable\trophy.png
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\drawable\add_user.png
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\drawable\user_account.png
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\drawable\contacts.png
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\drawable\search_contacts_black.png
+C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\drawable\search_contacts_white.png
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\uploadflags.txt
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\resolvedassemblies.hash
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\android\assets\CarouselView.FormsPlugin.Abstractions.dll
@@ -1172,8 +1177,3 @@ C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewR
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\stamp\_GenerateJavaStubs.stamp
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
-C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\drawable\add_user.png
-C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\drawable\user_account.png
-C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\drawable\contacts.png
-C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\drawable\search_contacts_black.png
-C:\Users\Thomas\source\repos\ThomasEEEEEEEE\NewRecord\NewRecord!\NewRecord!\NewRecord!.Android\obj\Debug\90\res\drawable\search_contacts_white.png

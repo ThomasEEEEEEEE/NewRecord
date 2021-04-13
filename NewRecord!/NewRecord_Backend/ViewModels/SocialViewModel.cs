@@ -25,82 +25,78 @@ namespace NewRecord_Backend.ViewModels
         {
             Navigation = navigation;
 
-            //System.Threading.Tasks.Task.Run(() =>
-            //{
-                //A timer that will elapse every fifteen seconds and check for new notifications
-                Timer timer = new Timer(15000);
-                timer.Elapsed += async (object source, ElapsedEventArgs e) =>
+            //A timer that will elapse every fifteen seconds and check for new notifications
+            Timer timer = new Timer(15000);
+            timer.Elapsed += async (object source, ElapsedEventArgs e) =>
+            {
+                timer.Stop();
+                List<DBNotification> notifs = DBAccess.GetNotifications(AzureDBAccess.ID);
+                foreach (DBNotification notif in notifs)
                 {
-                    timer.Stop();
-                    List<DBNotification> notifs = DBAccess.GetNotifications(AzureDBAccess.ID);
-                    foreach (DBNotification notif in notifs)
+                    bool acc;
+                    bool autoacc;
+                    User sender = DBAccess.GetUser(notif.SenderID);
+                    switch (notif.NotificationType)
                     {
-                        bool acc;
-                        bool autoacc;
-                        User sender = DBAccess.GetUser(notif.SenderID);
-                        switch (notif.NotificationType)
-                        {
-                            case NotificationType.FRIEND_REQUEST:
-                                acc = false;
-                                autoacc = Preferences.Get("FRToggled", false);
-                                if (!autoacc)
+                        case NotificationType.FRIEND_REQUEST:
+                            acc = false;
+                            autoacc = Preferences.Get("FRToggled", false);
+                            if (!autoacc)
+                            {
+                                await Device.InvokeOnMainThreadAsync(async () =>
                                 {
-                                    await Device.InvokeOnMainThreadAsync(async () =>
-                                    {
-                                        acc = await Application.Current.MainPage.DisplayAlert("Friend Request Received", "From " + sender.Username, "Accept", "Decline");
-                                    });
-                                }
-                                if (acc || autoacc)
+                                    acc = await Application.Current.MainPage.DisplayAlert("Friend Request Received", "From " + sender.Username, "Accept", "Decline");
+                                });
+                            }
+                            if (acc || autoacc)
+                            {
+                                DBAccess.AcceptFriendRequest(AzureDBAccess.ID, notif.SenderID);
+                                Friends.ListView.Add(sender);
+                            }
+                            else
+                                DBAccess.DeclineFriendRequest(notif);
+
+                            DBAccess.RemoveNotification(notif);
+                            break;
+
+                        case NotificationType.CHALLENGE_REQUEST:
+                            acc = false;
+                            autoacc = Preferences.Get("CHToggled", false);
+
+                            Challenge chal = DBAccess.GetChallenge(notif.ChallengeID.Value);
+
+                            if (!autoacc)
+                            {
+                                await Device.InvokeOnMainThreadAsync(async () =>
                                 {
-                                    DBAccess.AcceptFriendRequest(AzureDBAccess.ID, notif.SenderID);
-                                    Friends.ListView.Add(sender);
-                                }
-                                else
-                                    DBAccess.DeclineFriendRequest(notif);
-
-                                DBAccess.RemoveNotification(notif);
-                                break;
-
-                            case NotificationType.CHALLENGE_REQUEST:
-                                acc = false;
-                                autoacc = Preferences.Get("CHToggled", false);
-
-                                Challenge chal = DBAccess.GetChallenge(notif.ChallengeID.Value);
-
-                                if (!autoacc)
-                                {
-                                    await Device.InvokeOnMainThreadAsync(async () =>
-                                    {
                                         //acc = await Application.Current.MainPage.DisplayAlert("Challenge Request Received", "From " + notif.SenderID, "Accept", "Decline");
                                         acc = await Application.Current.MainPage.DisplayAlert(
-                                            String.Format("Challenge Request Received From {0} for record \"{1}\"", sender.Username, chal.RecordName), 
-                                            String.Format("They challenge you to reach {0} by {1}", chal.GoalScore, chal.EndDate.ToShortDateString()), 
-                                            "Accept", "Decline");
-                                    });
-                                }
-                                if (acc || autoacc)
-                                {
-                                    DBAccess.AcceptChallengeRequest(notif);
-                                    Challenges.ListView.Add(DBAccess.GetChallenge(notif.ChallengeID.Value));
-                                }
-                                else
-                                    DBAccess.DeclineChallengeRequest(notif);
+                                        String.Format("Challenge Request Received From {0} for record \"{1}\"", sender.Username, chal.RecordName),
+                                        String.Format("They challenge you to reach {0} by {1}", chal.GoalScore, chal.EndDate.ToShortDateString()),
+                                        "Accept", "Decline");
+                                });
+                            }
+                            if (acc || autoacc)
+                            {
+                                DBAccess.AcceptChallengeRequest(notif);
+                                Challenges.ListView.Add(DBAccess.GetChallenge(notif.ChallengeID.Value));
+                            }
+                            else
+                                DBAccess.DeclineChallengeRequest(notif);
 
-                                DBAccess.RemoveNotification(notif);
-                                break;
-                        }
+                            DBAccess.RemoveNotification(notif);
+                            break;
                     }
-                    timer.Start();
-                };
-                timer.AutoReset = true;
-                timer.Enabled = true;
-            //}).ConfigureAwait(false);
+                }
+                timer.Start();
+            };
+            timer.AutoReset = true;
+            timer.Enabled = true;
             DBAccess = new AzureDBAccess();
             FriendsListVisible = false;
 
             Challenges = new ListViewModel<Challenge>(DBAccess.GetUserChallenges(AzureDBAccess.ID));
             Friends = new ListViewModel<User>(DBAccess.GetUserFriends(AzureDBAccess.ID));
-            //FriendRequests = new ListViewModel<User>(DBAccess.GetUserFriendRequests(AzureDBAccess.ID));
         }
 
         public void OnAppearing()

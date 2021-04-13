@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace NewRecord_Backend.Models
 {
-    //Unfinished
     public enum NotificationType
     {
         FRIEND_REQUEST = 0,

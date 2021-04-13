@@ -54,7 +54,6 @@ namespace NewRecord_Backend.Database
             WriteRecords(records);
         }
 
-        //Remember to check for duplicates
         public void EditRecordName(string oldname, string newname)
         {
             List<Record> records = GetRecords();
